@@ -1,3 +1,15 @@
+(fn define-signs [prefix]
+  (let [error (.. prefix :SignError)
+        warn (.. prefix :SignWarn)
+        info (.. prefix :SignInfo)
+        hint (.. prefix :SignHint)]
+    (vim.fn.sign_define error {:text "" :texthl error})
+    (vim.fn.sign_define warn {:text "" :texthl warn})
+    (vim.fn.sign_define info {:text "" :texthl info})
+    (vim.fn.sign_define hint {:text "" :texthl hint})))
+
+(define-signs :Diagnostic)
+
 [{1 :neovim/nvim-lspconfig :dependencies [:williamboman/mason.nvim]}
  {1 :williamboman/mason.nvim
   :config (fn []
@@ -13,25 +25,7 @@
               (lspconfig.fennel_language_server.setup {:settings {:fennel {:diagnostics {:globals [:vim]}}}})
               (lspconfig.clojure_lsp.setup {})))}]
 
-; (mason-lspconfig.setup_handlers {1 (fn [server-name]
-;                                      (let [server (. lspconfig
-;                                                      server-name)]
-;                                        (server.setup)))})))}]
-
-;;symbols to show for lsp diagnostics
-;;(fn define-signs [prefix]
-;;  (let [error (.. prefix :SignError)
-;;        warn (.. prefix :SignWarn)
-;;        info (.. prefix :SignInfo)
-;;        hint (.. prefix :SignHint)]
-;;    (vim.fn.sign_define error {:text "" :texthl error})
-;;    (vim.fn.sign_define warn {:text "" :texthl warn})
-;;    (vim.fn.sign_define info {:text "" :texthl info})
-;;    (vim.fn.sign_define hint {:text "" :texthl hint})))
-;;
-;;(define-signs :Diagnostic)
-;;
-;;[{1 :neovim/nvim-lspconfig
+; (;;[{1 :neovim/nvim-lspconfig
 ;;  :config (fn []
 ;;            (let [lsp (require :lspconfig)
 ;;                  cmplsp (require :cmp_nvim_lsp)
