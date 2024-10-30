@@ -8,28 +8,48 @@
 (require :config.keymaps)
 
 ; sets a nvim global options
-(let [options {; tabs is space
+(let [options {:background :light
+               :signcolumn :yes
+               :termguicolors true
+               :cursorline true
+               :hidden true
+               :autoindent true
+               :backspace "indent,eol,start"
+               :viewoptions "options,cursor"
+               :undodir :/s/.config/nvim/undodir
+               :undofile true
+               :formatoptions :cro
+               :wildmode "longest,list,full"
+               :scrolloff 3
+               :sidescrolloff 5
+               :sidescroll 1
+               :display :lastline
+               :history 1000
+               :tabpagemax 50
+               :relativenumber true
+               :splitright true
+               :splitbelow true
+               :textwidth 100
+               :showbreak "  "
+               :breakindent true
+               :wrap false
+               :smarttab true
                :expandtab true
-               ; tab/indent size
                :tabstop 2
                :shiftwidth 2
-               :softtabstop 2
-               ; settings needed for compe autocompletion
-               :completeopt "menuone,noselect"
-               ; case insensitive search
+               :hlsearch false
                :ignorecase true
-               ; smart search case
+               :updatetime 250
                :smartcase true
-               ; show line numbers
-               :number true
-               ; use relative numbers
-               :relativenumber true
-               ; show line and column number
-               :ruler true
-               ; makes signcolumn always one column with signs and linenumber
-               :signcolumn :number
-               :background :light}]
+               :smartindent true
+               :spelllang "en_us,de_at"
+               :autoread true}]
   (each [option value (pairs options)]
     (core.assoc vim.o option value)))
+
+(vim.opt.iskeyword:append "-")
+(vim.opt.listchars:append "precedes:<,extends:>,eol:¬,trail:.,nbsp:.")
+(vim.opt.complete:remove :i)
+(vim.opt.nrformats:remove :octal)
 
 {}
