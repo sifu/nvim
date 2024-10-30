@@ -11,7 +11,7 @@
 (let [options {:background :light
                :signcolumn :yes
                :termguicolors true
-               :cursorline true
+               :cursorline false
                :hidden true
                :autoindent true
                :backspace "indent,eol,start"

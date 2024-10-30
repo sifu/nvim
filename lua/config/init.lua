@@ -5,7 +5,7 @@ local core = autoload("nfnl.core")
 vim.keymap.set("n", "\226\130\172", "<nop>", {noremap = true})
 require("config.keymaps")
 do
-  local options = {background = "light", signcolumn = "yes", termguicolors = true, cursorline = true, hidden = true, autoindent = true, backspace = "indent,eol,start", viewoptions = "options,cursor", undodir = "/s/.config/nvim/undodir", undofile = true, formatoptions = "cro", wildmode = "longest,list,full", scrolloff = 3, sidescrolloff = 5, sidescroll = 1, display = "lastline", history = 1000, tabpagemax = 50, relativenumber = true, splitright = true, splitbelow = true, textwidth = 100, showbreak = "  ", breakindent = true, smarttab = true, expandtab = true, tabstop = 2, shiftwidth = 2, ignorecase = true, updatetime = 250, smartcase = true, smartindent = true, spelllang = "en_us,de_at", autoread = true, hlsearch = false, wrap = false}
+  local options = {background = "light", signcolumn = "yes", termguicolors = true, hidden = true, autoindent = true, backspace = "indent,eol,start", viewoptions = "options,cursor", undodir = "/s/.config/nvim/undodir", undofile = true, formatoptions = "cro", wildmode = "longest,list,full", scrolloff = 3, sidescrolloff = 5, sidescroll = 1, display = "lastline", history = 1000, tabpagemax = 50, relativenumber = true, splitright = true, splitbelow = true, textwidth = 100, showbreak = "  ", breakindent = true, smarttab = true, expandtab = true, tabstop = 2, shiftwidth = 2, ignorecase = true, updatetime = 250, smartcase = true, smartindent = true, spelllang = "en_us,de_at", autoread = true, cursorline = false, hlsearch = false, wrap = false}
   for option, value in pairs(options) do
     core.assoc(vim.o, option, value)
   end
