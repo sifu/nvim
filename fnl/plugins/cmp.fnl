@@ -6,9 +6,9 @@
 
 (local cmp-srcs [{:name "nvim_lsp"}
                  {:name "conjure"}
+                 {:name "codeium"}
                  {:name "path"}
                  {:name "buffer"}
-                 {:name "vsnip"}
                  {:name "luasnip"}])
 
 (fn has-words-before []
