@@ -5,9 +5,6 @@
 ; space is reserved to be lead
 (vim.keymap.set "n" "€" "<nop>" {:noremap true})
 
-; basic keymaps
-(require "config.keymaps")
-
 ; sets a nvim global options
 (let [options {:background "light"
                :signcolumn "yes"
