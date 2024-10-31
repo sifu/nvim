@@ -1,7 +1,9 @@
 (local {: autoload} (require "nfnl.module"))
 (local core (autoload "nfnl.core"))
 
-(local groups [["<leader>g" "Git"] ["<leader>c" "Conjure"]])
+(local groups [["<leader>g" "Git"]
+               ["<leader>c" "Conjure"]
+               ["<leader>a" "AI/ChatGPT"]])
 
 (fn show-help []
   (let [wk (require "which-key")] (wk.show)))
@@ -9,6 +11,7 @@
 (local mappings [;; Normal Mode Mappings
                  ["n" "<leader>?" show-help "Help"]
                  ["n" "<leader><leader>" ":wa<cr>" "Write all"]
+                 ["i" "<leader><leader>" "<esc>:wa<cr>" "Write all"]
                  ["n" "<leader>q" ":qa<cr>" "Quit"]
                  ["n" "<leader>d" ":bd<cr>" "Delete buffer"]
                  ["n"

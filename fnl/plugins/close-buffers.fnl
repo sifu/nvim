@@ -1,5 +1,4 @@
 [{1 "Asheq/close-buffers.vim"
-  :event "VeryLazy"
   :keys [{1 "<leader>bdo"
           2 ":Bdelete other<cr>"
           :desc "Delete all other buffers"}
