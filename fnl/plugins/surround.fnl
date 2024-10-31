@@ -1,5 +1,5 @@
-[{1 :kylechui/nvim-surround
-  :event :VeryLazy
+[{1 "kylechui/nvim-surround"
+  :event "VeryLazy"
   :config (fn []
-            (let [surround (require :nvim-surround)]
+            (let [surround (require "nvim-surround")]
               (surround.setup)))}]

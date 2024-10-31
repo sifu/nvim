@@ -1,1 +1,1 @@
-[{1 :christoomey/vim-system-copy}]
+[{1 "christoomey/vim-system-copy"}]

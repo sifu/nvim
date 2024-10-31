@@ -1,1 +1,1 @@
-[{1 :PaterJason/cmp-conjure :ft [:fennel :clojure]}]
+[{1 "PaterJason/cmp-conjure" :ft ["fennel" "clojure"]}]

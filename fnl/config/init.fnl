@@ -1,29 +1,30 @@
-(local {: autoload} (require :nfnl.module))
-(local core (autoload :nfnl.core))
+(local {: autoload} (require "nfnl.module"))
+
+(local core (autoload "nfnl.core"))
 
 ; space is reserved to be lead
-(vim.keymap.set :n "€" :<nop> {:noremap true})
+(vim.keymap.set "n" "€" "<nop>" {:noremap true})
 
 ; basic keymaps
-(require :config.keymaps)
+(require "config.keymaps")
 
 ; sets a nvim global options
-(let [options {:background :light
-               :signcolumn :yes
+(let [options {:background "light"
+               :signcolumn "yes"
                :termguicolors true
                :cursorline false
                :hidden true
                :autoindent true
                :backspace "indent,eol,start"
                :viewoptions "options,cursor"
-               :undodir :/s/.config/nvim/undodir
+               :undodir "/s/.config/nvim/undodir"
                :undofile true
-               :formatoptions :cro
+               :formatoptions "cro"
                :wildmode "longest,list,full"
                :scrolloff 3
                :sidescrolloff 5
                :sidescroll 1
-               :display :lastline
+               :display "lastline"
                :history 1000
                :tabpagemax 50
                :relativenumber true
@@ -49,7 +50,7 @@
 
 (vim.opt.iskeyword:append "-")
 (vim.opt.listchars:append "precedes:<,extends:>,eol:¬,trail:.,nbsp:.")
-(vim.opt.complete:remove :i)
-(vim.opt.nrformats:remove :octal)
+(vim.opt.complete:remove "i")
+(vim.opt.nrformats:remove "octal")
 
 {}
