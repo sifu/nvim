@@ -3,7 +3,8 @@
 
 (local groups [["<leader>g" "Git"]
                ["<leader>c" "Conjure"]
-               ["<leader>a" "AI/ChatGPT"]])
+               ["<leader>a" "AI/ChatGPT"]
+               ["ga" "Change Text Case"]])
 
 (fn show-help []
   (let [wk (require "which-key")] (wk.show)))
@@ -14,6 +15,7 @@
                  ["i" "<leader><leader>" "<esc>:wa<cr>" "Write all"]
                  ["n" "<leader>q" ":qa<cr>" "Quit"]
                  ["n" "<leader>d" ":bd<cr>" "Delete buffer"]
+                 ["n" "gp" "`[v`]" "Select last changed text"]
                  ["n"
                   "-"
                   ":lua require('oil').open_float()<cr>"

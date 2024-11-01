@@ -1,0 +1,8 @@
+-- [nfnl] Compiled from fnl/plugins/text-case.fnl by https://github.com/Olical/nfnl, do not edit.
+local function _1_()
+  local textcase = require("textcase")
+  local telescope = require("telescope")
+  textcase.setup()
+  return telescope.load_extension("textcase")
+end
+return {{"johmsalas/text-case.nvim", dependencies = {"nvim-telescope/telescope.nvim"}, config = _1_, keys = {{"gaa", "<cmd>TextCaseOpenTelescope<cr>", mode = {"n", "x"}, desc = "Change Text Case"}, {"gau", ":lua require('textcase').current_word('to_upper_case')<CR>", mode = {"n", "x"}, desc = "UPPER CASE"}, {"gal", ":lua require('textcase').current_word('to_lower_case')<CR>", mode = {"n", "x"}, desc = "lower case"}, {"gas", ":lua require('textcase').current_word('to_snake_case')<CR>", mode = {"n", "x"}, desc = "snake_case"}, {"gad", ":lua require('textcase').current_word('to_dash_case')<CR>", mode = {"n", "x"}, desc = "dash-case"}, {"gan", ":lua require('textcase').current_word('to_constant_case')<CR>", mode = {"n", "x"}, desc = "CONSTANT_CASE"}, {"ga.", ":lua require('textcase').current_word('to_dot_case')<CR>", mode = {"n", "x"}, desc = "dot.case"}, {"ga,", ":lua require('textcase').current_word('to_comma_case')<CR>", mode = {"n", "x"}, desc = "comma,case"}, {"gac", ":lua require('textcase').current_word('to_camel_case')<CR>", mode = {"n", "x"}, desc = "camelCase"}, {"gap", ":lua require('textcase').current_word('to_pascal_case')<CR>", mode = {"n", "x"}, desc = "PascalCase"}, {"gat", ":lua require('textcase').current_word('to_title_case')<CR>", mode = {"n", "x"}, desc = "Title Case"}, {"gaf", ":lua require('textcase').current_word('to_path_case')<CR>", mode = {"n", "x"}, desc = "path/case"}}}}
