@@ -7,7 +7,6 @@
 
 ; sets a nvim global options
 (let [options {:background "light"
-               :signcolumn "yes"
                :termguicolors true
                :cursorline false
                :hidden true
