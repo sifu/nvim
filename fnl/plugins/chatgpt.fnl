@@ -2,55 +2,55 @@
   :dependencies ["MunifTanjim/nui.nvim"
                  "nvim-lua/plenary.nvim"
                  "nvim-telescope/telescope.nvim"]
-  :keys [{1 "<leader>ac" 2 "<cmd>ChatGPT<CR>" :desc "ChatGPT" :mode ["n" "i"]}
+  :keys [{1 "<leader>ac" 2 "<cmd>ChatGPT<CR>" :desc "ChatGPT" :mode ["n"]}
          {1 "<leader>ae"
           2 "<cmd>ChatGPTEditWithInstruction<CR>"
           :desc "Edit with instruction"
-          :mode ["n" "i"]}
+          :mode ["n" "v"]}
          {1 "<leader>ag"
           2 "<cmd>ChatGPTRun grammar_correction<CR>"
           :desc "Grammar Correction"
-          :mode ["n" "i"]}
+          :mode ["n" "v"]}
          {1 "<leader>at"
           2 "<cmd>ChatGPTRun translate<CR>"
           :desc "Translate"
-          :mode ["n" "i"]}
+          :mode ["n" "v"]}
          {1 "<leader>ak"
           2 "<cmd>ChatGPTRun keywords<CR>"
           :desc "Keywords"
-          :mode ["n" "i"]}
+          :mode ["n" "v"]}
          {1 "<leader>ad"
           2 "<cmd>ChatGPTRun docstring<CR>"
           :desc "Docstring"
-          :mode ["n" "i"]}
+          :mode ["n" "v"]}
          {1 "<leader>aa"
           2 "<cmd>ChatGPTRun add_tests<CR>"
           :desc "Add Tests"
-          :mode ["n" "i"]}
+          :mode ["n" "v"]}
          {1 "<leader>ao"
           2 "<cmd>ChatGPTRun optimize_code<CR>"
           :desc "Optimize Code"
-          :mode ["n" "i"]}
+          :mode ["n" "v"]}
          {1 "<leader>as"
           2 "<cmd>ChatGPTRun summarize<CR>"
           :desc "Summarize"
-          :mode ["n" "i"]}
+          :mode ["n" "v"]}
          {1 "<leader>af"
           2 "<cmd>ChatGPTRun fix_bugs<CR>"
           :desc "Fix Bugs"
-          :mode ["n" "i"]}
+          :mode ["n" "v"]}
          {1 "<leader>ax"
           2 "<cmd>ChatGPTRun explain_code<CR>"
           :desc "Explain Code"
-          :mode ["n" "i"]}
+          :mode ["n" "v"]}
          {1 "<leader>ar"
           2 "<cmd>ChatGPTRun roxygen_edit<CR>"
           :desc "Roxygen Edit"
-          :mode ["n" "i"]}
+          :mode ["n" "v"]}
          {1 "<leader>al"
           2 "<cmd>ChatGPTRun code_readability_analysis<CR>"
           :desc "Code Readability Analysis"
-          :mode ["n" "i"]}]
+          :mode ["n" "v"]}]
   :config (fn []
             (let [chatgpt (require "chatgpt")]
               (chatgpt.setup {:openai_params {:model "gpt-4o"}
