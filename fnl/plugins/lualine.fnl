@@ -1,7 +1,8 @@
 (local {: autoload} (require "nfnl.module"))
+(local core (autoload "nfnl.core"))
 (local lsp (autoload "config.lsp"))
 
-(fn lsp_connection []
+(fn lsp-connection []
   (let [message (lsp.get-progress-message)]
     (if ; if has progress handler and is loading
         (or (= message.status "begin") (= message.status "report"))
@@ -12,6 +13,23 @@
              (not (vim.tbl_isempty (vim.lsp.buf_get_clients 0))))
         "" ; else
         "")))
+
+(fn macro-recording []
+  (if (core.empty? (vim.fn.reg_recording)) ""
+      (.. "🔴@" (vim.fn.reg_recording))))
+
+(vim.api.nvim_create_autocmd "RecordingEnter"
+                             {:callback (fn []
+                                          (let [lualine (require "lualine")]
+                                            (lualine.refresh {:place ["statusline"]})))})
+
+(vim.api.nvim_create_autocmd "RecordingLeave"
+                             {:callback (fn []
+                                          (let [lualine (require "lualine")
+                                                timer (vim.loop.new_timer)]
+                                            (timer:start 50 0
+                                                         (vim.schedule_wrap (fn []
+                                                                              (lualine.refresh {:place ["statusline"]}))))))})
 
 [{1 "nvim-lualine/lualine.nvim"
   :config (fn []
@@ -30,8 +48,9 @@
                                          :lualine_c [{1 "filename"
                                                       :file_status true
                                                       :path 1
-                                                      :shorting_target 40}]
-                                         :lualine_x [[lsp_connection]
+                                                      :shorting_target 40}
+                                                     [macro-recording]]
+                                         :lualine_x [[lsp-connection]
                                                      "location"
                                                      "filetype"]
                                          :lualine_y ["encoding"]
