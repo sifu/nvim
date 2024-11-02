@@ -10,16 +10,10 @@
 (fn show-help []
   (let [wk (require "which-key")] (wk.show)))
 
-;; where did the .cc come from? this
-; vim.keymap.set("n", "<enter>", function())
-;   local buf = vim.api.nvim_get_current_buf()
-;   local ft = vim.api.nvim_buf_get_option(buf, "filetype")
-;   if ft == "qf" then
-;     vim.cmd(".cc")
-;   else
-;     vim.cmd("Telescope buffers")
-;   end
-; end
+(fn enter []
+  (let [buf (vim.api.nvim_get_current_buf)
+        ft (vim.api.nvim_buf_get_option buf "filetype")]
+    (if (= ft "qf") (vim.cmd ".cc") (vim.cmd "Telescope buffers"))))
 
 (local mappings [;; Normal Mode Mappings
                  ["n" "<leader>?" show-help "Help"]
@@ -46,10 +40,7 @@
                  ["n" "√" "<C-W><C-V>" "Window split vertically"]
                  ["n" "ç" "<C-W>c" "Window close"]
                  ;; Telescope
-                 ["n"
-                  "<enter>"
-                  ":lua require('telescope.builtin').buffers()<CR>"
-                  "Buffers"]
+                 ["n" "<enter>" enter "Buffers"]
                  ["n"
                   "<space>f"
                   ":lua require('telescope.builtin').find_files()<CR>"
