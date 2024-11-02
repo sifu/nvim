@@ -4,6 +4,7 @@
 (local groups [["<leader>g" "Git"]
                ["<leader>c" "Conjure"]
                ["<leader>a" "AI/ChatGPT"]
+               ["<space>" "Search"]
                ["ga" "Change Text Case"]])
 
 (fn show-help []
@@ -65,6 +66,7 @@
                   "<space>r"
                   ":lua require('telescope.builtin').resume()<CR>"
                   "Resume last search"]
+                 ["n" "<space>y" "<cmd>YankBank<CR>" "YankBank"]
                  ;; Visual Mappings
                  ["v"
                   "<leader>g"
