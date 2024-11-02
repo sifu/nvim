@@ -69,7 +69,7 @@
                  ["n" "<space>y" "<cmd>YankBank<CR>" "YankBank"]
                  ;; Visual Mappings
                  ["v"
-                  "<leader>g"
+                  "<space>g"
                   "y:!open 'https://www.google.com/search?q=<c-r>\"'<cr>"
                   "Search selection with Google"]])
 
