@@ -4,10 +4,22 @@
 (local groups [["<leader>g" "Git"]
                ["<leader>c" "Conjure"]
                ["<leader>a" "AI/ChatGPT"]
+               ["<space>" "Find"]
                ["ga" "Change Text Case"]])
 
 (fn show-help []
   (let [wk (require "which-key")] (wk.show)))
+
+;; where did the .cc come from? this
+; vim.keymap.set("n", "<enter>", function())
+;   local buf = vim.api.nvim_get_current_buf()
+;   local ft = vim.api.nvim_buf_get_option(buf, "filetype")
+;   if ft == "qf" then
+;     vim.cmd(".cc")
+;   else
+;     vim.cmd("Telescope buffers")
+;   end
+; end
 
 (local mappings [;; Normal Mode Mappings
                  ["n" "<leader>?" show-help "Help"]
@@ -33,6 +45,23 @@
                  ["n" "ß" "<C-W><C-S>" "Window split"]
                  ["n" "√" "<C-W><C-V>" "Window split vertically"]
                  ["n" "ç" "<C-W>c" "Window close"]
+                 ;; Telescope
+                 ["n"
+                  "<enter>"
+                  ":lua require('telescope.builtin').buffers()<CR>"
+                  "Buffers"]
+                 ["n"
+                  "<space>f"
+                  ":lua require('telescope.builtin').find_files()<CR>"
+                  "Find Files"]
+                 ["n"
+                  "<space>g"
+                  ":lua require('telescope.builtin').live_grep()<CR>"
+                  "Live Grep"]
+                 ["n"
+                  "<space>h"
+                  ":lua require('telescope.builtin').help_tags()<CR>"
+                  "Help Tags"]
                  ;; Visual Mappings
                  ["v"
                   "<leader>g"
