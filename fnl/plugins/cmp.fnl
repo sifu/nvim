@@ -1,7 +1,6 @@
 (local cmp-src-menu-items {:buffer "buff"
                            :conjure "conj"
                            :nvim_lsp "lsp"
-                           :vsnip "vsnp"
                            :luasnip "lsnp"})
 
 (local cmp-srcs [{:name "nvim_lsp"}
@@ -21,7 +20,6 @@
 [{1 "hrsh7th/nvim-cmp"
   :dependencies ["hrsh7th/cmp-buffer"
                  "hrsh7th/cmp-nvim-lsp"
-                 "hrsh7th/cmp-vsnip"
                  "PaterJason/cmp-conjure"
                  "L3MON4D3/LuaSnip"
                  "saadparwaiz1/cmp_luasnip"]
@@ -38,9 +36,8 @@
                                     :<Down> (cmp.mapping.select_next_item)
                                     :<C-b> (cmp.mapping.scroll_docs (- 4))
                                     :<C-f> (cmp.mapping.scroll_docs 4)
-                                    :<C-Space> (cmp.mapping.complete)
+                                    :<C-Space> (cmp.mapping.confirm {:select true})
                                     :<C-e> (cmp.mapping.close)
-                                    :<CR> (cmp.mapping.confirm {:select true})
                                     :<Tab> (cmp.mapping (fn [fallback]
                                                           (if (cmp.visible)
                                                               (cmp.select_next_item)
