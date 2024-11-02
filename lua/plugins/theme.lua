@@ -1,11 +1,9 @@
 -- [nfnl] Compiled from fnl/plugins/theme.fnl by https://github.com/Olical/nfnl, do not edit.
 local function _1_()
-  local theme = require("tokyonight")
-  local function _2_(colors)
-    colors.bg = "#ffffff"
-    return nil
-  end
-  theme.setup({style = "night", styles = {comments = {italic = true}, floats = "dark", functions = {}, keywords = {italic = true}, sidebars = "dark", variables = {}}, on_colors = _2_, terminal_colors = true})
-  return vim.cmd("colorscheme tokyonight")
+  local theme = require("onenord")
+  local color_module = require("onenord.colors")
+  local colors = color_module.load()
+  theme.setup({theme = "light", borders = true, styles = {comments = "NONE", strings = "NONE", keywords = "NONE", functions = "NONE", variables = "NONE", diagnostics = "underline"}, disable = {eob_lines = true, background = false, cursorline = false}, custom_highlights = {VimwikiLink = {fg = colors.dark_blue, gui = nil}, VimwikiListTodo = {fg = colors.purple}, VimwikiHeaderChar = {guibg = nil}}, VimwikiError = {guibg = nil}, CursorLineNr = {bg = "#efefef"}, LineNr = {guifg = "#550055"}, Underlined = {guifg = "#15729e"}, Search = {guibg = "#f1f1f1", guifg = nil}, TreesitterContextLineNumber = {bg = "#eeeeee"}, TelescopePromptBorder = {fg = "#e0e0e0"}, TelescopeResultsBorder = {fg = "#e0e0e0"}, TelescopePreviewBorder = {fg = "#e0e0e0"}, FloatBorder = {fg = "#e0e0e0", bg = "FFFFFF"}, NormalFloat = {fg = "#2E3440", bg = "#FFFFFF"}, CodeiumSuggestion = {fg = "#333333", bg = "#efefef"}, custom_colors = {bg = "#ffffff"}, fade_nc = false})
+  return vim.cmd("colorscheme onenord")
 end
-return {{"folke/tokyonight.nvim", priority = 1000, dependencies = {"nvim-tree/nvim-web-devicons"}, config = _1_, lazy = false}}
+return {{"https://github.com/rmehri01/onenord.nvim", priority = 1000, dependencies = {"nvim-tree/nvim-web-devicons"}, config = _1_, lazy = false}}
