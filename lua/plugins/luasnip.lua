@@ -1,16 +1,7 @@
 -- [nfnl] Compiled from fnl/plugins/luasnip.fnl by https://github.com/Olical/nfnl, do not edit.
+local snippets = require("config.snippets")
 local function setup()
   local ls = require("luasnip")
-  local _fmt = require("luasnip.extras.fmt")
-  local extras = require("luasnip.extras")
-  local fmt = _fmt.fmt
-  local rep = extras.rep
-  local snip = ls.snippet
-  local text = ls.text_node
-  local insert = ls.insert_node
-  local func = ls.function_node
-  local choice = ls.choice_node
-  local sn = ls.sn
   local function _1_()
     if ls.expand_or_jumpable() then
       return ls.expand_or_jump()
@@ -35,10 +26,6 @@ local function setup()
     end
   end
   vim.keymap.set({"i", "s"}, "<c-l>", _5_, {desc = "LuaSnip expand/jump", silent = true})
-  local function _7_()
-    return ("Hello" .. "World")
-  end
-  ls.add_snippets(nil, {all = {snip({trig = "date", namr = "Date", dscr = "Date"}, {func(_7_, {})})}})
-  return print("TODO: port from old config")
+  return snippets.setup()
 end
 return {{"L3MON4D3/LuaSnip", config = setup}}

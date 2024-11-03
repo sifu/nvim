@@ -2,10 +2,10 @@
 
 (local core (autoload "nfnl.core"))
 
-; space is reserved to be lead
+;; € is reserved to be lead
 (vim.keymap.set "n" "€" "<nop>" {:noremap true})
 
-; sets a nvim global options
+;; sets a nvim global options
 (let [options {:background "light"
                :termguicolors true
                :cursorline false
