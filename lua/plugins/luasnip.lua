@@ -1,7 +1,7 @@
 -- [nfnl] Compiled from fnl/plugins/luasnip.fnl by https://github.com/Olical/nfnl, do not edit.
-local snippets = require("config.snippets")
 local function setup()
   local ls = require("luasnip")
+  local snippets = require("config.snippets")
   local function _1_()
     if ls.expand_or_jumpable() then
       return ls.expand_or_jump()

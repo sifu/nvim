@@ -1,7 +1,6 @@
-(local snippets (require "config.snippets"))
-
 (fn setup []
-  (let [ls (require "luasnip")]
+  (let [ls (require "luasnip")
+        snippets (require "config.snippets")]
     (vim.keymap.set ["i" "s"] "<c-k>"
                     (fn [] (if (ls.expand_or_jumpable) (ls.expand_or_jump)))
                     {:desc "LuaSnip expand/jump" :silent true})
