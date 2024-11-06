@@ -19,7 +19,9 @@ local function _3_()
   return os.date("%H:%M")
 end
 all = {date = {func(_2_)}, time = {func(_3_)}}
+local fennel = {core = {text({"(local {: autoload} (require \"nfnl.module\"))", "(local core (autoload \"nfnl.core\"))"})}}
 local javascript = {l = fmt("{}", {choice(1, {fmt("console.log('%c log ', 'background: #222; color: #bada55; padding: 2px', {})", {insert(1)}), fmt("console.log('%c log ', 'background: #222; color: #bada55; padding: 2px', JSON.stringify({}, null, 2))", {insert(1)})})}), ll = fmt("{}", {choice(1, {fmt("console.log('%c {} ', 'background: #222; color: #bada55; padding: 2px', {})", {insert(1), rep(1)}), fmt("console.log('%c {} ', 'background: #222; color: #bada55; padding: 2px', JSON.stringify({},null, 2))", {insert(1), rep(1)})})})}
+local filetype_snippets = {all = all, fennel = fennel, javascript = javascript}
 local function dict__3esnippet_table(dict)
   local result = {}
   for k, v in pairs(dict) do
@@ -27,7 +29,14 @@ local function dict__3esnippet_table(dict)
   end
   return result
 end
+local function map_value(f, dict)
+  local result = {}
+  for k, v in pairs(dict) do
+    core.assoc(result, k, f(v))
+  end
+  return result
+end
 local function setup()
-  return ls.add_snippets(nil, {all = dict__3esnippet_table(all), javascript = dict__3esnippet_table(javascript)})
+  return ls.add_snippets(nil, map_value(dict__3esnippet_table, filetype_snippets))
 end
 return {setup = setup}
