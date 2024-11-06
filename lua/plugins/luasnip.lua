@@ -2,6 +2,8 @@
 local function setup()
   local ls = require("luasnip")
   local snippets = require("config.snippets")
+  ls.config.set_config({updateevents = "TextChanged,TextChangedI", enable_autosnippets = false, history = false})
+  snippets.setup()
   local function _1_()
     if ls.expand_or_jumpable() then
       return ls.expand_or_jump()
@@ -25,7 +27,6 @@ local function setup()
       return nil
     end
   end
-  vim.keymap.set({"i", "s"}, "<c-l>", _5_, {desc = "LuaSnip expand/jump", silent = true})
-  return snippets.setup()
+  return vim.keymap.set({"i", "s"}, "<c-l>", _5_, {desc = "LuaSnip choices", silent = true})
 end
 return {{"L3MON4D3/LuaSnip", config = setup}}
