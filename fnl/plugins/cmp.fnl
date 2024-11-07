@@ -7,6 +7,7 @@
                  {:name "conjure"}
                  {:name "codeium"}
                  {:name "path"}
+                 {:name "buffer"}
                  {:name "luasnip"}])
 
 (fn has-words-before []
@@ -17,7 +18,8 @@
                                col) "match" "%s") nil))))
 
 [{1 "hrsh7th/nvim-cmp"
-  :dependencies ["hrsh7th/cmp-nvim-lsp"
+  :dependencies ["hrsh7th/cmp-buffer"
+                 "hrsh7th/cmp-nvim-lsp"
                  "hrsh7th/cmp-path"
                  "PaterJason/cmp-conjure"
                  "L3MON4D3/LuaSnip"

@@ -1,6 +1,6 @@
 -- [nfnl] Compiled from fnl/plugins/cmp.fnl by https://github.com/Olical/nfnl, do not edit.
 local cmp_src_menu_items = {buffer = "buff", conjure = "conj", nvim_lsp = "lsp", luasnip = "lsnp"}
-local cmp_srcs = {{name = "nvim_lsp"}, {name = "conjure"}, {name = "codeium"}, {name = "path"}, {name = "luasnip"}}
+local cmp_srcs = {{name = "nvim_lsp"}, {name = "conjure"}, {name = "codeium"}, {name = "path"}, {name = "buffer"}, {name = "luasnip"}}
 local function has_words_before()
   local line, col = unpack(vim.api.nvim_win_get_cursor(0))
   return ((col ~= 0) and (vim.api.nvim_buf_get_lines(0, (line - 1), line, true)[1]:sub(col, col):match("%s") == nil))
@@ -41,4 +41,4 @@ local function _1_()
   end
   return cmp.setup({formatting = {format = _2_}, mapping = {["<Up>"] = cmp.mapping.select_prev_item(), ["<Down>"] = cmp.mapping.select_next_item(), ["<C-b>"] = cmp.mapping.scroll_docs(( - 4)), ["<C-f>"] = cmp.mapping.scroll_docs(4), ["<C-Space>"] = cmp.mapping.confirm({select = true}), ["<C-e>"] = cmp.mapping.close(), ["<Tab>"] = cmp.mapping(_3_, {"i", "s"}), ["<S-Tab>"] = cmp.mapping(_5_, {"i", "s"})}, snippet = {expand = _7_}, sources = cmp_srcs})
 end
-return {{"hrsh7th/nvim-cmp", dependencies = {"hrsh7th/cmp-nvim-lsp", "hrsh7th/cmp-path", "PaterJason/cmp-conjure", "L3MON4D3/LuaSnip", "saadparwaiz1/cmp_luasnip"}, config = _1_}}
+return {{"hrsh7th/nvim-cmp", dependencies = {"hrsh7th/cmp-buffer", "hrsh7th/cmp-nvim-lsp", "hrsh7th/cmp-path", "PaterJason/cmp-conjure", "L3MON4D3/LuaSnip", "saadparwaiz1/cmp_luasnip"}, config = _1_}}
