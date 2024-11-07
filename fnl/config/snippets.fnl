@@ -1,5 +1,7 @@
 (local {: autoload} (require "nfnl.module"))
 (local core (autoload "nfnl.core"))
+(local {: split : join} (autoload "nfnl.string"))
+
 (local ls (require "luasnip"))
 (local fmt (. (require "luasnip.extras.fmt") "fmt"))
 (local rep (. (require "luasnip.extras") "rep"))
@@ -12,14 +14,17 @@
 (local sn ls.sn)
 
 (var state {:counter 0})
+
 (fn here-counter []
   (func (fn []
           (tset state "counter" (+ 1 (. state "counter")))
           (tostring (. state "counter")))))
 
+(fn upper-case-first-letter [str] (str:gsub "^%l" string.upper))
+
 (fn upper-case [index]
   (func (fn [[[arg]]]
-          (arg:gsub "^%l" string.upper)) [index]))
+          (upper-case-first-letter arg)) [index]))
 
 (fn tag [name]
   [(text (.. "<" name ">"))
@@ -28,6 +33,35 @@
             (sn nil [(text ["" "  "]) (insert 1) (text ["" ""])])])
    (text (.. "</" name ">"))
    (insert 0)])
+
+(fn filename-without-extension []
+  (vim.fn.fnamemodify (vim.fn.expand "%") ":t:r"))
+
+(fn kebab-to-mixed-case [str]
+  (->> (split str "-")
+       (core.map-indexed (fn [[i w]]
+                           (if (= i 1) w (upper-case-first-letter w))))
+       (join)))
+
+;function dash_to_mixed_case(str)
+;	local result = ""
+;	local capitalizeNext = true -- Always capitalize the first character
+;	for i = 1, #str do
+;		local char = str:sub(i, i)
+;
+;		if char == "-" then
+;			capitalizeNext = true
+;		else
+;			if capitalizeNext then
+;				result = result .. char:upper()
+;				capitalizeNext = false
+;			else
+;				result = result .. char
+;			end
+;		end
+;	end
+;	return result
+;end
 
 (local all {:date [(func (fn [] (os.date "%Y-%m-%d")))]
             :time [(func (fn [] (os.date "%H:%M")))]})
@@ -137,47 +171,19 @@
                                   (fmt "(\n  {}\n)" (insert 1))
                                   (fmt "{{\n  return (\n    {}\n  )\n}}"
                                        (insert 1))])
-                         (insert 0)]})
-
-;   comp = {
-;           text("export default function "),
-;           func(function()
-;                return dash_to_mixed_case(filename_without_extension())
-;                end),
-;           text("("),
-;           choice(1, {
-;                      text(" "),
-;                      fmt("{{ {} }}", insert(1)),})
-;           ,
-;           text({ ") {", "  return (", "    " }),
-;           choice(2, {
-;                      func(function()
-;                           return "<div>" .. dash_to_mixed_case(filename_without_extension()) .. "</div>"
-;                           end),
-;                      text(""),})
-;           ,
-;           text({ "", "  )", "}" }),
-;           },
-;   a = fmt( -- TODO: allow plain <a> by using match to check if <a{}> is preciding and not expanding a another time
-;           "<a href={}>{}</a>",
-;           {
-;            choice(1, {
-;                       fmt("'{}'", { insert(1) }),
-;                       fmt("{{{}}}", { insert(1) }),})
-;            ,
-;            insert(0),})
-;
-;   ,
-;   link = fmt( -- TODO: allow plain <a> by using match to check if <a{}> is preciding and not expanding a another time
-;              "<Link href={}>{}</Link>",
-;              {
-;               choice(1, {
-;                          fmt("{{{}}}", { insert(1) }),
-;                          fmt("'{}'", { insert(1) }),})
-;               ,
-;               insert(0),})
-;
-;   ,
+                         (insert 0)]
+                   :comp [(text "export default function ")
+                          (func (fn []
+                                  (kebab-to-mixed-case (filename-without-extension))))
+                          (text "(")
+                          (choice 1 [(text " ") (fmt "{{ {} }}" (insert 1))])
+                          (text [") {" "  return (" "    "])
+                          (choice 2
+                                  [(func #(.. "<div>"
+                                              (kebab-to-mixed-case (filename-without-extension))
+                                              "</div>"))
+                                   (text "")])
+                          (text ["" "  )" "}"])]})
 
 (local filetype-snippets {: all : fennel : javascript})
 
