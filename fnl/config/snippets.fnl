@@ -173,8 +173,7 @@
                                        (insert 1))])
                          (insert 0)]
                    :comp [(text "export default function ")
-                          (func (fn []
-                                  (kebab-to-mixed-case (filename-without-extension))))
+                          (func #(kebab-to-mixed-case (filename-without-extension)))
                           (text "(")
                           (choice 1 [(text " ") (fmt "{{ {} }}" (insert 1))])
                           (text [") {" "  return (" "    "])
