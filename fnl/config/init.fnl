@@ -8,7 +8,7 @@
 ;; sets a nvim global options
 (let [options {:background "light"
                :termguicolors true
-               :cursorline false
+               :cursorline true
                :hidden true
                :autoindent true
                :backspace "indent,eol,start"
