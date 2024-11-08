@@ -17,8 +17,9 @@ end
 local function _2_()
   local mason_lspconfig = require("mason-lspconfig")
   local lspconfig = require("lspconfig")
-  mason_lspconfig.setup({ensure_installed = {"fennel_language_server", "clojure_lsp"}})
+  mason_lspconfig.setup({ensure_installed = {"fennel_language_server", "ts_ls", "clojure_lsp"}})
   lspconfig.fennel_language_server.setup({settings = {fennel = {diagnostics = {globals = {"vim"}}}}})
+  lspconfig.ts_ls.setup({})
   return lspconfig.clojure_lsp.setup({})
 end
 return {{"neovim/nvim-lspconfig", dependencies = {"williamboman/mason.nvim"}}, {"williamboman/mason.nvim", config = _1_}, {"williamboman/mason-lspconfig.nvim", dependencies = {"williamboman/mason.nvim"}, config = _2_}}

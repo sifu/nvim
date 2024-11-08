@@ -21,8 +21,10 @@
             (let [mason-lspconfig (require "mason-lspconfig")
                   lspconfig (require "lspconfig")]
               (mason-lspconfig.setup {:ensure_installed ["fennel_language_server"
+                                                         "ts_ls"
                                                          "clojure_lsp"]})
               (lspconfig.fennel_language_server.setup {:settings {:fennel {:diagnostics {:globals ["vim"]}}}})
+              (lspconfig.ts_ls.setup {})
               (lspconfig.clojure_lsp.setup {})))}]
 
 ; (;;[{1 :neovim/nvim-lspconfig
