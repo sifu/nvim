@@ -1,7 +1,8 @@
 [{1 "nvim-telescope/telescope.nvim"
   :dependencies ["nvim-telescope/telescope-ui-select.nvim"
                  "nvim-lua/popup.nvim"
-                 "nvim-lua/plenary.nvim"]
+                 "nvim-lua/plenary.nvim"
+                 "JoseConseco/telescope_sessions_picker.nvim"]
   :config (fn []
             (let [telescope (require "telescope")
                   actions (require "telescope.actions")
@@ -30,11 +31,14 @@
                                                                "--iglob"
                                                                "!.git"
                                                                "--hidden"]}
-                                :extensions {:ui-select {1 (themes.get_dropdown {})}}
+                                :extensions {:ui-select {1 (themes.get_dropdown {})}
+                                             :sessions_picker {:sessions_dir (.. (vim.fn.stdpath "data")
+                                                                                 "/session/")}}
                                 :pickers {:find_files {:find_command ["rg"
                                                                       "--files"
                                                                       "--iglob"
                                                                       "!.git"
                                                                       "--hidden"]}}})
               (telescope.load_extension "ui-select")
-              (telescope.load_extension "fzf")))}]
+              (telescope.load_extension "fzf")
+              (telescope.load_extension "sessions_picker")))}]

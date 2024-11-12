@@ -159,6 +159,10 @@
                   ":lua require('telescope.builtin').live_grep()<CR>"
                   "Live Grep"]
                  ["n"
+                  "<space>s"
+                  "<cmd>Telescope sessions_picker<cr>"
+                  "Sessions"]
+                 ["n"
                   "<space>h"
                   ":lua require('telescope.builtin').help_tags()<CR>"
                   "Help Tags"]
