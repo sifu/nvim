@@ -7,12 +7,9 @@ local function has_words_before()
 end
 local function _1_()
   local cmp = require("cmp")
+  local lspkind = require("lspkind")
   local luasnip = require("luasnip")
-  local function _2_(entry, item)
-    item.menu = (cmp_src_menu_items[entry.source.name] or "")
-    return item
-  end
-  local function _3_(fallback)
+  local function _2_(fallback)
     if cmp.visible() then
       return cmp.select_next_item()
     elseif luasnip.expand_or_jumpable() then
@@ -25,7 +22,7 @@ local function _1_()
       return nil
     end
   end
-  local function _5_(fallback)
+  local function _4_(fallback)
     if cmp.visible() then
       return cmp.select_prev_item()
     elseif luasnip.jumpable(-1) then
@@ -36,9 +33,9 @@ local function _1_()
       return nil
     end
   end
-  local function _7_(args)
+  local function _6_(args)
     return luasnip.lsp_expand(args.body)
   end
-  return cmp.setup({formatting = {format = _2_}, mapping = {["<Up>"] = cmp.mapping.select_prev_item(), ["<Down>"] = cmp.mapping.select_next_item(), ["<C-b>"] = cmp.mapping.scroll_docs(( - 4)), ["<C-f>"] = cmp.mapping.scroll_docs(4), ["<C-Space>"] = cmp.mapping.confirm({select = true}), ["<C-e>"] = cmp.mapping.close(), ["<Tab>"] = cmp.mapping(_3_, {"i", "s"}), ["<S-Tab>"] = cmp.mapping(_5_, {"i", "s"})}, snippet = {expand = _7_}, sources = cmp_srcs})
+  return cmp.setup({formatting = {format = lspkind.cmp_format({mode = "symbol_text", maxwidth = 50, ellipsis_char = "...", symbol_map = {Codeium = "\239\131\144"}})}, mapping = {["<Up>"] = cmp.mapping.select_prev_item(), ["<Down>"] = cmp.mapping.select_next_item(), ["<C-b>"] = cmp.mapping.scroll_docs(( - 4)), ["<C-f>"] = cmp.mapping.scroll_docs(4), ["<C-Space>"] = cmp.mapping.confirm({select = true}), ["<C-e>"] = cmp.mapping.close(), ["<Tab>"] = cmp.mapping(_2_, {"i", "s"}), ["<S-Tab>"] = cmp.mapping(_4_, {"i", "s"})}, snippet = {expand = _6_}, sources = cmp_srcs})
 end
-return {{"hrsh7th/nvim-cmp", dependencies = {"hrsh7th/cmp-buffer", "hrsh7th/cmp-nvim-lsp", "hrsh7th/cmp-path", "hrsh7th/cmp-nvim-lsp-signature-help", "PaterJason/cmp-conjure", "L3MON4D3/LuaSnip", "saadparwaiz1/cmp_luasnip"}, config = _1_}}
+return {{"hrsh7th/nvim-cmp", dependencies = {"hrsh7th/cmp-buffer", "hrsh7th/cmp-nvim-lsp", "hrsh7th/cmp-path", "hrsh7th/cmp-nvim-lsp-signature-help", "PaterJason/cmp-conjure", "L3MON4D3/LuaSnip", "saadparwaiz1/cmp_luasnip", "onsails/lspkind.nvim"}, config = _1_}}

@@ -25,16 +25,16 @@
                  "hrsh7th/cmp-nvim-lsp-signature-help"
                  "PaterJason/cmp-conjure"
                  "L3MON4D3/LuaSnip"
-                 "saadparwaiz1/cmp_luasnip"]
+                 "saadparwaiz1/cmp_luasnip"
+                 "onsails/lspkind.nvim"]
   :config (fn []
             (let [cmp (require "cmp")
+                  lspkind (require "lspkind")
                   luasnip (require "luasnip")]
-              (cmp.setup {:formatting {:format (fn [entry item]
-                                                 (set item.menu
-                                                      (or (. cmp-src-menu-items
-                                                             entry.source.name)
-                                                          ""))
-                                                 item)}
+              (cmp.setup {:formatting {:format (lspkind.cmp_format {:mode "symbol_text"
+                                                                    :maxwidth 50
+                                                                    :ellipsis_char "..."
+                                                                    :symbol_map {:Codeium ""}})}
                           :mapping {:<Up> (cmp.mapping.select_prev_item)
                                     :<Down> (cmp.mapping.select_next_item)
                                     :<C-b> (cmp.mapping.scroll_docs (- 4))
@@ -62,3 +62,10 @@
                           :snippet {:expand (fn [args]
                                               (luasnip.lsp_expand args.body))}
                           :sources cmp-srcs})))}]
+
+; (cmp.setup {:formatting {:format (fn [entry item]
+;                                    (set item.menu
+;                                         (or (. cmp-src-menu-items
+;                                                entry.source.name)
+;                                             ""))
+;                                    item)}})))}]
