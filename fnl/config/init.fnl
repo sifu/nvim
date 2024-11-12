@@ -36,6 +36,7 @@
                :expandtab true
                :tabstop 2
                :shiftwidth 2
+               :signcolumn "yes"
                :hlsearch true
                :ignorecase true
                :updatetime 250
