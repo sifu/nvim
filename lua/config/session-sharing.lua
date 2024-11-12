@@ -1,4 +1,4 @@
--- [nfnl] Compiled from fnl/config/yank-between-instances.fnl by https://github.com/Olical/nfnl, do not edit.
+-- [nfnl] Compiled from fnl/config/session-sharing.fnl by https://github.com/Olical/nfnl, do not edit.
 local function _1_()
   return vim.cmd("rshada")
 end
