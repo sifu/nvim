@@ -36,7 +36,7 @@
                :expandtab true
                :tabstop 2
                :shiftwidth 2
-               :hlsearch false
+               :hlsearch true
                :ignorecase true
                :updatetime 250
                :smartcase true

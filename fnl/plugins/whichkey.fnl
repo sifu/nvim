@@ -18,6 +18,7 @@
     (if (= ft "qf") (vim.cmd ".cc") (vim.cmd "Telescope buffers"))))
 
 (local mappings [;; Normal Mode Mappings
+                 ["n" "<esc>" ":noh<cr><esc>" "Clear Highlightsearch"]
                  ["n" "<leader>?" show-help "Help"]
                  ["n" "<leader><leader>" ":wa<cr>" "Write all"]
                  ["i" "<leader><leader>" "<esc>:wa<cr>" "Write all"]
