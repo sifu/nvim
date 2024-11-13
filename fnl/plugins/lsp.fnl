@@ -10,6 +10,8 @@
 
 (define-signs "Diagnostic")
 
+(local fennel-opts {:settings {:fennel {:diagnostics {:globals ["vim"]}}}})
+
 [{1 "neovim/nvim-lspconfig" :dependencies ["williamboman/mason.nvim"]}
  {1 "williamboman/mason.nvim"
   :config (fn []
@@ -22,7 +24,11 @@
                   lspconfig (require "lspconfig")]
               (mason-lspconfig.setup {:ensure_installed ["fennel_language_server"
                                                          "ts_ls"
+                                                         "cssmodules_ls"
+                                                         "cssls"
                                                          "clojure_lsp"]}
-                                     (lspconfig.fennel_language_server.setup {:settings {:fennel {:diagnostics {:globals ["vim"]}}}})
+                                     (lspconfig.fennel_language_server.setup fennel-opts)
                                      (lspconfig.ts_ls.setup {})
+                                     (lspconfig.cssmodules_ls.setup {})
+                                     (lspconfig.cssls.setup {})
                                      (lspconfig.clojure_lsp.setup {}))))}]
