@@ -4,8 +4,10 @@
 
 ;; € is reserved to be lead
 (vim.keymap.set "n" "€" "<nop>" {:noremap true})
+
 (require "config.session-sharing")
 (require "config.session-load")
+(require "config.rm")
 
 ;; sets a nvim global options
 (let [options {:background "light"
