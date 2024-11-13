@@ -4,8 +4,8 @@
                            :luasnip "lsnp"})
 
 (local cmp-srcs [{:name "nvim_lsp"}
-                 {:name "conjure"}
                  {:name "nvim_lsp_signature_help"}
+                 {:name "conjure"}
                  {:name "codeium"}
                  {:name "path"}
                  {:name "buffer"}
@@ -62,10 +62,3 @@
                           :snippet {:expand (fn [args]
                                               (luasnip.lsp_expand args.body))}
                           :sources cmp-srcs})))}]
-
-; (cmp.setup {:formatting {:format (fn [entry item]
-;                                    (set item.menu
-;                                         (or (. cmp-src-menu-items
-;                                                entry.source.name)
-;                                             ""))
-;                                    item)}})))}]

@@ -1,6 +1,6 @@
 -- [nfnl] Compiled from fnl/plugins/cmp.fnl by https://github.com/Olical/nfnl, do not edit.
 local cmp_src_menu_items = {buffer = "buff", conjure = "conj", nvim_lsp = "lsp", luasnip = "lsnp"}
-local cmp_srcs = {{name = "nvim_lsp"}, {name = "conjure"}, {name = "nvim_lsp_signature_help"}, {name = "codeium"}, {name = "path"}, {name = "buffer"}, {name = "luasnip"}}
+local cmp_srcs = {{name = "nvim_lsp"}, {name = "nvim_lsp_signature_help"}, {name = "conjure"}, {name = "codeium"}, {name = "path"}, {name = "buffer"}, {name = "luasnip"}}
 local function has_words_before()
   local line, col = unpack(vim.api.nvim_win_get_cursor(0))
   return ((col ~= 0) and (vim.api.nvim_buf_get_lines(0, (line - 1), line, true)[1]:sub(col, col):match("%s") == nil))
