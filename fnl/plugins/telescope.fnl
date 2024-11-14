@@ -7,7 +7,9 @@
             (let [telescope (require "telescope")
                   actions (require "telescope.actions")
                   themes (require "telescope.themes")]
-              (telescope.setup {:defaults {:file_ignore_patterns ["node_modules"]
+              (telescope.setup {:defaults {:file_ignore_patterns ["node_modules"
+                                                                  "lua/plugins"
+                                                                  "lua/config"]
                                            :dynamic_preview_title true
                                            :mappings {:i {:<esc> actions.close
                                                           :<c-q> (+ actions.send_to_qflist
