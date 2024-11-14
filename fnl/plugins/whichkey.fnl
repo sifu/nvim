@@ -173,10 +173,6 @@
                   "Resume last search"]
                  ["n" "<space>y" "<cmd>YankBank<CR>" "YankBank"]
                  ;; Visual Mappings
-                 ["v"
-                  "<space>g"
-                  "y:!open 'https://www.google.com/search?q=<c-r>\"'<cr>"
-                  "Search selection with Google"]
                  ["v" "<" "<gv" "Visualmode indent"]
                  ["v" ">" ">gv" "Visualmode indent"]])
 
