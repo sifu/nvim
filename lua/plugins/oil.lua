@@ -1,8 +1,5 @@
 -- [nfnl] Compiled from fnl/plugins/oil.fnl by https://github.com/Olical/nfnl, do not edit.
 local function _1_()
-  vim.api.nvim_set_hl(0, "Sifu-Normal", {bg = "#ffffff"})
-  vim.api.nvim_set_hl(0, "Sifu-FloatBorder", {bg = "#ffffff", fg = "#6087d7"})
-  vim.api.nvim_set_hl(0, "Sifu-FloatTitle", {fg = "#000000"})
   local oil = require("oil")
   local function _2_()
     local oil0 = require("oil")
@@ -21,6 +18,6 @@ local function _1_()
   local function _6_()
     return true
   end
-  return oil.setup({columns = {"icon"}, delete_to_trash = true, watch_for_changes = true, skip_confirm_for_simple_edits = true, constrain_cursor = "name", view_options = {show_hidden = true}, keymaps = {["<esc>"] = _2_, gd = _3_, ["g:"] = {"actions.open_cmdline", desc = "Open cmdline with current directory as an argument", opts = {shorten_path = true, modify = ":h"}}}, git = {add = _4_, mv = _5_, rm = _6_}, float = {padding = 4, max_width = 0, max_height = 0, border = "rounded", win_options = {winblend = 0, winhl = "Normal:Sifu-Normal,FloatBorder:Sifu-FloatBorder,FloatTitle:Sifu-FloatTitle"}}})
+  return oil.setup({columns = {"icon"}, delete_to_trash = true, watch_for_changes = true, skip_confirm_for_simple_edits = true, constrain_cursor = "name", view_options = {show_hidden = true}, keymaps = {["<esc>"] = _2_, gd = _3_, ["g:"] = {"actions.open_cmdline", desc = "Open cmdline with current directory as an argument", opts = {shorten_path = true, modify = ":h"}}}, git = {add = _4_, mv = _5_, rm = _6_}, float = {padding = 4, max_width = 0, max_height = 0, border = "rounded", win_options = {winblend = 0}}})
 end
 return {{"stevearc/oil.nvim", config = _1_}}

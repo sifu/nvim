@@ -1,9 +1,5 @@
 [{1 "stevearc/oil.nvim"
   :config (fn []
-            (vim.api.nvim_set_hl 0 "Sifu-Normal" {:bg "#ffffff"})
-            (vim.api.nvim_set_hl 0 "Sifu-FloatBorder"
-                                 {:bg "#ffffff" :fg "#6087d7"})
-            (vim.api.nvim_set_hl 0 "Sifu-FloatTitle" {:fg "#000000"})
             (let [oil (require "oil")]
               (oil.setup {:columns ["icon"]
                           :delete_to_trash true
@@ -31,5 +27,4 @@
                                   :max_width 0
                                   :max_height 0
                                   :border "rounded"
-                                  :win_options {:winblend 0
-                                                :winhl "Normal:Sifu-Normal,FloatBorder:Sifu-FloatBorder,FloatTitle:Sifu-FloatTitle"}}})))}]
+                                  :win_options {:winblend 0}}})))}]
