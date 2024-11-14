@@ -3,6 +3,7 @@
                  "nvim-lua/plenary.nvim"
                  "nvim-telescope/telescope.nvim"]
   :keys [{1 "<leader>ac" 2 "<cmd>ChatGPT<CR>" :desc "ChatGPT" :mode ["n"]}
+         {1 "<leader>aa" 2 "<cmd>ChatGPTActAs<cr>" :desc "Act as"}
          {1 "<leader>ae"
           2 "<cmd>ChatGPTEditWithInstruction<CR>"
           :desc "Edit with instruction"
@@ -11,7 +12,7 @@
           2 "<cmd>ChatGPTRun grammar_correction<CR>"
           :desc "Grammar Correction"
           :mode ["n" "v"]}
-         {1 "<leader>at"
+         {1 "<leader>aT"
           2 "<cmd>ChatGPTRun translate<CR>"
           :desc "Translate"
           :mode ["n" "v"]}
@@ -23,7 +24,7 @@
           2 "<cmd>ChatGPTRun docstring<CR>"
           :desc "Docstring"
           :mode ["n" "v"]}
-         {1 "<leader>aa"
+         {1 "<leader>at"
           2 "<cmd>ChatGPTRun add_tests<CR>"
           :desc "Add Tests"
           :mode ["n" "v"]}
