@@ -31,35 +31,35 @@
                                                          (vim.schedule_wrap (fn []
                                                                               (lualine.refresh {:place ["statusline"]}))))))})
 
-[{1 "nvim-lualine/lualine.nvim"
-  :config (fn []
-            (let [lualine (require "lualine")
-                  lualine-theme (require "lualine.themes.material")]
-              (lualine.setup {:options {:theme lualine-theme
-                                        :icons_enabled true
-                                        :component_separators {:left ""
-                                                               :right ""}
-                                        :section_separators {:left ""
-                                                             :right ""}}
-                              :sections {:lualine_a ["mode" {:upper true}]
-                                         :lualine_b ["branch"
-                                                     {1 "diff"
-                                                      :diff_color {:modified {:fg "#87afff"}}}]
-                                         :lualine_c [{1 "filename"
-                                                      :file_status true
-                                                      :path 1
-                                                      :shorting_target 40}
-                                                     [macro-recording]]
-                                         :lualine_x [[lsp-connection]
-                                                     "location"
-                                                     "filetype"]
-                                         :lualine_y ["encoding"]
-                                         :lualine_z []}
-                              :inactive_sections {:lualine_a []
-                                                  :lualine_b []
-                                                  :lualine_c [{1 "filename"
-                                                               :file_status true
-                                                               :path 1}]
-                                                  :lualine_x []
-                                                  :lualine_y []
-                                                  :lualine_z []}})))}]
+{1 "nvim-lualine/lualine.nvim"
+ :config (fn []
+           (let [lualine (require "lualine")
+                 lualine-theme (require "lualine.themes.material")]
+             (lualine.setup {:options {:theme lualine-theme
+                                       :icons_enabled true
+                                       :component_separators {:left ""
+                                                              :right ""}
+                                       :section_separators {:left ""
+                                                            :right ""}}
+                             :sections {:lualine_a ["mode" {:upper true}]
+                                        :lualine_b ["branch"
+                                                    {1 "diff"
+                                                     :diff_color {:modified {:fg "#87afff"}}}]
+                                        :lualine_c [{1 "filename"
+                                                     :file_status true
+                                                     :path 1
+                                                     :shorting_target 40}
+                                                    [macro-recording]]
+                                        :lualine_x [[lsp-connection]
+                                                    "location"
+                                                    "filetype"]
+                                        :lualine_y ["encoding"]
+                                        :lualine_z []}
+                             :inactive_sections {:lualine_a []
+                                                 :lualine_b []
+                                                 :lualine_c [{1 "filename"
+                                                              :file_status true
+                                                              :path 1}]
+                                                 :lualine_x []
+                                                 :lualine_y []
+                                                 :lualine_z []}})))}

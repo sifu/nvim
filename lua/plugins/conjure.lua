@@ -6,4 +6,4 @@ local function _1_()
   vim.g["conjure#client#clojure#nrepl#connection#auto_repl#enabled"] = false
   return nil
 end
-return {{"Olical/conjure", ft = {"fennel", "clojure"}, branch = "master", init = _1_}}
+return {"Olical/conjure", ft = {"fennel", "clojure"}, branch = "master", init = _1_}

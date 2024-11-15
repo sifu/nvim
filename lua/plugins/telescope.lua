@@ -8,4 +8,4 @@ local function _1_()
   telescope.load_extension("fzf")
   return telescope.load_extension("sessions_picker")
 end
-return {{"nvim-telescope/telescope.nvim", dependencies = {"nvim-telescope/telescope-ui-select.nvim", "nvim-lua/popup.nvim", "nvim-lua/plenary.nvim", "JoseConseco/telescope_sessions_picker.nvim"}, config = _1_}}
+return {"nvim-telescope/telescope.nvim", dependencies = {"nvim-telescope/telescope-ui-select.nvim", "nvim-lua/popup.nvim", "nvim-lua/plenary.nvim", "JoseConseco/telescope_sessions_picker.nvim"}, config = _1_}

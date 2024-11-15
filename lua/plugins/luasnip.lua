@@ -37,4 +37,4 @@ local function setup()
   end
   return vim.keymap.set({"i", "s"}, "<c-l>", _7_, {desc = "LuaSnip choices", silent = true})
 end
-return {{"L3MON4D3/LuaSnip", config = setup}}
+return {"L3MON4D3/LuaSnip", config = setup}

@@ -187,4 +187,4 @@
     (core.map #(add-group wk $1) groups)
     (core.map #(add-mapping wk $1) mappings)))
 
-[{1 "folke/which-key.nvim" :config add-groups-and-mappings}]
+{1 "folke/which-key.nvim" :config add-groups-and-mappings}

@@ -18,47 +18,47 @@
                                   1) "sub" col
                                col) "match" "%s") nil))))
 
-[{1 "hrsh7th/nvim-cmp"
-  :dependencies ["hrsh7th/cmp-buffer"
-                 "hrsh7th/cmp-nvim-lsp"
-                 "hrsh7th/cmp-path"
-                 "hrsh7th/cmp-nvim-lsp-signature-help"
-                 "PaterJason/cmp-conjure"
-                 "L3MON4D3/LuaSnip"
-                 "saadparwaiz1/cmp_luasnip"
-                 "onsails/lspkind.nvim"]
-  :config (fn []
-            (let [cmp (require "cmp")
-                  lspkind (require "lspkind")
-                  luasnip (require "luasnip")]
-              (cmp.setup {:formatting {:format (lspkind.cmp_format {:mode "symbol_text"
-                                                                    :maxwidth 50
-                                                                    :ellipsis_char "..."
-                                                                    :symbol_map {:Codeium ""}})}
-                          :mapping {:<Up> (cmp.mapping.select_prev_item)
-                                    :<Down> (cmp.mapping.select_next_item)
-                                    :<C-b> (cmp.mapping.scroll_docs (- 4))
-                                    :<C-f> (cmp.mapping.scroll_docs 4)
-                                    :<C-Space> (cmp.mapping.confirm {:select true})
-                                    :<C-e> (cmp.mapping.close)
-                                    :<Tab> (cmp.mapping (fn [fallback]
-                                                          (if (cmp.visible)
-                                                              (cmp.select_next_item)
-                                                              (luasnip.expand_or_jumpable)
-                                                              (luasnip.expand_or_jump)
-                                                              (has-words-before)
-                                                              (cmp.complete)
-                                                              "else"
-                                                              (fallback)))
-                                                        {1 "i" 2 "s"})
-                                    :<S-Tab> (cmp.mapping (fn [fallback]
-                                                            (if (cmp.visible)
-                                                                (cmp.select_prev_item)
-                                                                (luasnip.jumpable -1)
-                                                                (luasnip.jump -1)
-                                                                "else"
-                                                                (fallback)))
-                                                          {1 "i" 2 "s"})}
-                          :snippet {:expand (fn [args]
-                                              (luasnip.lsp_expand args.body))}
-                          :sources cmp-srcs})))}]
+{1 "hrsh7th/nvim-cmp"
+ :dependencies ["hrsh7th/cmp-buffer"
+                "hrsh7th/cmp-nvim-lsp"
+                "hrsh7th/cmp-path"
+                "hrsh7th/cmp-nvim-lsp-signature-help"
+                "PaterJason/cmp-conjure"
+                "L3MON4D3/LuaSnip"
+                "saadparwaiz1/cmp_luasnip"
+                "onsails/lspkind.nvim"]
+ :config (fn []
+           (let [cmp (require "cmp")
+                 lspkind (require "lspkind")
+                 luasnip (require "luasnip")]
+             (cmp.setup {:formatting {:format (lspkind.cmp_format {:mode "symbol_text"
+                                                                   :maxwidth 50
+                                                                   :ellipsis_char "..."
+                                                                   :symbol_map {:Codeium ""}})}
+                         :mapping {:<Up> (cmp.mapping.select_prev_item)
+                                   :<Down> (cmp.mapping.select_next_item)
+                                   :<C-b> (cmp.mapping.scroll_docs (- 4))
+                                   :<C-f> (cmp.mapping.scroll_docs 4)
+                                   :<C-Space> (cmp.mapping.confirm {:select true})
+                                   :<C-e> (cmp.mapping.close)
+                                   :<Tab> (cmp.mapping (fn [fallback]
+                                                         (if (cmp.visible)
+                                                             (cmp.select_next_item)
+                                                             (luasnip.expand_or_jumpable)
+                                                             (luasnip.expand_or_jump)
+                                                             (has-words-before)
+                                                             (cmp.complete)
+                                                             "else"
+                                                             (fallback)))
+                                                       {1 "i" 2 "s"})
+                                   :<S-Tab> (cmp.mapping (fn [fallback]
+                                                           (if (cmp.visible)
+                                                               (cmp.select_prev_item)
+                                                               (luasnip.jumpable -1)
+                                                               (luasnip.jump -1)
+                                                               "else"
+                                                               (fallback)))
+                                                         {1 "i" 2 "s"})}
+                         :snippet {:expand (fn [args]
+                                             (luasnip.lsp_expand args.body))}
+                         :sources cmp-srcs})))}

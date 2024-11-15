@@ -13,4 +13,4 @@ local function _2_(mode, line, _)
     return nil
   end
 end
-return {{"chrishrb/gx.nvim", keys = {{"gx", "<cmd>Browse<cr>", mode = {"n", "x"}}}, cmd = {"Browse"}, init = _1_, dependencies = {"nvim-lua/plenary.nvim"}, opts = {handlers = {["nvim-fennel"] = {name = "nvim-fennel", filetype = {"fennel"}, handle = _2_}}}, submodules = false}}
+return {"chrishrb/gx.nvim", keys = {{"gx", "<cmd>Browse<cr>", mode = {"n", "x"}}}, cmd = {"Browse"}, init = _1_, dependencies = {"nvim-lua/plenary.nvim"}, opts = {handlers = {["nvim-fennel"] = {name = "nvim-fennel", filetype = {"fennel"}, handle = _2_}}}, submodules = false}

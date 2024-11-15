@@ -8,4 +8,4 @@ local function setup()
   vim.g.startify_custom_header = ""
   return nil
 end
-return {{"mhinz/vim-startify", init = setup}}
+return {"mhinz/vim-startify", init = setup}

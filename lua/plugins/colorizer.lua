@@ -3,4 +3,4 @@ local function _1_()
   local colorizer = require("colorizer")
   return colorizer.setup({"css"}, {mode = "background"})
 end
-return {{"norcalli/nvim-colorizer.lua", config = _1_}}
+return {"norcalli/nvim-colorizer.lua", event = "VeryLazy", config = _1_}

@@ -40,4 +40,4 @@ local function add_groups_and_mappings()
   end
   return core.map(_6_, mappings)
 end
-return {{"folke/which-key.nvim", config = add_groups_and_mappings}}
+return {"folke/which-key.nvim", config = add_groups_and_mappings}

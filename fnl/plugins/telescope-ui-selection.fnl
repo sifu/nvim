@@ -1,1 +1,1 @@
-[{1 "nvim-telescope/telescope-ui-select.nvim"}]
+{1 "nvim-telescope/telescope-ui-select.nvim"}

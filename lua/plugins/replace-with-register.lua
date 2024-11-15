@@ -1,2 +1,2 @@
 -- [nfnl] Compiled from fnl/plugins/replace-with-register.fnl by https://github.com/Olical/nfnl, do not edit.
-return {{"https://github.com/vim-scripts/ReplaceWithRegister", keys = {{"gr", "<Plug>ReplaceWithRegisterOperator", desc = "Replace motion with register"}, {"grr", "<Plug>ReplaceWithRegisterLine", desc = "Replace line with register"}, {"gr", "<Plug>ReplaceWithRegisterVisual", desc = "Replace visual with register", mode = "v"}}}}
+return {"https://github.com/vim-scripts/ReplaceWithRegister", keys = {{"gr", "<Plug>ReplaceWithRegisterOperator", desc = "Replace motion with register"}, {"grr", "<Plug>ReplaceWithRegisterLine", desc = "Replace line with register"}, {"gr", "<Plug>ReplaceWithRegisterVisual", desc = "Replace visual with register", mode = "v"}}}

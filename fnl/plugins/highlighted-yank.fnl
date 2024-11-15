@@ -1,1 +1,1 @@
-[{1 "machakann/vim-highlightedyank" :event "VeryLazy"}]
+{1 "machakann/vim-highlightedyank" :event "VeryLazy"}

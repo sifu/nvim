@@ -3,4 +3,4 @@ local function _1_()
   local paredit = require("nvim-paredit")
   return paredit.setup()
 end
-return {{"julienvincent/nvim-paredit", lazy = true, ft = {"clojure", "fennel", "scheme", "lisp"}, config = _1_}}
+return {"julienvincent/nvim-paredit", lazy = true, ft = {"clojure", "fennel", "scheme", "lisp"}, config = _1_}

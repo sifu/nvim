@@ -18,4 +18,4 @@
                     (fn [] (if (ls.choice_active) (ls.change_choice 1)))
                     {:desc "LuaSnip choices" :silent true})))
 
-[{1 "L3MON4D3/LuaSnip" :config setup}]
+{1 "L3MON4D3/LuaSnip" :config setup}

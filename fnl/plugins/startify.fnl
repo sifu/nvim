@@ -11,4 +11,4 @@
   (set vim.g.startify_enable_special 0)
   (set vim.g.startify_custom_header ""))
 
-[{1 "mhinz/vim-startify" :init setup}]
+{1 "mhinz/vim-startify" :init setup}

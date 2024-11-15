@@ -1,1 +1,1 @@
-[{1 "kevinhwang91/nvim-bqf" :ft "qf"}]
+{1 "kevinhwang91/nvim-bqf" :ft "qf"}

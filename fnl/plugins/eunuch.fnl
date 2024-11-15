@@ -1,1 +1,1 @@
-[{1 "tpope/vim-eunuch" :event "VeryLazy"}]
+{1 "tpope/vim-eunuch" :event "VeryLazy"}

@@ -3,4 +3,4 @@ local function _1_()
   local surround = require("nvim-surround")
   return surround.setup()
 end
-return {{"kylechui/nvim-surround", event = "VeryLazy", config = _1_}}
+return {"kylechui/nvim-surround", event = "VeryLazy", config = _1_}

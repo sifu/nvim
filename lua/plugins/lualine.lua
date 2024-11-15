@@ -41,4 +41,4 @@ local function _7_()
   local lualine_theme = require("lualine.themes.material")
   return lualine.setup({options = {theme = lualine_theme, icons_enabled = true, component_separators = {left = "\238\130\177", right = "\238\130\179"}, section_separators = {left = "\238\130\176", right = "\238\130\178"}}, sections = {lualine_a = {"mode", {upper = true}}, lualine_b = {"branch", {"diff", diff_color = {modified = {fg = "#87afff"}}}}, lualine_c = {{"filename", file_status = true, path = 1, shorting_target = 40}, {macro_recording}}, lualine_x = {{lsp_connection}, "location", "filetype"}, lualine_y = {"encoding"}, lualine_z = {}}, inactive_sections = {lualine_a = {}, lualine_b = {}, lualine_c = {{"filename", file_status = true, path = 1}}, lualine_x = {}, lualine_y = {}, lualine_z = {}}})
 end
-return {{"nvim-lualine/lualine.nvim", config = _7_}}
+return {"nvim-lualine/lualine.nvim", config = _7_}
