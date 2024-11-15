@@ -43,26 +43,6 @@
                            (if (= i 1) w (upper-case-first-letter w))))
        (join)))
 
-;function dash_to_mixed_case(str)
-;	local result = ""
-;	local capitalizeNext = true -- Always capitalize the first character
-;	for i = 1, #str do
-;		local char = str:sub(i, i)
-;
-;		if char == "-" then
-;			capitalizeNext = true
-;		else
-;			if capitalizeNext then
-;				result = result .. char:upper()
-;				capitalizeNext = false
-;			else
-;				result = result .. char
-;			end
-;		end
-;	end
-;	return result
-;end
-
 (local all {:date [(func (fn [] (os.date "%Y-%m-%d")))]
             :time [(func (fn [] (os.date "%H:%M")))]})
 
