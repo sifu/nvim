@@ -4,7 +4,8 @@
 (local groups [["<leader>g" "Git"]
                ["<leader>c" "Conjure"]
                ["<leader>l" "LSP"]
-               ["<leader>a" "AI/ChatGPT"]
+               ["<leader>a" "Avante/ChatGPT"]
+               ["<leader>ac" "ChatGPT"]
                ["<leader>t" "Tabs"]
                ["<space>" "Search"]
                ["ga" "Change Text Case"]])
