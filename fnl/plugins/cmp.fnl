@@ -61,4 +61,5 @@
                                                          {1 "i" 2 "s"})}
                          :snippet {:expand (fn [args]
                                              (luasnip.lsp_expand args.body))}
-                         :sources cmp-srcs})))}
+                         :sources cmp-srcs})
+             (cmp.setup.filetype "oil" {:enabled false})))}

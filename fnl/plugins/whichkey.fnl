@@ -42,7 +42,7 @@
                  ["n" "<Tab>" ":bn<cr>" "Next buffer"]
                  ["n" "<s-Tab>" ":bp<cr>" "Previous buffer"]
                  ["n" "U" ":redo<cr>" "Redo"]
-                 ["n" "gf" ":e <cfile><cr>" "Open file under cursor"]
+                 ["n" "ge" ":e <cfile><cr>" "Open file under cursor"]
                  ["n" ",," ":e#<cr>" "Switch between alternate buffers"]
                  ["n" "<leader>P" "<cmd>ParinferToggle!<cr>" "Toggle Parinfer"]
                  ;; LSP
@@ -157,7 +157,7 @@
                  ["n" "√" "<C-W><C-V>" "Window split vertically"]
                  ["n" "ç" "<C-W>c" "Window close"]
                  ;; Telescope
-                 ["n" "<enter>" enter "Buffers"]
+                 ["n" "<enter>" "<cmd>Telescope buffers<cr>" "Buffers"]
                  ["n"
                   "<space>f"
                   ":lua require('telescope.builtin').find_files()<CR>"

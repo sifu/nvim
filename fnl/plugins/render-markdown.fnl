@@ -10,5 +10,5 @@
                                                    :rendered "󱋭 "
                                                    ; 
                                                    :highlight "RenderMarkdownCanceled"}}}
-                        :heading {:icons [" " " " " " " " " "]
-                                  :signs ["" "" "" "" ""]}})))}
+                        :heading {:icons [" " " " " " " " " "]
+                                  :signs ["" "" "" "" ""]}})))}
