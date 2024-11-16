@@ -39,6 +39,13 @@
                                                :FloatBorder {:fg "#6087d7"
                                                              :bg "#FFFFFF"}
                                                :FloatTitle {:fg "#6087d7"}
+                                               :RenderMarkdownH1Bg {:bg "#efefef"}
+                                               :RenderMarkdownH2Bg {:bg "#efefef"}
+                                               :RenderMarkdownH3Bg {:bg "#efefef"}
+                                               :RenderMarkdownH4Bg {:bg "#efefef"}
+                                               :RenderMarkdownH5Bg {:bg "#efefef"}
+                                               :RenderMarkdownH6Bg {:bg "#efefef"}
+                                               :derMarkdownCanceled {:fg "#59636e"}
                                                :CodeiumSuggestion {:fg "#333333"
                                                                    :bg "#efefef"}}
                            :custom_colors {:bg "#ffffff"}})

@@ -7,6 +7,7 @@
                ["<leader>a" "Avante/ChatGPT"]
                ["<leader>ac" "ChatGPT"]
                ["<leader>t" "Tabs"]
+               ["<leader>M" "Markdown"]
                ["<space>" "Search"]
                ["ga" "Change Text Case"]])
 
@@ -135,6 +136,11 @@
                   "<leader>gR"
                   "<cmd>lua require 'gitsigns'.reset_buffer()<cr>"
                   "Reset Buffer"]
+                 ;; Markdown
+                 ["n"
+                  "<leader>MM"
+                  "<cmd>RenderMarkdown toggle<cr>"
+                  "Toggle Render-Markdown"]
                  ;; Tabs
                  ["n" "<leader>tn" ":tabnew<CR>" "New Tab"]
                  ["n" "<leader>tc" ":tabclose<CR>" "Close Tab"]
