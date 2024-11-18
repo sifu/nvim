@@ -62,4 +62,5 @@
                          :snippet {:expand (fn [args]
                                              (luasnip.lsp_expand args.body))}
                          :sources cmp-srcs})
-             (cmp.setup.filetype "oil" {:enabled false})))}
+             (cmp.setup.filetype "oil" {:enabled false})
+             (cmp.setup.filetype "chatgpt-input" {:enabled false})))}
