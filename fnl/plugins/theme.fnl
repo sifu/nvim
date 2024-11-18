@@ -46,6 +46,7 @@
                                                :RenderMarkdownH5Bg {:bg "#efefef"}
                                                :RenderMarkdownH6Bg {:bg "#efefef"}
                                                :derMarkdownCanceled {:fg "#59636e"}
+                                               :Visual {:bg "#fff6d5"}
                                                :CodeiumSuggestion {:fg "#333333"
                                                                    :bg "#efefef"}}
                            :custom_colors {:bg "#ffffff"}})
