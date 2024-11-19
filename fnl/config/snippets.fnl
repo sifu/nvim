@@ -37,10 +37,9 @@
 (fn filename-without-extension []
   (vim.fn.fnamemodify (vim.fn.expand "%") ":t:r"))
 
-(fn kebab-to-mixed-case [str]
+(fn kebab-to-pascal-case [str]
   (->> (split str "-")
-       (core.map-indexed (fn [[i w]]
-                           (if (= i 1) w (upper-case-first-letter w))))
+       (core.map upper-case-first-letter)
        (join)))
 
 (local all {:date [(func (fn [] (os.date "%Y-%m-%d")))]
@@ -153,13 +152,13 @@
                                        (insert 1))])
                          (insert 0)]
                    :comp [(text "export default function ")
-                          (func #(kebab-to-mixed-case (filename-without-extension)))
+                          (func #(kebab-to-pascal-case (filename-without-extension)))
                           (text "(")
                           (choice 1 [(text " ") (fmt "{{ {} }}" (insert 1))])
                           (text [") {" "  return (" "    "])
                           (choice 2
                                   [(func #(.. "<div>"
-                                              (kebab-to-mixed-case (filename-without-extension))
+                                              (kebab-to-pascal-case (filename-without-extension))
                                               "</div>"))
                                    (text "")])
                           (text ["" "  )" "}"])]})
