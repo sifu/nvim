@@ -28,7 +28,7 @@
                                                          "cssls"
                                                          "clojure_lsp"]}
                                      (lspconfig.fennel_language_server.setup fennel-opts)
-                                     (lspconfig.ts_ls.setup {})
+                                     (lspconfig.ts_ls.setup {:init_options {:preferences {:importModuleSpecifierPreference "non-relative"}}})
                                      (lspconfig.cssmodules_ls.setup {})
                                      (lspconfig.cssls.setup {})
                                      (lspconfig.clojure_lsp.setup {}))))}]
