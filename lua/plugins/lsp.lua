@@ -18,6 +18,6 @@ end
 local function _2_()
   local mason_lspconfig = require("mason-lspconfig")
   local lspconfig = require("lspconfig")
-  return mason_lspconfig.setup({ensure_installed = {"fennel_language_server", "ts_ls", "cssmodules_ls", "cssls", "clojure_lsp"}}, lspconfig.fennel_language_server.setup(fennel_opts), lspconfig.ts_ls.setup({init_options = {preferences = {importModuleSpecifierPreference = "non-relative"}}}), lspconfig.cssmodules_ls.setup({}), lspconfig.cssls.setup({}), lspconfig.clojure_lsp.setup({}))
+  return mason_lspconfig.setup({ensure_installed = {"fennel_language_server", "ts_ls", "cssmodules_ls", "cssls", "clojure_lsp"}}, lspconfig.fennel_language_server.setup(fennel_opts), lspconfig.ts_ls.setup({init_options = {hostInfo = "Neovim", preferences = {importModuleSpecifierPreference = "non-relative"}}}), lspconfig.cssmodules_ls.setup({}), lspconfig.cssls.setup({}), lspconfig.clojure_lsp.setup({}))
 end
 return {{"neovim/nvim-lspconfig", dependencies = {"williamboman/mason.nvim"}}, {"williamboman/mason.nvim", config = _1_}, {"williamboman/mason-lspconfig.nvim", dependencies = {"williamboman/mason.nvim"}, config = _2_}}
