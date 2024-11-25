@@ -37,7 +37,9 @@ local function tag(name)
   return {text(("<" .. name .. ">")), choice(1, {sn(nil, {insert(1)}), sn(nil, {text({"", "  "}), insert(1), text({"", ""})})}), text(("</" .. name .. ">")), insert(0)}
 end
 local function filename_without_extension()
-  return vim.fn.fnamemodify(vim.fn.expand("%"), ":t:r")
+  local parent = vim.fn.expand("%:p:h:t")
+  local filename = vim.fn.expand("%:t:r")
+  return (parent .. "-" .. filename)
 end
 local function kebab_to_pascal_case(str)
   return join(core.map(upper_case_first_letter, split(str, "-")))

@@ -35,7 +35,9 @@
    (insert 0)])
 
 (fn filename-without-extension []
-  (vim.fn.fnamemodify (vim.fn.expand "%") ":t:r"))
+  (let [parent (vim.fn.expand "%:p:h:t")
+        filename (vim.fn.expand "%:t:r")]
+    (.. parent "-" filename)))
 
 (fn kebab-to-pascal-case [str]
   (->> (split str "-")
