@@ -165,7 +165,10 @@
                                    (text "")])
                           (text ["" "  )" "}"])]})
 
-(local filetype-snippets {: all : fennel : javascript})
+(local filetype-snippets {: all
+                          : fennel
+                          : javascript
+                          :javascriptreact javascript})
 
 (fn dict->snippet-table [dict]
   (let [result []]
