@@ -48,7 +48,8 @@
                  ["n" ",," ":e#<cr>" "Switch between alternate buffers"]
                  ["n" "<leader>P" "<cmd>ParinferToggle<cr>" "Toggle Parinfer"]
                  ;; LSP
-                 ["n" "<leader>lc" ":SelectCssModule<cr>" "CSS Modules"]
+                 ; not really a lsp thingy, but I think it fits
+                 ["n" "<leader>lt" "<cmd>TodoTelescope<cr>" "Todos"]
                  ["n"
                   "<leader>la"
                   "<cmd>lua vim.lsp.buf.code_action()<cr>"
