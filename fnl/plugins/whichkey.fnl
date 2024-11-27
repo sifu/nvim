@@ -46,7 +46,7 @@
                  ["n" "U" ":redo<cr>" "Redo"]
                  ["n" "ge" ":e <cfile><cr>" "Open file under cursor"]
                  ["n" ",," ":e#<cr>" "Switch between alternate buffers"]
-                 ["n" "<leader>P" "<cmd>ParinferToggle!<cr>" "Toggle Parinfer"]
+                 ["n" "<leader>P" "<cmd>ParinferToggle<cr>" "Toggle Parinfer"]
                  ;; LSP
                  ["n" "<leader>lc" ":SelectCssModule<cr>" "CSS Modules"]
                  ["n"
