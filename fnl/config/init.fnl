@@ -8,6 +8,7 @@
 (require "config.session-sharing")
 (require "config.session-load")
 (require "config.rm")
+(require "config.javascriptreact")
 
 ;; sets a nvim global options
 (let [options {:background "light"
