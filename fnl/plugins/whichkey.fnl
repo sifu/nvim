@@ -20,6 +20,8 @@
     (if (= ft "qf") (vim.cmd ".cc") (vim.cmd "Telescope buffers"))))
 
 (local mappings [;; Normal Mode Mappings
+                 ["n" "<c-d>" "<c-d>zz" "Down half a page"]
+                 ["n" "<c-u>" "<c-u>zz" "Up half a page"]
                  ["n" "<esc>" ":noh<cr><esc>" "Clear Highlightsearch"]
                  ["i" "<c-bs>" "<c-w>" "Delete word"]
                  ["i" "<c-h>" "<c-w>" "Delete word"]
