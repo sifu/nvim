@@ -32,9 +32,11 @@
                  lspkind (require "lspkind")
                  luasnip (require "luasnip")]
              (cmp.setup {:formatting {:format (lspkind.cmp_format {:mode "symbol_text"
-                                                                   :maxwidth 50
+                                                                   :maxwidth 120
                                                                    :ellipsis_char "..."
                                                                    :symbol_map {:Codeium ""}})}
+                         :window {:completion (cmp.config.window.bordered)
+                                  :documentation (cmp.config.window.bordered)}
                          :mapping {:<Up> (cmp.mapping.select_prev_item)
                                    :<Down> (cmp.mapping.select_next_item)
                                    :<C-b> (cmp.mapping.scroll_docs (- 4))

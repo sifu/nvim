@@ -36,7 +36,7 @@ local function _1_()
   local function _6_(args)
     return luasnip.lsp_expand(args.body)
   end
-  cmp.setup({formatting = {format = lspkind.cmp_format({mode = "symbol_text", maxwidth = 50, ellipsis_char = "...", symbol_map = {Codeium = "\239\131\144"}})}, mapping = {["<Up>"] = cmp.mapping.select_prev_item(), ["<Down>"] = cmp.mapping.select_next_item(), ["<C-b>"] = cmp.mapping.scroll_docs(( - 4)), ["<C-f>"] = cmp.mapping.scroll_docs(4), ["<C-Space>"] = cmp.mapping.confirm({select = true}), ["<C-e>"] = cmp.mapping.close(), ["<Tab>"] = cmp.mapping(_2_, {"i", "s"}), ["<S-Tab>"] = cmp.mapping(_4_, {"i", "s"})}, snippet = {expand = _6_}, sources = cmp_srcs})
+  cmp.setup({formatting = {format = lspkind.cmp_format({mode = "symbol_text", maxwidth = 120, ellipsis_char = "...", symbol_map = {Codeium = "\239\131\144"}})}, window = {completion = cmp.config.window.bordered(), documentation = cmp.config.window.bordered()}, mapping = {["<Up>"] = cmp.mapping.select_prev_item(), ["<Down>"] = cmp.mapping.select_next_item(), ["<C-b>"] = cmp.mapping.scroll_docs(( - 4)), ["<C-f>"] = cmp.mapping.scroll_docs(4), ["<C-Space>"] = cmp.mapping.confirm({select = true}), ["<C-e>"] = cmp.mapping.close(), ["<Tab>"] = cmp.mapping(_2_, {"i", "s"}), ["<S-Tab>"] = cmp.mapping(_4_, {"i", "s"})}, snippet = {expand = _6_}, sources = cmp_srcs})
   cmp.setup.filetype("oil", {enabled = false})
   return cmp.setup.filetype("chatgpt-input", {enabled = false})
 end
