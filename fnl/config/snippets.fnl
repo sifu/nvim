@@ -128,6 +128,13 @@
                    :i (tag "i")
                    :strong (tag "strong")
                    :b (tag "b")
+                   :table (tag "table")
+                   :thead (tag "thead")
+                   :tbody (tag "tbody")
+                   :tr (tag "tr")
+                   :th (tag "th")
+                   :td (tag "td")
+                   :span (tag "span")
                    :imp (fmt "import {} from '{}'"
                              [(choice 1
                                       [(insert 1)
