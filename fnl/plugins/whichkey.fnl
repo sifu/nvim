@@ -58,7 +58,7 @@
                   "Code Action"]
                  ["n"
                   "<leader>ld"
-                  "<cmd>lua vim.lsp.buf.definition()<cr>"
+                  "<cmd>Telescope lsp_definitions<cr>"
                   "Code Definition"]
                  ["n" "<leader>li" "<cmd>Telescope import<cr>" "Add Import"]
                  ["n"
