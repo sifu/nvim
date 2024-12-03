@@ -1,6 +1,5 @@
 {1 "folke/flash.nvim"
  :event "VeryLazy"
- :opts {:modes {:search {:enabled true}}}
  :keys [{1 "s"
          2 (fn []
              (let [flash (require "flash")] (flash.jump)))

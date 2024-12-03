@@ -19,4 +19,4 @@ local function _5_()
   local flash = require("flash")
   return flash.toggle()
 end
-return {"folke/flash.nvim", event = "VeryLazy", opts = {modes = {search = {enabled = true}}}, keys = {{"s", _1_, mode = {"n", "x", "o"}, desc = "Flash"}, {"S", _2_, mode = {"n", "x", "o"}, desc = "Flash Treesitter"}, {"r", _3_, mode = {"o"}, desc = "Flash Remote"}, {"R", _4_, mode = {"o"}, desc = "Flash Treesitter Search"}, {"<c-s>", _5_, mode = {"c"}, desc = "Toggle Flash Search"}}}
+return {"folke/flash.nvim", event = "VeryLazy", keys = {{"s", _1_, mode = {"n", "x", "o"}, desc = "Flash"}, {"S", _2_, mode = {"n", "x", "o"}, desc = "Flash Treesitter"}, {"r", _3_, mode = {"o"}, desc = "Flash Remote"}, {"R", _4_, mode = {"o"}, desc = "Flash Treesitter Search"}, {"<c-s>", _5_, mode = {"c"}, desc = "Toggle Flash Search"}}}
