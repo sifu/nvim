@@ -135,6 +135,7 @@
                    :th (tag "th")
                    :td (tag "td")
                    :span (tag "span")
+                   :label (tag "label")
                    :imp (fmt "import {} from '{}'"
                              [(choice 1
                                       [(insert 1)
