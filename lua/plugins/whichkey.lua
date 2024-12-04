@@ -2,7 +2,7 @@
 local _local_1_ = require("nfnl.module")
 local autoload = _local_1_["autoload"]
 local core = autoload("nfnl.core")
-local groups = {{"<leader>g", "Git"}, {"<leader>c", "Conjure"}, {"<leader>l", "LSP"}, {"<leader>a", "Avante/ChatGPT"}, {"<leader>ac", "ChatGPT"}, {"<leader>t", "Tabs"}, {"<leader>M", "Markdown"}, {"<space>", "Search"}, {"ga", "Change Text Case"}}
+local groups = {{"<leader>g", "Git"}, {"<leader>c", "Conjure"}, {"<leader>l", "LSP"}, {"<leader>a", "Avante/ChatGPT"}, {"<leader>ac", "ChatGPT"}, {"<leader>t", "Tabs"}, {"<leader>M", "Markdown"}, {"<leader>r", "Refactoring"}, {"<space>", "Search"}, {"ga", "Change Text Case"}}
 local function show_help()
   local wk = require("which-key")
   return wk.show()

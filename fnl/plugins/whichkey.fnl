@@ -8,6 +8,7 @@
                ["<leader>ac" "ChatGPT"]
                ["<leader>t" "Tabs"]
                ["<leader>M" "Markdown"]
+               ["<leader>r" "Refactoring"]
                ["<space>" "Search"]
                ["ga" "Change Text Case"]])
 
