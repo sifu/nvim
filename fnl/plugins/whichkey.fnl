@@ -117,7 +117,6 @@
                   "<leader>gl"
                   "<cmd>lua require 'gitsigns'.blame_line()<cr>"
                   "Blame"]
-                 ["n" "<leader>gL" "<cmd>GitLink! blame<cr>" "GitLink"]
                  ["n"
                   "<leader>go"
                   "<cmd>Telescope git_status<cr>"
