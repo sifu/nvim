@@ -183,7 +183,6 @@
                   "<space>r"
                   ":lua require('telescope.builtin').resume()<CR>"
                   "Resume last search"]
-                 ["n" "<space>y" "<cmd>YankBank<CR>" "YankBank"]
                  ;; Visual Mappings
                  ["v" "<" "<gv" "Visualmode indent"]
                  ["v" ">" ">gv" "Visualmode indent"]])

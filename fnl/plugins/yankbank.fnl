@@ -1,6 +1,5 @@
 {1 "ptdewey/yankbank-nvim"
  :cmd "YankBank"
  :dependencies "kkharji/sqlite.lua"
- :config (fn []
-           (let [yb (require "yankbank")]
-             (yb.setup {:num_behavior "jump" :persist_type "sqlite"})))}
+ :opts {:num_behavior "jump" :persist_type "sqlite"}
+ :keys [{1 "<space>y" 2 "<cmd>YankBank<cr>" :desc "YankBank"}]}
