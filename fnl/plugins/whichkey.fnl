@@ -21,6 +21,11 @@
     (if (= ft "qf") (vim.cmd ".cc") (vim.cmd "Telescope buffers"))))
 
 (local mappings [;; Normal Mode Mappings
+                 ["n"
+                  "yc"
+                  "yy<cmd>normal gcc<CR>p"
+                  "Copy line and comment out original"]
+                 ["n" "gp" "`[v`]" "Select last changed text"]
                  ["n" "<c-d>" "<c-d>zz" "Down half a page"]
                  ["n" "<c-u>" "<c-u>zz" "Up half a page"]
                  ["n" "<esc>" ":noh<cr><esc>" "Clear Highlightsearch"]
@@ -39,7 +44,6 @@
                   "Set Tmux to CWD"]
                  ["n" "<leader>o" ":!open %<cr>" "Open file"]
                  ["n" "<leader>O" ":!open .<cr>" "Open directory"]
-                 ["n" "gp" "`[v`]" "Select last changed text"]
                  ["n"
                   "-"
                   ":lua require('oil').open_float()<cr>"
