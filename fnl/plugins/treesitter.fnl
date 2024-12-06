@@ -1,17 +1,19 @@
 {1 "nvim-treesitter/nvim-treesitter"
  :dependencies ["nvim-treesitter/nvim-treesitter-textobjects"]
  :build ":TSUpdate"
- :opts {:highlight {:enable true
-                    :indent {:enable true}
-                    :ensure_installed ["bash"
-                                       "clojure"
-                                       "commonlisp"
-                                       "dockerfile"
-                                       "fennel"
-                                       "html"
-                                       "java"
-                                       "javascript"
-                                       "json"
-                                       "lua"
-                                       "markdown"
-                                       "yaml"]}}}
+ :config (fn []
+           (let [ts (require "nvim-treesitter.configs")]
+             (ts.setup {:highlight {:enable true
+                                    :indent {:enable true}
+                                    :ensure_installed ["bash"
+                                                       "clojure"
+                                                       "commonlisp"
+                                                       "dockerfile"
+                                                       "fennel"
+                                                       "html"
+                                                       "java"
+                                                       "javascript"
+                                                       "json"
+                                                       "lua"
+                                                       "markdown"
+                                                       "yaml"]}})))}
