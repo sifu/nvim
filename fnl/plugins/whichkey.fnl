@@ -31,6 +31,11 @@
                  ["n" "<esc>" ":noh<cr><esc>" "Clear Highlightsearch"]
                  ["i" "<c-bs>" "<c-w>" "Delete word"]
                  ["i" "<c-h>" "<c-w>" "Delete word"]
+                 ["i"
+                  "<c-a>"
+                  "<esc>?<<cr>:noh<cr>ea<space>"
+                  "Add property to tag"]
+                 ["n" "<c-p>" "/><cr>:noh<cr>a" "Insert inside tag"]
                  ["n" "<leader>?" show-help "Help"]
                  ["n" "<leader><leader>" ":wa<cr>" "Write all"]
                  ["i" "<leader><leader>" "<esc>:wa<cr>" "Write all"]
