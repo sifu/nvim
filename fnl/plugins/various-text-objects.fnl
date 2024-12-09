@@ -1,3 +1,3 @@
 {1 "chrisgrieser/nvim-various-textobjs"
  :event "UIEnter"
- :opts {:useDefaultKeymaps true :disabledKeymaps ["gc"]}}
+ :opts {:keymaps {:useDefaults true :disabledDefaults ["gc"]}}}
