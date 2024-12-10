@@ -20,6 +20,8 @@
         ft (vim.api.nvim_buf_get_option buf "filetype")]
     (if (= ft "qf") (vim.cmd ".cc") (vim.cmd "Telescope buffers"))))
 
+; 
+
 (local mappings [;; Normal Mode Mappings
                  ["n"
                   "yc"
@@ -35,6 +37,8 @@
                   "<c-a>"
                   "<esc>?<<cr>:noh<cr>ea<space>"
                   "Add property to tag"]
+                 ["i" "<c-t>" "<esc>/{++}<cr>cf}" "Replace next marker"]
+                 ["n" "<c-t>" "/{++}<cr>cf}" "Replace next marker"]
                  ["n" "<c-p>" "/><cr>:noh<cr>a" "Insert inside tag"]
                  ["n" "<leader>?" show-help "Help"]
                  ["n" "<leader><leader>" ":wa<cr>" "Write all"]
