@@ -5,9 +5,6 @@
                            :updateevents "TextChanged,TextChangedI"
                            :enable_autosnippets false})
     (snippets.setup)
-    (vim.keymap.set ["i" "s"] "<c-space>"
-                    (fn [] (if (ls.expand_or_jumpable) (ls.expand_or_jump)))
-                    {:desc "LuaSnip expand/jump" :silent true})
     (vim.keymap.set ["i" "s"] "<c-k>"
                     (fn [] (if (ls.expand_or_jumpable) (ls.expand_or_jump)))
                     {:desc "LuaSnip expand/jump" :silent true})

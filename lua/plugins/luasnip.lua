@@ -11,30 +11,22 @@ local function setup()
       return nil
     end
   end
-  vim.keymap.set({"i", "s"}, "<c-space>", _1_, {desc = "LuaSnip expand/jump", silent = true})
+  vim.keymap.set({"i", "s"}, "<c-k>", _1_, {desc = "LuaSnip expand/jump", silent = true})
   local function _3_()
-    if ls.expand_or_jumpable() then
-      return ls.expand_or_jump()
-    else
-      return nil
-    end
-  end
-  vim.keymap.set({"i", "s"}, "<c-k>", _3_, {desc = "LuaSnip expand/jump", silent = true})
-  local function _5_()
     if ls.jumpable(-1) then
       return ls.jump(-1)
     else
       return nil
     end
   end
-  vim.keymap.set({"i", "s"}, "<c-j>", _5_, {desc = "LuaSnip expand/jump", silent = true})
-  local function _7_()
+  vim.keymap.set({"i", "s"}, "<c-j>", _3_, {desc = "LuaSnip expand/jump", silent = true})
+  local function _5_()
     if ls.choice_active() then
       return ls.change_choice(1)
     else
       return nil
     end
   end
-  return vim.keymap.set({"i", "s"}, "<c-l>", _7_, {desc = "LuaSnip choices", silent = true})
+  return vim.keymap.set({"i", "s"}, "<c-l>", _5_, {desc = "LuaSnip choices", silent = true})
 end
 return {"L3MON4D3/LuaSnip", config = setup}
