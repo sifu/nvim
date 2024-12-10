@@ -2,7 +2,20 @@
  :event "VeryLazy"
  :lazy false
  :version false
- :opts {}
+ :opts {:mappings {:diff {:ours ",co"
+                          :theirs ",ct"
+                          :all_theirs ",ca"
+                          :both ",cb"
+                          :cursor ",cc"
+                          :next "]x"
+                          :prev "[x"}
+                   :jump {:next "]]" :prev "[["}
+                   :submit {:normal "<CR>" :insert "<C-s>"}
+                   :sidebar {:apply_all "A"
+                             :apply_cursor "a"
+                             :switch_windows "<Tab>"
+                             :reverse_switch_windows "<S-Tab>"}}
+        :behaviour {:auto_suggestions false}}
  :build "make"
  :dependencies ["nvim-treesitter/nvim-treesitter"
                 "stevearc/dressing.nvim"
