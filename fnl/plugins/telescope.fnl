@@ -42,7 +42,8 @@
                                                                      "!fontawesome"
                                                                      "--iglob"
                                                                      "!.git"
-                                                                     "--hidden"]}}})
+                                                                     "--hidden"]
+                                                      :theme "ivy"}}})
              (telescope.load_extension "ui-select")
              (telescope.load_extension "fzf")
              (telescope.load_extension "sessions_picker")))}

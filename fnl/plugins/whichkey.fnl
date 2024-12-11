@@ -182,8 +182,8 @@
                   "Find Files"]
                  ["n"
                   "<space>g"
-                  ":lua require('telescope.builtin').live_grep()<CR>"
-                  "Live Grep"]
+                  ":lua require('user.telescope-multigrep').multigrep()<CR>"
+                  "Multigrep (with `  `)"]
                  ["n"
                   "<space>s"
                   "<cmd>Telescope sessions_picker<cr>"
