@@ -1,6 +1,15 @@
 (local {: autoload} (require "nfnl.module"))
 (local core (autoload "nfnl.core"))
 
+;; cmdline emacs keys did not work with which-key so add them with vim.keymap.set:
+(vim.keymap.set "c" "<c-a>" "<home>" {:noremap true})
+(vim.keymap.set "c" "<c-b>" "<left>" {:noremap true})
+(vim.keymap.set "c" "<c-d>" "<del>" {:noremap true})
+(vim.keymap.set "c" "<c-e>" "<end>" {:noremap true})
+(vim.keymap.set "c" "<c-f>" "<right>" {:noremap true})
+(vim.keymap.set "c" "<c-n>" "<down>" {:noremap true})
+(vim.keymap.set "c" "<c-p>" "<up>" {:noremap true})
+
 (local groups [["<leader>g" "Git"]
                ["<leader>c" "Conjure"]
                ["<leader>l" "LSP"]
@@ -20,9 +29,7 @@
         ft (vim.api.nvim_buf_get_option buf "filetype")]
     (if (= ft "qf") (vim.cmd ".cc") (vim.cmd "Telescope buffers"))))
 
-;  
-
-(local mappings [;; Normal Mode Mappings
+(local mappings [;; misc
                  ["n"
                   "yc"
                   "yy<cmd>normal gcc<CR>p"

@@ -2,6 +2,13 @@
 local _local_1_ = require("nfnl.module")
 local autoload = _local_1_["autoload"]
 local core = autoload("nfnl.core")
+vim.keymap.set("c", "<c-a>", "<home>", {noremap = true})
+vim.keymap.set("c", "<c-b>", "<left>", {noremap = true})
+vim.keymap.set("c", "<c-d>", "<del>", {noremap = true})
+vim.keymap.set("c", "<c-e>", "<end>", {noremap = true})
+vim.keymap.set("c", "<c-f>", "<right>", {noremap = true})
+vim.keymap.set("c", "<c-n>", "<down>", {noremap = true})
+vim.keymap.set("c", "<c-p>", "<up>", {noremap = true})
 local groups = {{"<leader>g", "Git"}, {"<leader>c", "Conjure"}, {"<leader>l", "LSP"}, {"<leader>a", "Avante/ChatGPT"}, {"<leader>ac", "ChatGPT"}, {"<leader>t", "Tabs"}, {"<leader>M", "Markdown"}, {"<leader>r", "Refactoring"}, {"<space>", "Search"}, {"ga", "Change Text Case"}}
 local function show_help()
   local wk = require("which-key")
