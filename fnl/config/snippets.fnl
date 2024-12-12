@@ -172,7 +172,8 @@
                                               (kebab-to-pascal-case (filename-without-extension))
                                               "</div>"))
                                    (text "")])
-                          (text ["" "  )" "}"])]})
+                          (text ["" "  )" "}"])]
+                   "todo:" (text "TODO: ")})
 
 (local filetype-snippets {: all : fennel : javascript})
 

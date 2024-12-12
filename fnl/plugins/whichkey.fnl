@@ -191,6 +191,7 @@
                   "<space>g"
                   ":lua require('user.telescope-multigrep').multigrep()<CR>"
                   "Multigrep (with `  `)"]
+                 ["n" "<space>b" "<cmd>Telescope builtin<cr>" "Builtin"]
                  ["n"
                   "<space>s"
                   "<cmd>Telescope sessions_picker<cr>"
