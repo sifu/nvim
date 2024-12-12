@@ -6,9 +6,10 @@
 (local make_entry (require "telescope.make_entry"))
 (local conf (require "telescope.config"))
 (local sorters (require "telescope.sorters"))
+(local themes (require "telescope.themes"))
 
 (fn multigrep []
-  (let [opts {:cwd (vim.uv.cwd)}]
+  (let [opts (themes.get_ivy {:cwd (vim.uv.cwd)})]
     (local finder
            (finders.new_async_job {:command_generator (fn [prompt]
                                                         (if (or (not prompt)

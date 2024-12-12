@@ -197,7 +197,7 @@
                   "Sessions"]
                  ["n"
                   "<space>h"
-                  ":lua require('telescope.builtin').help_tags()<CR>"
+                  ":lua require('telescope.builtin').help_tags(require('telescope.themes').get_ivy())<CR>"
                   "Help Tags"]
                  ["n"
                   "<space>r"

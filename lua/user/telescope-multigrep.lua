@@ -7,8 +7,9 @@ local finders = require("telescope.finders")
 local make_entry = require("telescope.make_entry")
 local conf = require("telescope.config")
 local sorters = require("telescope.sorters")
+local themes = require("telescope.themes")
 local function multigrep()
-  local opts = {cwd = vim.uv.cwd()}
+  local opts = themes.get_ivy({cwd = vim.uv.cwd()})
   local finder
   local function _2_(prompt)
     if (not prompt or (prompt == "")) then
