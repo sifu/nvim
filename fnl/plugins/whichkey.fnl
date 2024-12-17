@@ -183,6 +183,11 @@
                  ["n" "ç" "<C-W>c" "Window close"]
                  ;; Telescope
                  ["n" "<enter>" "<cmd>Telescope buffers<cr>" "Buffers"]
+                 ["n" "<space>y" "<cmd>Telescope neoclip<cr>" "Yank History"]
+                 ["n"
+                  "<space>m"
+                  "<cmd>Telescope macroscope<cr>"
+                  "Macro History"]
                  ["n"
                   "<space>f"
                   ":lua require('telescope.builtin').find_files()<CR>"
