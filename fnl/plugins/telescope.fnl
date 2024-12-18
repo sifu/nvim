@@ -2,6 +2,7 @@
  :dependencies ["nvim-telescope/telescope-ui-select.nvim"
                 "nvim-lua/popup.nvim"
                 "nvim-lua/plenary.nvim"
+                "albenisolmos/telescope-oil.nvim"
                 "JoseConseco/telescope_sessions_picker.nvim"]
  :config (fn []
            (let [telescope (require "telescope")
@@ -45,5 +46,6 @@
                                                                      "--hidden"]
                                                       :theme "ivy"}}})
              (telescope.load_extension "ui-select")
+             (telescope.load_extension "oil")
              (telescope.load_extension "fzf")
              (telescope.load_extension "sessions_picker")))}

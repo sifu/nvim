@@ -185,18 +185,22 @@
                  ["n" "<enter>" "<cmd>Telescope buffers<cr>" "Buffers"]
                  ["n" "<space>y" "<cmd>Telescope neoclip<cr>" "Yank History"]
                  ["n"
-                  "<space>m"
-                  "<cmd>Telescope macroscope<cr>"
-                  "Macro History"]
-                 ["n"
                   "<space>f"
                   ":lua require('telescope.builtin').find_files()<CR>"
                   "Find Files"]
+                 ["n" "<space>d" "<cmd>Telescope oil<cr>" "Find Directories"]
                  ["n"
                   "<space>g"
                   ":lua require('user.telescope-multigrep').multigrep()<CR>"
                   "Multigrep (with `  `)"]
-                 ["n" "<space>b" "<cmd>Telescope builtin<cr>" "Builtin"]
+                 ["n"
+                  "<space>w"
+                  "<cmd>Telescope grep_string<cr>"
+                  "Find Current Word"]
+                 ["n"
+                  "<space>m"
+                  "<cmd>Telescope macroscope<cr>"
+                  "Macro History"]
                  ["n"
                   "<space>s"
                   "<cmd>Telescope sessions_picker<cr>"
@@ -205,10 +209,7 @@
                   "<space>h"
                   ":lua require('telescope.builtin').help_tags(require('telescope.themes').get_ivy())<CR>"
                   "Help Tags"]
-                 ["n"
-                  "<space>w"
-                  "<cmd>Telescope grep_string<cr>"
-                  "Find Current Word"]
+                 ["n" "<space>b" "<cmd>Telescope builtin<cr>" "Builtin"]
                  ["n"
                   "<space>r"
                   ":lua require('telescope.builtin').resume()<CR>"
