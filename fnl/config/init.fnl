@@ -9,6 +9,7 @@
 (require "config.session-load")
 (require "config.rm")
 (require "config.javascriptreact")
+(require "config.mdx")
 (require "user.html-to-jsx")
 
 ;; sets a nvim global options

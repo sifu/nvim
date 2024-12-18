@@ -6,7 +6,6 @@
  :opts {:render_modes true
         :checkbox {:custom {:todo {:raw "[-]"
                                    :rendered "󱋭 "
-                                   ; 
                                    :highlight "RenderMarkdownCanceled"}}}
         :heading {:icons [" " " " " " " " " "]
                   :signs ["" "" "" "" ""]}}}
