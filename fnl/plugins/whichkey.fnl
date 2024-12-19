@@ -119,6 +119,7 @@
                   "<leader>gC"
                   "<cmd>Telescope git_bcommits<cr>"
                   "Checkout commit"]
+                 ["n" "<leader>gt" "<cmd>Tardis<cr>" "Open Tardis"]
                  ["n" "<leader>gd" ":DiffviewOpen<CR>" "Diffview"]
                  ["n"
                   "<leader>gh"
