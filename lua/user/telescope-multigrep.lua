@@ -27,7 +27,7 @@ local function multigrep()
         table.insert(args, pieces[2])
       else
       end
-      return core.concat(args, {"--color=never", "--no-heading", "--with-filename", "--line-number", "--column", "--iglob", "!fontawesome", "--iglob", "!.git", "--smart-case"})
+      return core.concat(args, {"--color=never", "--no-heading", "--with-filename", "--line-number", "--column", "!fontawesome", "--iglob", "!.git", "--smart-case"})
     end
   end
   finder = finders.new_async_job({command_generator = _2_, entry_maker = make_entry.gen_from_vimgrep(opts), cwd = opts.cwd})

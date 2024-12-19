@@ -36,7 +36,6 @@
                                                                             "--with-filename"
                                                                             "--line-number"
                                                                             "--column"
-                                                                            "--iglob"
                                                                             "!fontawesome"
                                                                             "--iglob"
                                                                             "!.git"

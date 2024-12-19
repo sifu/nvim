@@ -11,13 +11,13 @@
 (vim.keymap.set "c" "<c-p>" "<up>" {:noremap true})
 
 (local groups [["<leader>g" "Git"]
-               ["<leader>c" "Conjure"]
                ["<leader>l" "LSP"]
                ["<leader>a" "Avante/ChatGPT"]
                ["<leader>ac" "ChatGPT"]
+               ["<leader>c" "Conjure"]
+               ["<leader>s" "SQL"]
                ["<leader>t" "Tabs"]
                ["<leader>M" "Markdown"]
-               ["<leader>r" "Refactoring"]
                ["<space>" "Search"]
                ["ga" "Change Text Case"]])
 
@@ -167,6 +167,8 @@
                   "<leader>MM"
                   "<cmd>RenderMarkdown toggle<cr>"
                   "Toggle Render-Markdown"]
+                 ;; SQL
+                 ["n" "<leader>ss" "<cmd>Dbee<cr>" "Open DBee"]
                  ;; Tabs
                  ["n" "<leader>tn" ":tabnew<CR>" "New Tab"]
                  ["n" "<leader>tc" ":tabclose<CR>" "Close Tab"]
