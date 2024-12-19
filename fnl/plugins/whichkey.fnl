@@ -168,7 +168,6 @@
                   "<cmd>RenderMarkdown toggle<cr>"
                   "Toggle Render-Markdown"]
                  ;; SQL
-                 ["n" "<leader>ss" "<cmd>Dbee<cr>" "Open DBee"]
                  ;; Tabs
                  ["n" "<leader>tn" ":tabnew<CR>" "New Tab"]
                  ["n" "<leader>tc" ":tabclose<CR>" "Close Tab"]
