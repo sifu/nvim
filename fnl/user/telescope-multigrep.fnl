@@ -36,6 +36,10 @@
                                                                             "--with-filename"
                                                                             "--line-number"
                                                                             "--column"
+                                                                            "--iglob"
+                                                                            "!fontawesome"
+                                                                            "--iglob"
+                                                                            "!.git"
                                                                             "--smart-case"]))))
                                    :entry_maker (make_entry.gen_from_vimgrep opts)
                                    :cwd (. opts "cwd")}))
