@@ -1,6 +1,6 @@
 {1 "yetone/avante.nvim"
- :event "VeryLazy"
- :lazy false
+ :keys [{1 "<leader>aa" 2 "<cmd>AvanteToggle<cr>" :desc "Avante Toggle"}
+        {1 "<leader>ae" 2 "<cmd>AvanteEdit<cr>" :desc "Avante Edit" :mode "v"}]
  :version false
  :opts {:mappings {:diff {:ours ",co"
                           :theirs ",ct"
