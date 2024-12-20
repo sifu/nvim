@@ -147,11 +147,11 @@
                   "Reset Buffer"]
                  ["n"
                   "<leader>gj"
-                  "<cmd>lua require 'gitsigns'.next_hunk()<cr>"
+                  "<cmd>lua require 'gitsigns'.next_hunk()<cr><cmd>lua require 'gitsigns'.preview_hunk()<cr>"
                   "Next Hunk"]
                  ["n"
                   "<leader>gk"
-                  "<cmd>lua require 'gitsigns'.prev_hunk()<cr>"
+                  "<cmd>lua require 'gitsigns'.prev_hunk()<cr><cmd>lua require 'gitsigns'.preview_hunk()<cr>"
                   "Prev Hunk"]
                  ["n"
                   "<leader>gl"
