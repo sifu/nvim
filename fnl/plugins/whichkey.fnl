@@ -145,6 +145,18 @@
                   "<leader>gR"
                   "<cmd>lua require 'gitsigns'.reset_buffer()<cr>"
                   "Reset Buffer"]
+                 ["n"
+                  "<leader>gj"
+                  "<cmd>lua require 'gitsigns'.next_hunk()<cr>"
+                  "Next Hunk"]
+                 ["n"
+                  "<leader>gk"
+                  "<cmd>lua require 'gitsigns'.prev_hunk()<cr>"
+                  "Prev Hunk"]
+                 ["n"
+                  "<leader>gl"
+                  "<cmd>lua require 'gitsigns'.blame_line()<cr>"
+                  "Blame"]
                  ;; Markdown
                  ["n"
                   "<leader>MM"
