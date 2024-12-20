@@ -107,6 +107,7 @@
                   "<cmd>lua vim.diagnostic.goto_next({ border = 'rounded' })<cr>"
                   "Diagnostic"]
                  ;; Git
+                 ["n" "<leader>gg" "<cmd>Neogit<cr>" "Neogit"]
                  ["n"
                   "<leader>gb"
                   "<cmd>Telescope git_branches<cr>"
@@ -120,24 +121,6 @@
                   "<cmd>Telescope git_bcommits<cr>"
                   "Checkout commit"]
                  ["n" "<leader>gt" "<cmd>Tardis<cr>" "Open Tardis"]
-                 ["n" "<leader>gd" ":DiffviewOpen<CR>" "Diffview"]
-                 ["n"
-                  "<leader>gh"
-                  ":DiffviewFileHistory %<CR>"
-                  "History Current File"]
-                 ["n" "<leader>gH" ":DiffviewFileHistory<CR>" "History All"]
-                 ["n"
-                  "<leader>gj"
-                  "<cmd>lua require 'gitsigns'.next_hunk()<cr>"
-                  "Next Hunk"]
-                 ["n"
-                  "<leader>gk"
-                  "<cmd>lua require 'gitsigns'.prev_hunk()<cr>"
-                  "Prev Hunk"]
-                 ["n"
-                  "<leader>gl"
-                  "<cmd>lua require 'gitsigns'.blame_line()<cr>"
-                  "Blame"]
                  ["n"
                   "<leader>go"
                   "<cmd>Telescope git_status<cr>"
