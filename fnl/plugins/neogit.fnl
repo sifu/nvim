@@ -20,4 +20,5 @@
         :graph_style "kitty"
         :kind "floating"
         :commit_editor {:kind "floating" :spell_check false}
-        :sections {:recent {:folded false :hidden false}}}}
+        :sections {:recent {:folded false :hidden false}}
+        :mappings {:status {:<esc> "Close"}}}}
