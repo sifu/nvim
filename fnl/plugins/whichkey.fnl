@@ -56,7 +56,7 @@
                  ["n" "<leader>x" ":wa<cr>:!%:p<cr>" "Execute file"]
                  ["n"
                   "<leader>T"
-                  ":!tmux bind t new-window -c $(pwd)<cr>"
+                  ":!tmux bind t new-window -c $(pwd)<cr><cr>"
                   "Set Tmux to CWD"]
                  ["n" "<leader>o" ":!open %<cr>" "Open file"]
                  ["n" "<leader>O" ":!open .<cr>" "Open directory"]
