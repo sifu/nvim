@@ -10,26 +10,28 @@
 
 (define-signs "Diagnostic")
 
-(local fennel-opts {:settings {:fennel {:diagnostics {:globals ["vim"]}}}})
-
 [{1 "neovim/nvim-lspconfig" :dependencies ["williamboman/mason.nvim"]}
  {1 "williamboman/mason.nvim"
   :config (fn []
             (let [mason (require "mason")]
               (mason.setup)))}
  {1 "williamboman/mason-lspconfig.nvim"
-  :dependencies ["williamboman/mason.nvim"]
+  :dependencies ["williamboman/mason.nvim" "hrsh7th/cmp-nvim-lsp"]
   :config (fn []
             (let [mason-lspconfig (require "mason-lspconfig")
-                  lspconfig (require "lspconfig")]
+                  lspconfig (require "lspconfig")
+                  cmp-nvim-lsp (require "cmp_nvim_lsp")
+                  capabilities (cmp-nvim-lsp.default_capabilities)]
               (mason-lspconfig.setup {:ensure_installed ["fennel_language_server"
                                                          "ts_ls"
                                                          "cssmodules_ls"
                                                          "cssls"
                                                          "clojure_lsp"]}
-                                     (lspconfig.fennel_language_server.setup fennel-opts)
-                                     (lspconfig.ts_ls.setup {:init_options {:hostInfo "Neovim"
+                                     (lspconfig.fennel_language_server.setup {: capabilities
+                                                                              :settings {:fennel {:diagnostics {:globals ["vim"]}}}})
+                                     (lspconfig.ts_ls.setup {: capabilities
+                                                             :init_options {:hostInfo "Neovim"
                                                                             :preferences {:importModuleSpecifierPreference "non-relative"}}})
-                                     (lspconfig.cssmodules_ls.setup {})
-                                     (lspconfig.cssls.setup {})
-                                     (lspconfig.clojure_lsp.setup {}))))}]
+                                     (lspconfig.cssmodules_ls.setup {: capabilities})
+                                     (lspconfig.cssls.setup {: capabilities})
+                                     (lspconfig.clojure_lsp.setup {: capabilities}))))}]

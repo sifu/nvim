@@ -10,7 +10,6 @@ local function define_signs(prefix)
   return vim.fn.sign_define(hint, {text = "\239\129\153", texthl = hint})
 end
 define_signs("Diagnostic")
-local fennel_opts = {settings = {fennel = {diagnostics = {globals = {"vim"}}}}}
 local function _1_()
   local mason = require("mason")
   return mason.setup()
@@ -18,6 +17,8 @@ end
 local function _2_()
   local mason_lspconfig = require("mason-lspconfig")
   local lspconfig = require("lspconfig")
-  return mason_lspconfig.setup({ensure_installed = {"fennel_language_server", "ts_ls", "cssmodules_ls", "cssls", "clojure_lsp"}}, lspconfig.fennel_language_server.setup(fennel_opts), lspconfig.ts_ls.setup({init_options = {hostInfo = "Neovim", preferences = {importModuleSpecifierPreference = "non-relative"}}}), lspconfig.cssmodules_ls.setup({}), lspconfig.cssls.setup({}), lspconfig.clojure_lsp.setup({}))
+  local cmp_nvim_lsp = require("cmp_nvim_lsp")
+  local capabilities = cmp_nvim_lsp.default_capabilities()
+  return mason_lspconfig.setup({ensure_installed = {"fennel_language_server", "ts_ls", "cssmodules_ls", "cssls", "clojure_lsp"}}, lspconfig.fennel_language_server.setup({capabilities = capabilities, settings = {fennel = {diagnostics = {globals = {"vim"}}}}}), lspconfig.ts_ls.setup({capabilities = capabilities, init_options = {hostInfo = "Neovim", preferences = {importModuleSpecifierPreference = "non-relative"}}}), lspconfig.cssmodules_ls.setup({capabilities = capabilities}), lspconfig.cssls.setup({capabilities = capabilities}), lspconfig.clojure_lsp.setup({capabilities = capabilities}))
 end
-return {{"neovim/nvim-lspconfig", dependencies = {"williamboman/mason.nvim"}}, {"williamboman/mason.nvim", config = _1_}, {"williamboman/mason-lspconfig.nvim", dependencies = {"williamboman/mason.nvim"}, config = _2_}}
+return {{"neovim/nvim-lspconfig", dependencies = {"williamboman/mason.nvim"}}, {"williamboman/mason.nvim", config = _1_}, {"williamboman/mason-lspconfig.nvim", dependencies = {"williamboman/mason.nvim", "hrsh7th/cmp-nvim-lsp"}, config = _2_}}
