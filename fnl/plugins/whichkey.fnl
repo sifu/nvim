@@ -24,12 +24,19 @@
 (fn show-help []
   (let [wk (require "which-key")] (wk.show)))
 
-(fn enter []
-  (let [buf (vim.api.nvim_get_current_buf)
-        ft (vim.api.nvim_buf_get_option buf "filetype")]
-    (if (= ft "qf") (vim.cmd ".cc") (vim.cmd "Telescope buffers"))))
+; XXX: is this used somewhere (eg in the quickfix window)?
+; (fn enter []
+;   (let [buf (vim.api.nvim_get_current_buf)
+;         ft (vim.api.nvim_buf_get_option buf "filetype")]
+;     (if (= ft "qf") (vim.cmd ".cc") (vim.cmd "Telescope buffers"))))
+;
+(fn add-to-obsidian-inbox []
+  (let [filename (vim.fn.input "Title: (without .md) " "" "file")]
+    (when (not= filename "")
+      (vim.cmd (.. ":split /s/Obsidian/Main/Inbox/" filename ".md")))))
 
 (local mappings [;; misc
+                 ["n" ";i" add-to-obsidian-inbox "Add to Obsidian Inbox"]
                  ["n"
                   "yc"
                   "yy<cmd>normal gcc<CR>p"
