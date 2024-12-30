@@ -6,6 +6,7 @@
 (local cmp-srcs [{:name "nvim_lsp"}
                  {:name "nvim_lsp_signature_help"}
                  {:name "conjure"}
+                 {:name "render-markdown"}
                  {:name "codeium"}
                  {:name "path"}
                  {:name "buffer"}
@@ -27,6 +28,7 @@
                 "PaterJason/cmp-conjure"
                 "L3MON4D3/LuaSnip"
                 "saadparwaiz1/cmp_luasnip"
+                "MeanderingProgrammer/render-markdown.nvim"
                 "onsails/lspkind.nvim"]
  :config (fn []
            (let [cmp (require "cmp")
