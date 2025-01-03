@@ -1,8 +1,3 @@
-(local cmp-src-menu-items {:buffer "buff"
-                           :conjure "conj"
-                           :nvim_lsp "lsp"
-                           :luasnip "lsnp"})
-
 (local cmp-srcs [{:name "nvim_lsp"}
                  {:name "nvim_lsp_signature_help"}
                  {:name "conjure"}
@@ -19,6 +14,23 @@
                                   1) "sub" col
                                col) "match" "%s") nil))))
 
+(fn formatting [entry vim-item]
+  (let [completion-item (entry:get_completion_item)
+        colorful-menu (require "colorful-menu")
+        lspkind (require "lspkind")
+        highlights-info (colorful-menu.highlights completion-item
+                                                  vim.bo.filetype)]
+    (if (= highlights-info nil)
+        (set vim-item.abbr completion-item.label)
+        (do
+          (set vim-item.abbr_hl_group highlights-info.highlights)
+          (set vim-item.abbr highlights-info.text)))
+    (local kind ((lspkind.cmp_format {:mode "symbol_text"}) entry vim-item))
+    (local strings (vim.split kind.kind "%s" {:trimempty true}))
+    (set vim-item.kind (.. " " (?. strings 1) " "))
+    (set vim-item.menu "")
+    vim-item))
+
 {1 "hrsh7th/nvim-cmp"
  :dependencies ["hrsh7th/cmp-buffer"
                 "hrsh7th/cmp-nvim-lsp"
@@ -29,15 +41,13 @@
                 "L3MON4D3/LuaSnip"
                 "saadparwaiz1/cmp_luasnip"
                 "MeanderingProgrammer/render-markdown.nvim"
+                "xzbdmw/colorful-menu.nvim"
                 "onsails/lspkind.nvim"]
  :config (fn []
            (let [cmp (require "cmp")
                  lspkind (require "lspkind")
                  luasnip (require "luasnip")]
-             (cmp.setup {:formatting {:format (lspkind.cmp_format {:mode "symbol_text"
-                                                                   :maxwidth 120
-                                                                   :ellipsis_char "..."
-                                                                   :symbol_map {:Codeium ""}})}
+             (cmp.setup {:formatting {:format formatting}
                          :window {:completion (cmp.config.window.bordered)
                                   :documentation (cmp.config.window.bordered)}
                          :mapping {:<Up> (cmp.mapping.select_prev_item)
