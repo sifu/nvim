@@ -18,8 +18,7 @@
   (let [completion-item (entry:get_completion_item)
         colorful-menu (require "colorful-menu")
         lspkind (require "lspkind")
-        highlights-info (colorful-menu.highlights completion-item
-                                                  vim.bo.filetype)]
+        highlights-info (colorful-menu.cmp_highlights entry)]
     (if (= highlights-info nil)
         (set vim-item.abbr completion-item.label)
         (do
@@ -45,7 +44,6 @@
                 "onsails/lspkind.nvim"]
  :config (fn []
            (let [cmp (require "cmp")
-                 lspkind (require "lspkind")
                  luasnip (require "luasnip")]
              (cmp.setup {:formatting {:format formatting}
                          :window {:completion (cmp.config.window.bordered)

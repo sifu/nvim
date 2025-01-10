@@ -8,7 +8,7 @@ local function formatting(entry, vim_item)
   local completion_item = entry:get_completion_item()
   local colorful_menu = require("colorful-menu")
   local lspkind = require("lspkind")
-  local highlights_info = colorful_menu.highlights(completion_item, vim.bo.filetype)
+  local highlights_info = colorful_menu.cmp_highlights(entry)
   if (highlights_info == nil) then
     vim_item.abbr = completion_item.label
   else
@@ -32,7 +32,6 @@ local function formatting(entry, vim_item)
 end
 local function _5_()
   local cmp = require("cmp")
-  local lspkind = require("lspkind")
   local luasnip = require("luasnip")
   local function _6_(fallback)
     if cmp.visible() then
