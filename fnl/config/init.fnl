@@ -11,6 +11,7 @@
 (require "config.javascriptreact")
 (require "config.mdx")
 (require "user.html-to-jsx")
+(require "user.timelog")
 
 ;; sets a nvim global options
 (let [options {:background "light"

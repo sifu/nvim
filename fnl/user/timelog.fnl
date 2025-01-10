@@ -2,16 +2,16 @@
 (local core (autoload "nfnl.core"))
 (local str (autoload "nfnl.string"))
 
-;; TODO: add a keymap that stops a currently running task (if there is one)
-;; TODO: add a keymap that start a new date line with the same massage as the current line
-;;  - this should first check if there is a currently running task and close that first 
-
-;; nvim_buf_set_text({buffer}, {start_row}, {start_col}, {end_row}, {end_col}, {replacement}) Sets (replaces) a range in the buffer
-;; {replacement} => array of lines
+;; example entries:
+;; [2024-11-18 13:09 - 2024-11-18 15:06] ISSUE-1234 some comment 
+;; [2024-11-18 19:09 - 2024-11-19 11:06] ISSUE-4444 some comment 
+;; [2024-11-19 19:09 - 2025-01-02 18:04] ISSUE-1111 not enddate yet
+;; [2025-01-02 18:04 - 2025-01-02 18:08] ISSUE-1234 some comment 
+;; [2025-01-02 18:08 - 2025-01-02 18:12] ISSUE-1234 some comment 
+;; [2025-01-02 18:12] ISSUE-1111 not enddate yet
 
 (local timestamp-regex "%d%d%d%d%-%d%d%-%d%d %d%d:%d%d")
-;; XXX: added  ";; " to work with the current file
-(local log-statement-regex "^;; %[.*%](%s*.*)$")
+(local log-statement-regex "^%[.*%](%s*.*)$")
 
 (fn now [] (os.date "%Y-%m-%d %H:%M"))
 
@@ -28,13 +28,11 @@
   (os.difftime (if end (date-string->time end) (os.time))
                (date-string->time start)))
 
-;; XXX: added  ";; " to work with the current file
 (fn is-timelog-line? [line]
-  (not= nil (string.find line "^;; %[[%d%-%s:]*%]")))
+  (not= nil (string.find line "^%[[%d%-%s:]*%]")))
 
-;; XXX: added  ";; " to work with the current file
 (fn get-timestamps [line]
-  (str.split (string.match line "^;; %[(.*)%]") "%s%-%s"))
+  (str.split (string.match line "^%[(.*)%]") "%s%-%s"))
 
 (fn line->duration [line] (diff-time-in-seconds (get-timestamps line)))
 
@@ -60,29 +58,10 @@
 (fn get-timelog-lines [lines]
   (core.filter is-timelog-line? lines))
 
-;; XXX: added  ";; " to work with the current file
 (fn stop-task [line]
   (let [timestamp (string.match line timestamp-regex)
         log-statement (string.match line log-statement-regex)]
-    (.. ";; [" timestamp " - " (now) "]" log-statement)))
-
-(fn stop-running-tasks [lines]
-  (core.map (fn [line]
-              (if (and (is-timelog-line? line) (is-running? line))
-                  (stop-task line)
-                  line)) lines))
-
-(fn get-lines-of-current-buffer []
-  (vim.api.nvim_buf_get_lines (vim.api.nvim_get_current_buf) 0 -1 false))
-
-;; XXX: not needed. just always replace the whole contents and for append line, set the cursor to that line
-(fn append-line-to-current-buffer [line]
-  (let [win (vim.api.nvim_get_current_win)
-        buf (vim.api.nvim_get_current_buf)
-        cursor-pos (vim.api.nvim_win_get_cursor win)
-        num-lines (vim.api.nvim_buf_line_count buf)]
-    (vim.api.nvim_buf_set_lines buf num-lines num-lines false [line])
-    (vim.api.nvim_win_set_cursor win cursor-pos)))
+    (.. "[" timestamp " - " (now) "]" log-statement)))
 
 (local timetracking-ns
        (vim.api.nvim_create_namespace "timetracking_virtual_text"))
@@ -115,11 +94,6 @@
         current-line (. (vim.api.nvim_buf_get_lines buf (- row 1) row false) 1)]
     (when (is-timelog-line? current-line)
       (show-virtual-text (format-duration (line->duration current-line))))))
-
-(vim.api.nvim_create_autocmd ["CursorMoved" "CursorMovedI"]
-                             {:callback (fn [] (check-current-line))
-                              :group (vim.api.nvim_create_augroup "TimetrackingVirtualText"
-                                                                  {:clear true})})
 
 (fn get-visual-selection []
   (let [start-pos (vim.fn.getpos "'<")
@@ -180,29 +154,51 @@
   (string.match line log-statement-regex))
 
 (fn create-new-task [message]
-  (.. ";; [" (now) "]" message))
+  (.. "[" (now) "]" message))
+
+(fn append-new-task-with-current-message []
+  (let [buf (vim.api.nvim_get_current_buf)
+        [row] (vim.api.nvim_win_get_cursor 0)
+        current-line (. (vim.api.nvim_buf_get_lines buf (- row 1) row false) 1)]
+    (when (is-timelog-line? current-line)
+      (close-running-task)
+      (let [message (get-message-from-line current-line)
+            new-line (create-new-task message)]
+        (vim.api.nvim_buf_set_lines buf -1 -1 false [new-line])
+        (vim.cmd "norm! G")))))
 
 (fn append-new-task []
   (let [buf (vim.api.nvim_get_current_buf)
         [row] (vim.api.nvim_win_get_cursor 0)
         current-line (. (vim.api.nvim_buf_get_lines buf (- row 1) row false) 1)]
-    (when (is-timelog-line? current-line) ; First close any running task
-      (close-running-task) ; Then create the new task
-      (let [message (get-message-from-line current-line)
-            new-line (create-new-task message)]
-        (vim.api.nvim_buf_set_lines buf -1 -1 false [new-line])))))
+    (when (is-timelog-line? current-line)
+      (close-running-task)
+      (let [new-line (create-new-task " ")]
+        (vim.api.nvim_buf_set_lines buf -1 -1 false [new-line])
+        (vim.cmd "norm! G")))))
 
 (vim.api.nvim_create_user_command "TimeTrackingSum"
                                   (fn [] (sum-selected-durations)) {:range true})
 
-(vim.keymap.del "n" "€d")
-(vim.keymap.set "n" "€de" close-running-task)
-(vim.keymap.set "n" "€dn" append-new-task)
+(vim.filetype.add {:extension {:timelog "timelog"}})
 
-;; example entries:
-;; [2024-11-18 13:09 - 2024-11-18 15:06] ISSUE-1234 some comment 
-;; [2024-11-18 19:09 - 2024-11-19 11:06] ISSUE-4444 some comment 
-;; [2024-11-19 19:09 - 2025-01-02 18:04] ISSUE-1111 not enddate yet
-;; [2025-01-02 18:04 - 2025-01-02 18:08] ISSUE-1234 some comment 
-;; [2025-01-02 18:08 - 2025-01-02 18:12] ISSUE-1234 some comment 
-;; [2025-01-02 18:12] ISSUE-1111 not enddate yet
+(vim.api.nvim_create_autocmd ["CursorMoved" "CursorMovedI"]
+                             {:callback (fn [] (check-current-line))
+                              :group (vim.api.nvim_create_augroup "TimetrackingVirtualText"
+                                                                  {:clear true})})
+
+(vim.api.nvim_create_autocmd "FileType"
+                             {:pattern "timelog"
+                              :callback (fn []
+                                          (vim.keymap.set "n" "€tb"
+                                                          append-new-task
+                                                          {:buffer true
+                                                           :desc "Start a new task"})
+                                          (vim.keymap.set "n" "€te"
+                                                          close-running-task
+                                                          {:buffer true
+                                                           :desc "Stop the current task"})
+                                          (vim.keymap.set "n" "<cr>"
+                                                          append-new-task-with-current-message
+                                                          {:buffer true
+                                                           :desc "Switch to this task"}))})
