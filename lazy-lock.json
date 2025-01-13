@@ -65,6 +65,7 @@
   "telescope.nvim": { "branch": "master", "commit": "415af52339215926d705cccc08145f3782c4d132" },
   "telescope_sessions_picker.nvim": { "branch": "main", "commit": "f921ab956d500f0dcac1751b544848db8198313f" },
   "text-case.nvim": { "branch": "main", "commit": "e898cfd46fa6cde0e83abb624a16e67d2ffc6457" },
+  "tiny-inline-diagnostic.nvim": { "branch": "main", "commit": "cdf1ac3a0ce30a4357699a6650dfae3b6ea31265" },
   "todo-comments.nvim": { "branch": "main", "commit": "ae0a2afb47cf7395dc400e5dc4e05274bf4fb9e0" },
   "vim-eunuch": { "branch": "master", "commit": "e86bb794a1c10a2edac130feb0ea590a00d03f1e" },
   "vim-highlightedyank": { "branch": "master", "commit": "285a61425e79742997bbde76a91be6189bc988fb" },
