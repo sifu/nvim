@@ -91,8 +91,8 @@
                         :ihtml (fmt "dangerouslySetInnerHTML={{{{__html: {}}}}}"
                                     [(insert 1)])
                         :json (fmt "JSON.stringify({}, null, 2)" [(insert 1)])
-                        :prejson (fmt "<pre style={{{{ color: '#333', backgroundColor: '#efefef', padding: '10px', margin: '10px', border: '1px solid #ccc' }}}}>{{ JSON.stringify({}, null, 2)}}</pre>"
-                                      [(insert 1)])
+                        :prejson (fmt "<pre onClick={{() => {{ navigator.clipboard.writeText(JSON.stringify({}, null, 2)).then(() => alert('Copied to clipboard!')).catch(err => console.error('Failed to copy:', err)) }}}} style={{{{ color: '#333', backgroundColor: '#efefef', padding: '10px', margin: '10px', border: '1px solid #ccc', cursor: 'pointer' }}}}> {{ JSON.stringify({}, null, 2) }}</pre>"
+                                      [(insert 1) (rep 1)])
                         :useEffect (fmt "useEffect(( ) => {{\n  {}\n}}, [{}])"
                                         [(insert 2) (insert 1)])
                         :ue (fmt "useEffect(( ) => {{\n  {}\n}}, [{}])"
