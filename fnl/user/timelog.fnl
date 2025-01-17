@@ -187,9 +187,12 @@
                               :group (vim.api.nvim_create_augroup "TimetrackingVirtualText"
                                                                   {:clear true})})
 
+(fn no-op [])
 (vim.api.nvim_create_autocmd "FileType"
                              {:pattern "timelog"
                               :callback (fn []
+                                          (vim.keymap.set "n" "<leader>d" no-op
+                                                          {:buffer true})
                                           (vim.keymap.set "n" "€tb"
                                                           append-new-task
                                                           {:buffer true

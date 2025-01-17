@@ -215,7 +215,10 @@ local function _22_()
   return check_current_line()
 end
 vim.api.nvim_create_autocmd({"CursorMoved", "CursorMovedI"}, {callback = _22_, group = vim.api.nvim_create_augroup("TimetrackingVirtualText", {clear = true})})
+local function no_op()
+end
 local function _23_()
+  vim.keymap.set("n", "<leader>d", no_op, {buffer = true})
   vim.keymap.set("n", "\226\130\172tb", append_new_task, {buffer = true, desc = "Start a new task"})
   vim.keymap.set("n", "\226\130\172te", close_running_task, {buffer = true, desc = "Stop the current task"})
   return vim.keymap.set("n", "<cr>", append_new_task_with_current_message, {buffer = true, desc = "Switch to this task"})
