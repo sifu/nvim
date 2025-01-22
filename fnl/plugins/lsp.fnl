@@ -26,6 +26,7 @@
                                                          "ts_ls"
                                                          "cssmodules_ls"
                                                          "cssls"
+                                                         "tailwindcss"
                                                          "clojure_lsp"]}
                                      (lspconfig.fennel_language_server.setup {: capabilities
                                                                               :settings {:fennel {:diagnostics {:globals ["vim"]}}}})
