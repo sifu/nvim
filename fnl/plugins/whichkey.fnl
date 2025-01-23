@@ -189,6 +189,10 @@
                  ["n" "<enter>" "<cmd>Telescope buffers<cr>" "Buffers"]
                  ["n" "<space>y" "<cmd>Telescope neoclip<cr>" "Yank History"]
                  ["n"
+                  "<space>t"
+                  "<cmd>Telescope tailiscope<cr>"
+                  "Tailwind cheatsheet"]
+                 ["n"
                   "<space>f"
                   ":lua require('telescope.builtin').find_files()<CR>"
                   "Find Files"]

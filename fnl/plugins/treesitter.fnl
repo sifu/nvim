@@ -13,6 +13,8 @@
                                                        "html"
                                                        "java"
                                                        "javascript"
+                                                       "typescript"
+                                                       "tsx"
                                                        "json"
                                                        "lua"
                                                        "markdown"
