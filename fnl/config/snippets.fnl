@@ -176,10 +176,7 @@
                                (text ["" "  )" "}"])]
                         "todo:" (text "TODO: ")})
 
-(local filetype-snippets {: all
-                          : fennel
-                          : typescriptreact
-                          :javascript typescriptreact})
+(local filetype-snippets {: all : fennel : typescriptreact})
 
 (fn dict->snippet-table [dict]
   (let [result []]
