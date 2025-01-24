@@ -144,8 +144,8 @@
                                    (insert 2)])
                         :c (fmt "className={}{}"
                                 [(choice 1
-                                         [(fmt "{{{}}}" [(insert 1)])
-                                          (fmt "'{}'" [(insert 1)])])
+                                         [(fmt "'{}'" [(insert 1)])
+                                          (fmt "{{{}}}" [(insert 1)])])
                                  (insert 0)])
                         :fun [(text "const ")
                               (insert 1 "name")

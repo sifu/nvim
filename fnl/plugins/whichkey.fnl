@@ -80,7 +80,10 @@
                  ;; LSP
                  ; not really a lsp thingy, but I think it fits
                  ["n" "<leader>lT" "<cmd>TodoTelescope<cr>" "Todos"]
-                 ["n" "<leader>lt" "<cmd>TailwindConcealToggle<cr>" "Todos"]
+                 ["n"
+                  "<leader>lt"
+                  "<cmd>TailwindConcealToggle<cr>"
+                  "Tailwind Conceal Toggle"]
                  ["n"
                   "<leader>la"
                   "<cmd>lua vim.lsp.buf.code_action()<cr>"
