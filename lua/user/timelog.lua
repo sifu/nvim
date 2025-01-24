@@ -166,7 +166,8 @@ local function close_running_task()
   if running_line_idx then
     local running_line = lines[(running_line_idx + 1)]
     local stopped_line = stop_task(running_line)
-    return vim.api.nvim_buf_set_lines(buf, running_line_idx, (running_line_idx + 1), false, {stopped_line})
+    vim.api.nvim_buf_set_lines(buf, running_line_idx, (running_line_idx + 1), false, {stopped_line})
+    return vim.cmd("write")
   else
     return nil
   end
@@ -187,7 +188,8 @@ local function append_new_task_with_current_message()
     local message = get_message_from_line(current_line)
     local new_line = create_new_task(message)
     vim.api.nvim_buf_set_lines(buf, -1, -1, false, {new_line})
-    return vim.cmd("norm! G")
+    vim.cmd("norm! G")
+    return vim.cmd("write")
   else
     return nil
   end
@@ -201,7 +203,8 @@ local function append_new_task()
     close_running_task()
     local new_line = create_new_task(" ")
     vim.api.nvim_buf_set_lines(buf, -1, -1, false, {new_line})
-    return vim.cmd("norm! G")
+    vim.cmd("norm! G")
+    return vim.cmd("write")
   else
     return nil
   end

@@ -148,7 +148,8 @@
       (let [running-line (. lines (+ running-line-idx 1))
             stopped-line (stop-task running-line)]
         (vim.api.nvim_buf_set_lines buf running-line-idx (+ running-line-idx 1)
-                                    false [stopped-line])))))
+                                    false [stopped-line])
+        (vim.cmd "write")))))
 
 (fn get-message-from-line [line]
   (string.match line log-statement-regex))
@@ -165,7 +166,8 @@
       (let [message (get-message-from-line current-line)
             new-line (create-new-task message)]
         (vim.api.nvim_buf_set_lines buf -1 -1 false [new-line])
-        (vim.cmd "norm! G")))))
+        (vim.cmd "norm! G")
+        (vim.cmd "write")))))
 
 (fn append-new-task []
   (let [buf (vim.api.nvim_get_current_buf)
@@ -175,7 +177,8 @@
       (close-running-task)
       (let [new-line (create-new-task " ")]
         (vim.api.nvim_buf_set_lines buf -1 -1 false [new-line])
-        (vim.cmd "norm! G")))))
+        (vim.cmd "norm! G")
+        (vim.cmd "write")))))
 
 (vim.api.nvim_create_user_command "TimeTrackingSum"
                                   (fn [] (sum-selected-durations)) {:range true})
