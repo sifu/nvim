@@ -56,7 +56,11 @@
   (= 1 (length (get-timestamps line))))
 
 (fn get-timelog-lines [lines]
-  (core.filter is-timelog-line? lines))
+  (let [result []]
+    (each [_ line (ipairs lines)]
+      (when (is-timelog-line? line)
+        (table.insert result line)))
+    result))
 
 (fn stop-task [line]
   (let [timestamp (string.match line timestamp-regex)
@@ -104,7 +108,7 @@
     (vim.api.nvim_buf_get_lines buf start-line end-line false)))
 
 (fn sum-durations [lines]
-  (accumulate [total 0 line (core.iter (get-timelog-lines lines))]
+  (accumulate [total 0 _ line (ipairs (get-timelog-lines lines))]
     (+ total (line->duration line))))
 
 (var popup-win-id nil)
@@ -118,23 +122,29 @@
 (fn show-popup [text]
   (close-popup)
   (let [buf (vim.api.nvim_create_buf false true)
-        width 30
+        width (+ (length text) 4)
         height 1
         opts {:relative "cursor"
               : width
               : height
-              :row 1
+              :row -1
               :col 0
               :style "minimal"
-              :border "rounded"}]
+              :border "rounded"
+              :focusable false
+              :noautocmd true}]
     (vim.api.nvim_buf_set_lines buf 0 -1 false [text])
     (set popup-win-id (vim.api.nvim_open_win buf false opts))
-    (vim.api.nvim_create_autocmd ["CursorMoved" "CursorMovedI"]
-                                 {:callback close-popup :once true})))
+    (vim.api.nvim_win_set_option popup-win-id "winhl" "Normal:Pmenu")
+    (vim.defer_fn (fn []
+                    (close-popup)) 2000)))
+
+; Close after 2 seconds
 
 (fn sum-selected-durations []
   (let [lines (get-visual-selection)
         total (sum-durations lines)]
+    (print (.. "Total: " (format-duration total))) ; Debug print
     (show-popup (.. "Total: " (format-duration total)))))
 
 (fn close-running-task []
@@ -172,13 +182,20 @@
 (fn append-new-task []
   (let [buf (vim.api.nvim_get_current_buf)
         [row] (vim.api.nvim_win_get_cursor 0)
-        current-line (. (vim.api.nvim_buf_get_lines buf (- row 1) row false) 1)]
-    (when (is-timelog-line? current-line)
-      (close-running-task)
-      (let [new-line (create-new-task " ")]
-        (vim.api.nvim_buf_set_lines buf -1 -1 false [new-line])
-        (vim.cmd "norm! G")
-        (vim.cmd "write")))))
+        lines (vim.api.nvim_buf_get_lines buf 0 -1 false)]
+    (if (core.empty? lines) ; If file is empty, just create new task
+        (let [new-line (create-new-task " ")]
+          (vim.api.nvim_buf_set_lines buf 0 -1 false [new-line]))
+        ; Otherwise check current line and close running task
+        (let [current-line (. (vim.api.nvim_buf_get_lines buf (- row 1) row
+                                                          false)
+                              1)]
+          (when (is-timelog-line? current-line)
+            (close-running-task)))) ; Always add the new task
+    (let [new-line (create-new-task " ")]
+      (vim.api.nvim_buf_set_lines buf -1 -1 false [new-line])
+      (vim.cmd "norm! G")
+      (vim.cmd "write"))))
 
 (vim.api.nvim_create_user_command "TimeTrackingSum"
                                   (fn [] (sum-selected-durations)) {:range true})

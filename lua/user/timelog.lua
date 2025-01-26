@@ -67,7 +67,14 @@ local function is_running_3f(line)
   return (1 == #get_timestamps(line))
 end
 local function get_timelog_lines(lines)
-  return core.filter(is_timelog_line_3f, lines)
+  local result = {}
+  for _, line in ipairs(lines) do
+    if is_timelog_line_3f(line) then
+      table.insert(result, line)
+    else
+    end
+  end
+  return result
 end
 local function stop_task(line)
   local timestamp = string.match(line, timestamp_regex)
@@ -94,15 +101,15 @@ local function show_virtual_text(text)
   current_extmark_id = vim.api.nvim_buf_set_extmark(buf, timetracking_ns, (line - 1), 0, opts)
   return nil
 end
-local function _10_()
+local function _11_()
   return clear_virtual_text()
 end
-vim.api.nvim_create_autocmd({"CursorMoved", "CursorMovedI"}, {callback = _10_, group = vim.api.nvim_create_augroup("TimetrackingVirtualText", {clear = true})})
+vim.api.nvim_create_autocmd({"CursorMoved", "CursorMovedI"}, {callback = _11_, group = vim.api.nvim_create_augroup("TimetrackingVirtualText", {clear = true})})
 local function check_current_line()
   clear_virtual_text()
   local buf = vim.api.nvim_get_current_buf()
-  local _let_11_ = vim.api.nvim_win_get_cursor(0)
-  local row = _let_11_[1]
+  local _let_12_ = vim.api.nvim_win_get_cursor(0)
+  local row = _let_12_[1]
   local current_line = vim.api.nvim_buf_get_lines(buf, (row - 1), row, false)[1]
   if is_timelog_line_3f(current_line) then
     return show_virtual_text(format_duration(line__3eduration(current_line)))
@@ -120,7 +127,7 @@ local function get_visual_selection()
 end
 local function sum_durations(lines)
   local total = 0
-  for line in core.iter(get_timelog_lines(lines)) do
+  for _, line in ipairs(get_timelog_lines(lines)) do
     total = (total + line__3eduration(line))
   end
   return total
@@ -141,16 +148,21 @@ end
 local function show_popup(text)
   close_popup()
   local buf = vim.api.nvim_create_buf(false, true)
-  local width = 30
+  local width = (#text + 4)
   local height = 1
-  local opts = {relative = "cursor", width = width, height = height, row = 1, col = 0, style = "minimal", border = "rounded"}
+  local opts = {relative = "cursor", width = width, height = height, row = -1, col = 0, style = "minimal", border = "rounded", noautocmd = true, focusable = false}
   vim.api.nvim_buf_set_lines(buf, 0, -1, false, {text})
   popup_win_id = vim.api.nvim_open_win(buf, false, opts)
-  return vim.api.nvim_create_autocmd({"CursorMoved", "CursorMovedI"}, {callback = close_popup, once = true})
+  vim.api.nvim_win_set_option(popup_win_id, "winhl", "Normal:Pmenu")
+  local function _16_()
+    return close_popup()
+  end
+  return vim.defer_fn(_16_, 2000)
 end
 local function sum_selected_durations()
   local lines = get_visual_selection()
   local total = sum_durations(lines)
+  print(("Total: " .. format_duration(total)))
   return show_popup(("Total: " .. format_duration(total)))
 end
 local function close_running_task()
@@ -180,8 +192,8 @@ local function create_new_task(message)
 end
 local function append_new_task_with_current_message()
   local buf = vim.api.nvim_get_current_buf()
-  local _let_17_ = vim.api.nvim_win_get_cursor(0)
-  local row = _let_17_[1]
+  local _let_19_ = vim.api.nvim_win_get_cursor(0)
+  local row = _let_19_[1]
   local current_line = vim.api.nvim_buf_get_lines(buf, (row - 1), row, false)[1]
   if is_timelog_line_3f(current_line) then
     close_running_task()
@@ -196,34 +208,39 @@ local function append_new_task_with_current_message()
 end
 local function append_new_task()
   local buf = vim.api.nvim_get_current_buf()
-  local _let_19_ = vim.api.nvim_win_get_cursor(0)
-  local row = _let_19_[1]
-  local current_line = vim.api.nvim_buf_get_lines(buf, (row - 1), row, false)[1]
-  if is_timelog_line_3f(current_line) then
-    close_running_task()
+  local _let_21_ = vim.api.nvim_win_get_cursor(0)
+  local row = _let_21_[1]
+  local lines = vim.api.nvim_buf_get_lines(buf, 0, -1, false)
+  if core["empty?"](lines) then
     local new_line = create_new_task(" ")
-    vim.api.nvim_buf_set_lines(buf, -1, -1, false, {new_line})
-    vim.cmd("norm! G")
-    return vim.cmd("write")
+    vim.api.nvim_buf_set_lines(buf, 0, -1, false, {new_line})
   else
-    return nil
+    local current_line = vim.api.nvim_buf_get_lines(buf, (row - 1), row, false)[1]
+    if is_timelog_line_3f(current_line) then
+      close_running_task()
+    else
+    end
   end
+  local new_line = create_new_task(" ")
+  vim.api.nvim_buf_set_lines(buf, -1, -1, false, {new_line})
+  vim.cmd("norm! G")
+  return vim.cmd("write")
 end
-local function _21_()
+local function _24_()
   return sum_selected_durations()
 end
-vim.api.nvim_create_user_command("TimeTrackingSum", _21_, {range = true})
+vim.api.nvim_create_user_command("TimeTrackingSum", _24_, {range = true})
 vim.filetype.add({extension = {timelog = "timelog"}})
-local function _22_()
+local function _25_()
   return check_current_line()
 end
-vim.api.nvim_create_autocmd({"CursorMoved", "CursorMovedI"}, {callback = _22_, group = vim.api.nvim_create_augroup("TimetrackingVirtualText", {clear = true})})
+vim.api.nvim_create_autocmd({"CursorMoved", "CursorMovedI"}, {callback = _25_, group = vim.api.nvim_create_augroup("TimetrackingVirtualText", {clear = true})})
 local function no_op()
 end
-local function _23_()
+local function _26_()
   vim.keymap.set("n", "<leader>d", no_op, {buffer = true})
   vim.keymap.set("n", "\226\130\172tb", append_new_task, {buffer = true, desc = "Start a new task"})
   vim.keymap.set("n", "\226\130\172te", close_running_task, {buffer = true, desc = "Stop the current task"})
   return vim.keymap.set("n", "<cr>", append_new_task_with_current_message, {buffer = true, desc = "Switch to this task"})
 end
-return vim.api.nvim_create_autocmd("FileType", {pattern = "timelog", callback = _23_})
+return vim.api.nvim_create_autocmd("FileType", {pattern = "timelog", callback = _26_})
