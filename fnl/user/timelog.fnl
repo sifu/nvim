@@ -127,6 +127,8 @@
       (vim.api.nvim_win_close popup-win-id true))
     (set popup-win-id nil)))
 
+(vim.api.nvim_set_hl 0 "TimelogPopup" {:bg "White" :fg "Black"})
+
 (fn show-popup [text]
   (close-popup)
   (let [buf (vim.api.nvim_create_buf false true)
@@ -136,14 +138,14 @@
               : width
               : height
               :row -1
-              :col 0
+              :col 5
               :style "minimal"
               :border "rounded"
               :focusable false
               :noautocmd true}]
     (vim.api.nvim_buf_set_lines buf 0 -1 false [text])
     (set popup-win-id (vim.api.nvim_open_win buf false opts))
-    (vim.api.nvim_win_set_option popup-win-id "winhl" "Normal:Pmenu")
+    (vim.api.nvim_win_set_option popup-win-id "winhl" "Normal:TimelogPopup")
     (vim.defer_fn (fn []
                     (close-popup)) 4000)))
 

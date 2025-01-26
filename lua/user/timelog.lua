@@ -151,15 +151,16 @@ local function close_popup()
     return nil
   end
 end
+vim.api.nvim_set_hl(0, "TimelogPopup", {bg = "White", fg = "Black"})
 local function show_popup(text)
   close_popup()
   local buf = vim.api.nvim_create_buf(false, true)
   local width = (#text + 4)
   local height = 1
-  local opts = {relative = "cursor", width = width, height = height, row = -1, col = 0, style = "minimal", border = "rounded", noautocmd = true, focusable = false}
+  local opts = {relative = "cursor", width = width, height = height, row = -1, col = 5, style = "minimal", border = "rounded", noautocmd = true, focusable = false}
   vim.api.nvim_buf_set_lines(buf, 0, -1, false, {text})
   popup_win_id = vim.api.nvim_open_win(buf, false, opts)
-  vim.api.nvim_win_set_option(popup_win_id, "winhl", "Normal:Pmenu")
+  vim.api.nvim_win_set_option(popup_win_id, "winhl", "Normal:TimelogPopup")
   local function _16_()
     return close_popup()
   end
