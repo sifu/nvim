@@ -202,9 +202,6 @@
       (vim.cmd "norm! G")
       (vim.cmd "write"))))
 
-(vim.api.nvim_create_user_command "TimeTrackingSum"
-                                  (fn [] (sum-selected-durations)) {:range true})
-
 (vim.filetype.add {:extension {:timelog "timelog"}})
 
 (vim.api.nvim_create_autocmd ["CursorMoved" "CursorMovedI"]
@@ -229,4 +226,8 @@
                                           (vim.keymap.set "n" "<cr>"
                                                           append-new-task-with-current-message
                                                           {:buffer true
-                                                           :desc "Switch to this task"}))})
+                                                           :desc "Switch to this task"})
+                                          (vim.keymap.set "x" "€ts"
+                                                          sum-selected-durations
+                                                          {:buffer true
+                                                           :desc "Sum selected time entries"}))})

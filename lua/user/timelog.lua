@@ -231,21 +231,18 @@ local function append_new_task()
   vim.cmd("norm! G")
   return vim.cmd("write")
 end
-local function _24_()
-  return sum_selected_durations()
-end
-vim.api.nvim_create_user_command("TimeTrackingSum", _24_, {range = true})
 vim.filetype.add({extension = {timelog = "timelog"}})
-local function _25_()
+local function _24_()
   return check_current_line()
 end
-vim.api.nvim_create_autocmd({"CursorMoved", "CursorMovedI"}, {callback = _25_, group = vim.api.nvim_create_augroup("TimetrackingVirtualText", {clear = true})})
+vim.api.nvim_create_autocmd({"CursorMoved", "CursorMovedI"}, {callback = _24_, group = vim.api.nvim_create_augroup("TimetrackingVirtualText", {clear = true})})
 local function no_op()
 end
-local function _26_()
+local function _25_()
   vim.keymap.set("n", "<leader>d", no_op, {buffer = true})
   vim.keymap.set("n", "\226\130\172tb", append_new_task, {buffer = true, desc = "Start a new task"})
   vim.keymap.set("n", "\226\130\172te", close_running_task, {buffer = true, desc = "Stop the current task"})
-  return vim.keymap.set("n", "<cr>", append_new_task_with_current_message, {buffer = true, desc = "Switch to this task"})
+  vim.keymap.set("n", "<cr>", append_new_task_with_current_message, {buffer = true, desc = "Switch to this task"})
+  return vim.keymap.set("x", "\226\130\172ts", sum_selected_durations, {buffer = true, desc = "Sum selected time entries"})
 end
-return vim.api.nvim_create_autocmd("FileType", {pattern = "timelog", callback = _26_})
+return vim.api.nvim_create_autocmd("FileType", {pattern = "timelog", callback = _25_})
