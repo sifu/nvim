@@ -2,6 +2,8 @@
 (local core (autoload "nfnl.core"))
 (local str (autoload "nfnl.string"))
 
+(local hourly-rate 75)
+
 ;; example entries:
 ;; [2024-11-18 13:09 - 2024-11-18 15:06] ISSUE-1234 some comment 
 ;; [2024-11-18 19:09 - 2024-11-19 11:06] ISSUE-4444 some comment 
@@ -36,6 +38,10 @@
 
 (fn line->duration [line] (diff-time-in-seconds (get-timestamps line)))
 
+(fn calculate-cost [duration]
+  (let [hours (/ duration 3600)] ; Convert seconds to hours
+    (* hours hourly-rate)))
+
 (fn format-duration [duration]
   (let [minutes (math.floor (/ duration 60))
         hours (math.floor (/ minutes 60))
@@ -43,14 +49,16 @@
         remaining-hours (% hours 24)
         remaining-minutes (% minutes 60)
         parts []
+        cost (calculate-cost duration)
         _ (when (> days 0)
             (table.insert parts (.. days "d")))
         _ (when (> remaining-hours 0)
             (table.insert parts (.. remaining-hours "h")))
         _ (when (> remaining-minutes 0)
             (table.insert parts (.. remaining-minutes "m")))]
-    (if (core.empty? parts) " 0m"
-        (.. " " (table.concat parts " ")))))
+    (if (core.empty? parts) " 0m (0€)"
+        (.. " " (table.concat parts " ") " (" (string.format "%.2f" cost)
+            "€)"))))
 
 (fn is-running? [line]
   (= 1 (length (get-timestamps line))))
@@ -137,14 +145,11 @@
     (set popup-win-id (vim.api.nvim_open_win buf false opts))
     (vim.api.nvim_win_set_option popup-win-id "winhl" "Normal:Pmenu")
     (vim.defer_fn (fn []
-                    (close-popup)) 2000)))
-
-; Close after 2 seconds
+                    (close-popup)) 4000)))
 
 (fn sum-selected-durations []
   (let [lines (get-visual-selection)
         total (sum-durations lines)]
-    (print (.. "Total: " (format-duration total))) ; Debug print
     (show-popup (.. "Total: " (format-duration total)))))
 
 (fn close-running-task []

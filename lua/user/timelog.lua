@@ -3,6 +3,7 @@ local _local_1_ = require("nfnl.module")
 local autoload = _local_1_["autoload"]
 local core = autoload("nfnl.core")
 local str = autoload("nfnl.string")
+local hourly_rate = 75
 local timestamp_regex = "%d%d%d%d%-%d%d%-%d%d %d%d:%d%d"
 local log_statement_regex = "^%[.*%](%s*.*)$"
 local function now()
@@ -32,6 +33,10 @@ end
 local function line__3eduration(line)
   return diff_time_in_seconds(get_timestamps(line))
 end
+local function calculate_cost(duration)
+  local hours = (duration / 3600)
+  return (hours * hourly_rate)
+end
 local function format_duration(duration)
   local minutes = math.floor((duration / 60))
   local hours = math.floor((minutes / 60))
@@ -39,6 +44,7 @@ local function format_duration(duration)
   local remaining_hours = (hours % 24)
   local remaining_minutes = (minutes % 60)
   local parts = {}
+  local cost = calculate_cost(duration)
   local _
   if (days > 0) then
     _ = table.insert(parts, (days .. "d"))
@@ -58,9 +64,9 @@ local function format_duration(duration)
     _1 = nil
   end
   if core["empty?"](parts) then
-    return " 0m"
+    return " 0m (0\226\130\172)"
   else
-    return (" " .. table.concat(parts, " "))
+    return (" " .. table.concat(parts, " ") .. " (" .. string.format("%.2f", cost) .. "\226\130\172)")
   end
 end
 local function is_running_3f(line)
@@ -157,12 +163,11 @@ local function show_popup(text)
   local function _16_()
     return close_popup()
   end
-  return vim.defer_fn(_16_, 2000)
+  return vim.defer_fn(_16_, 4000)
 end
 local function sum_selected_durations()
   local lines = get_visual_selection()
   local total = sum_durations(lines)
-  print(("Total: " .. format_duration(total)))
   return show_popup(("Total: " .. format_duration(total)))
 end
 local function close_running_task()
