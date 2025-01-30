@@ -52,6 +52,7 @@
                                                     [macro-recording]]
                                         :lualine_x [[lsp-connection]
                                                     "location"
+                                                    "progress"
                                                     "filetype"]
                                         :lualine_y ["encoding"]
                                         :lualine_z []}
