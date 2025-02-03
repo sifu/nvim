@@ -46,14 +46,11 @@
   (let [minutes (math.floor (/ duration 60))
         hours (math.floor (/ minutes 60))
         days (math.floor (/ hours 24))
-        remaining-hours (% hours 24)
         remaining-minutes (% minutes 60)
         parts []
         cost (calculate-cost duration)
-        _ (when (> days 0)
-            (table.insert parts (.. days "d")))
-        _ (when (> remaining-hours 0)
-            (table.insert parts (.. remaining-hours "h")))
+        _ (when (> hours 0)
+            (table.insert parts (.. hours "h")))
         _ (when (> remaining-minutes 0)
             (table.insert parts (.. remaining-minutes "m")))]
     (if (core.empty? parts) " 0m (0€)"
