@@ -36,6 +36,7 @@
                 "hrsh7th/cmp-path"
                 "hrsh7th/cmp-nvim-lsp-signature-help"
                 "hrsh7th/cmp-cmdline"
+                ; {1 "roobert/tailwindcss-colorizer-cmp.nvim" :config true}
                 "PaterJason/cmp-conjure"
                 "L3MON4D3/LuaSnip"
                 "saadparwaiz1/cmp_luasnip"

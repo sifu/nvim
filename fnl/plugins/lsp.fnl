@@ -35,4 +35,5 @@
                                                                             :preferences {:importModuleSpecifierPreference "non-relative"}}})
                                      (lspconfig.cssmodules_ls.setup {: capabilities})
                                      (lspconfig.cssls.setup {: capabilities})
+                                     (lspconfig.tailwindcss.setup {: capabilities})
                                      (lspconfig.clojure_lsp.setup {: capabilities}))))}]
