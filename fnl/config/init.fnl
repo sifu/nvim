@@ -13,6 +13,8 @@
 (require "user.html-to-jsx")
 (require "user.timelog")
 
+(vim.filetype.add {:extension {:ts "typescriptreact"}})
+
 ;; sets a nvim global options
 (let [options {:background "light"
                :termguicolors true
