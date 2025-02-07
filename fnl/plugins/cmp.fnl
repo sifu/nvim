@@ -2,7 +2,7 @@
                  {:name "nvim_lsp_signature_help"}
                  {:name "conjure"}
                  {:name "render-markdown"}
-                 {:name "codeium"}
+                 ; {:name "codeium"}
                  {:name "path"}
                  {:name "buffer"}
                  {:name "luasnip"}])
@@ -46,25 +46,31 @@
  :config (fn []
            (let [cmp (require "cmp")
                  luasnip (require "luasnip")]
-             (cmp.setup {:formatting {:format formatting}
+             (cmp.setup {:completion {:autocomplete false}
+                         :formatting {:format formatting}
                          :window {:completion (cmp.config.window.bordered)
                                   :documentation (cmp.config.window.bordered)}
                          :mapping {:<Up> (cmp.mapping.select_prev_item)
                                    :<Down> (cmp.mapping.select_next_item)
                                    :<C-b> (cmp.mapping.scroll_docs (- 4))
                                    :<C-f> (cmp.mapping.scroll_docs 4)
-                                   :<C-Space> (cmp.mapping.confirm {:select true})
+                                   :<C-Space> (cmp.mapping (fn []
+                                                             (if (cmp.visible)
+                                                                 (cmp.confirm {:select true})
+                                                                 "else"
+                                                                 (cmp.complete))))
+                                   ; :<C-Space> (cmp.mapping.confirm {:select true})
                                    :<C-e> (cmp.mapping.close)
-                                   :<Tab> (cmp.mapping (fn [fallback]
-                                                         (if (cmp.visible)
-                                                             (cmp.select_next_item)
-                                                             (luasnip.expand_or_jumpable)
-                                                             (luasnip.expand_or_jump)
-                                                             (has-words-before)
-                                                             (cmp.complete)
-                                                             "else"
-                                                             (fallback)))
-                                                       {1 "i" 2 "s"})
+                                   ; :<Tab> (cmp.mapping (fn [fallback]
+                                   ;                       (if (cmp.visible)
+                                   ;                           (cmp.select_next_item)
+                                   ;                           (luasnip.expand_or_jumpable)
+                                   ;                           (luasnip.expand_or_jump)
+                                   ;                           (has-words-before)
+                                   ;                           (cmp.complete)
+                                   ;                           "else"
+                                   ;                           (fallback)))
+                                   ;                     {1 "i" 2 "s"})
                                    :<S-Tab> (cmp.mapping (fn [fallback]
                                                            (if (cmp.visible)
                                                                (cmp.select_prev_item)

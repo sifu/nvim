@@ -1,5 +1,5 @@
 -- [nfnl] Compiled from fnl/plugins/cmp.fnl by https://github.com/Olical/nfnl, do not edit.
-local cmp_srcs = {{name = "nvim_lsp"}, {name = "nvim_lsp_signature_help"}, {name = "conjure"}, {name = "render-markdown"}, {name = "codeium"}, {name = "path"}, {name = "buffer"}, {name = "luasnip"}}
+local cmp_srcs = {{name = "nvim_lsp"}, {name = "nvim_lsp_signature_help"}, {name = "conjure"}, {name = "render-markdown"}, {name = "path"}, {name = "buffer"}, {name = "luasnip"}}
 local function has_words_before()
   local line, col = unpack(vim.api.nvim_win_get_cursor(0))
   return ((col ~= 0) and (vim.api.nvim_buf_get_lines(0, (line - 1), line, true)[1]:sub(col, col):match("%s") == nil))
@@ -33,15 +33,11 @@ end
 local function _5_()
   local cmp = require("cmp")
   local luasnip = require("luasnip")
-  local function _6_(fallback)
+  local function _6_()
     if cmp.visible() then
-      return cmp.select_next_item()
-    elseif luasnip.expand_or_jumpable() then
-      return luasnip.expand_or_jump()
-    elseif has_words_before() then
-      return cmp.complete()
+      return cmp.confirm({select = true})
     elseif "else" then
-      return fallback()
+      return cmp.complete()
     else
       return nil
     end
@@ -60,7 +56,7 @@ local function _5_()
   local function _10_(args)
     return luasnip.lsp_expand(args.body)
   end
-  cmp.setup({formatting = {format = formatting}, window = {completion = cmp.config.window.bordered(), documentation = cmp.config.window.bordered()}, mapping = {["<Up>"] = cmp.mapping.select_prev_item(), ["<Down>"] = cmp.mapping.select_next_item(), ["<C-b>"] = cmp.mapping.scroll_docs(( - 4)), ["<C-f>"] = cmp.mapping.scroll_docs(4), ["<C-Space>"] = cmp.mapping.confirm({select = true}), ["<C-e>"] = cmp.mapping.close(), ["<Tab>"] = cmp.mapping(_6_, {"i", "s"}), ["<S-Tab>"] = cmp.mapping(_8_, {"i", "s"})}, snippet = {expand = _10_}, sources = cmp_srcs})
+  cmp.setup({completion = {autocomplete = false}, formatting = {format = formatting}, window = {completion = cmp.config.window.bordered(), documentation = cmp.config.window.bordered()}, mapping = {["<Up>"] = cmp.mapping.select_prev_item(), ["<Down>"] = cmp.mapping.select_next_item(), ["<C-b>"] = cmp.mapping.scroll_docs(( - 4)), ["<C-f>"] = cmp.mapping.scroll_docs(4), ["<C-Space>"] = cmp.mapping(_6_), ["<C-e>"] = cmp.mapping.close(), ["<S-Tab>"] = cmp.mapping(_8_, {"i", "s"})}, snippet = {expand = _10_}, sources = cmp_srcs})
   cmp.setup.filetype("oil", {enabled = false})
   cmp.setup.filetype("chatgpt-input", {enabled = false})
   cmp.setup.cmdline("/", {mapping = cmp.mapping.preset.cmdline(), sources = {{name = "buffer"}}})

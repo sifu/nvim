@@ -2,6 +2,4 @@
 
 {1 "Exafunction/codeium.nvim"
  :event "VeryLazy"
- :config (fn []
-           (let [codeium (require "codeium")]
-             (codeium.setup)))}
+ :opts {:virtual_text {:enabled true}}}
