@@ -36,7 +36,6 @@
                 "hrsh7th/cmp-path"
                 "hrsh7th/cmp-nvim-lsp-signature-help"
                 "hrsh7th/cmp-cmdline"
-                ; {1 "roobert/tailwindcss-colorizer-cmp.nvim" :config true}
                 "PaterJason/cmp-conjure"
                 "L3MON4D3/LuaSnip"
                 "saadparwaiz1/cmp_luasnip"
@@ -46,20 +45,20 @@
  :config (fn []
            (let [cmp (require "cmp")
                  luasnip (require "luasnip")]
-             (cmp.setup {:completion {:autocomplete false}
-                         :formatting {:format formatting}
+             (cmp.setup {:formatting {:format formatting}
+                         :completion {:autocomplete false}
                          :window {:completion (cmp.config.window.bordered)
                                   :documentation (cmp.config.window.bordered)}
                          :mapping {:<Up> (cmp.mapping.select_prev_item)
                                    :<Down> (cmp.mapping.select_next_item)
                                    :<C-b> (cmp.mapping.scroll_docs (- 4))
                                    :<C-f> (cmp.mapping.scroll_docs 4)
+                                   ; :<C-Space> (cmp.mapping.confirm {:select true})
                                    :<C-Space> (cmp.mapping (fn []
                                                              (if (cmp.visible)
-                                                                 (cmp.confirm {:select true})
+                                                                 (cmp.mapping.confirm {:select true})
                                                                  "else"
                                                                  (cmp.complete))))
-                                   ; :<C-Space> (cmp.mapping.confirm {:select true})
                                    :<C-e> (cmp.mapping.close)
                                    ; :<Tab> (cmp.mapping (fn [fallback]
                                    ;                       (if (cmp.visible)

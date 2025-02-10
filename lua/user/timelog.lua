@@ -40,7 +40,6 @@ end
 local function format_duration(duration)
   local minutes = math.floor((duration / 60))
   local hours = math.floor((minutes / 60))
-  local days = math.floor((hours / 24))
   local remaining_minutes = (minutes % 60)
   local parts = {}
   local cost = calculate_cost(duration)

@@ -45,7 +45,6 @@
 (fn format-duration [duration]
   (let [minutes (math.floor (/ duration 60))
         hours (math.floor (/ minutes 60))
-        days (math.floor (/ hours 24))
         remaining-minutes (% minutes 60)
         parts []
         cost (calculate-cost duration)
