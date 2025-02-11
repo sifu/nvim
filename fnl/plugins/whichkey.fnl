@@ -24,12 +24,6 @@
 (fn show-help []
   (let [wk (require "which-key")] (wk.show)))
 
-; XXX: is this used somewhere (eg in the quickfix window)?
-; (fn enter []
-;   (let [buf (vim.api.nvim_get_current_buf)
-;         ft (vim.api.nvim_buf_get_option buf "filetype")]
-;     (if (= ft "qf") (vim.cmd ".cc") (vim.cmd "Telescope buffers"))))
-;
 (fn add-to-obsidian-inbox []
   (let [filename (vim.fn.input "Title: (without .md) " "" "file")]
     (when (not= filename "")
@@ -118,7 +112,7 @@
                   "<cmd>lua vim.diagnostic.goto_next({ border = 'rounded' })<cr>"
                   "Diagnostic"]
                  ;; Git
-                 ["n" "<leader>gg" "<cmd>Neogit<cr>" "Neogit"]
+                 ["n" "<leader>gg" "<cmd>wa<cr><cmd>Neogit<cr>" "Neogit"]
                  ["n"
                   "<leader>gb"
                   "<cmd>Telescope git_branches<cr>"
