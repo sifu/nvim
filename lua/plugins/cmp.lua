@@ -1,5 +1,5 @@
 -- [nfnl] Compiled from fnl/plugins/cmp.fnl by https://github.com/Olical/nfnl, do not edit.
-local cmp_srcs = {{name = "nvim_lsp"}, {name = "nvim_lsp_signature_help"}, {name = "conjure"}, {name = "render-markdown"}, {name = "path"}, {name = "buffer"}, {name = "luasnip"}}
+local cmp_srcs = {{name = "nvim_lsp"}, {name = "nvim_lsp_signature_help"}, {name = "conjure"}, {name = "render-markdown"}, {name = "path"}, {name = "luasnip"}}
 local function has_words_before()
   local line, col = unpack(vim.api.nvim_win_get_cursor(0))
   return ((col ~= 0) and (vim.api.nvim_buf_get_lines(0, (line - 1), line, true)[1]:sub(col, col):match("%s") == nil))
@@ -35,7 +35,7 @@ local function _5_()
   local luasnip = require("luasnip")
   local function _6_()
     if cmp.visible() then
-      return cmp.mapping.confirm({select = true})
+      return cmp.confirm({select = true})
     elseif "else" then
       return cmp.complete()
     else

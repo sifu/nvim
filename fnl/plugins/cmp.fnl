@@ -4,7 +4,7 @@
                  {:name "render-markdown"}
                  ; {:name "codeium"}
                  {:name "path"}
-                 {:name "buffer"}
+                 ; {:name "buffer"}
                  {:name "luasnip"}])
 
 (fn has-words-before []
@@ -56,7 +56,7 @@
                                    ; :<C-Space> (cmp.mapping.confirm {:select true})
                                    :<C-Space> (cmp.mapping (fn []
                                                              (if (cmp.visible)
-                                                                 (cmp.mapping.confirm {:select true})
+                                                                 (cmp.confirm {:select true})
                                                                  "else"
                                                                  (cmp.complete))))
                                    :<C-e> (cmp.mapping.close)
