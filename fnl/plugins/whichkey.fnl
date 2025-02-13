@@ -53,7 +53,10 @@
                  ["i" "<leader><leader>" "<esc>:wa<cr>" "Write all"]
                  ["n" "<leader>q" ":qa<cr>" "Quit"]
                  ["n" "<leader>d" ":bd<cr>" "Delete buffer"]
-                 ["n" "<leader>p" "<cmd>Lazy update<cr>" "Update packages"]
+                 ["n"
+                  "<leader>p"
+                  ":!git pull<cr><cmd>Lazy update<cr>"
+                  "Update packages"]
                  ["n" "<leader>x" ":wa<cr>:!%:p<cr>" "Execute file"]
                  ["n"
                   "<leader>T"
