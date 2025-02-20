@@ -44,8 +44,8 @@
                                                                      "!fontawesome"
                                                                      "--iglob"
                                                                      "!.git"
-                                                                     "--hidden"]
-                                                      :theme "ivy"}}})
+                                                                     "--hidden"]}}})
+             ; :theme "ivy"}}})
              (telescope.load_extension "ui-select")
              (telescope.load_extension "oil")
              (telescope.load_extension "fzf")
