@@ -38,7 +38,8 @@
                                :extensions {:ui-select {1 (themes.get_dropdown {})}
                                             :sessions_picker {:sessions_dir (.. (vim.fn.stdpath "data")
                                                                                 "/session/")}}
-                               :pickers {:find_files {:find_command ["rg"
+                               :pickers {:buffers {:theme "ivy"}
+                                         :find_files {:find_command ["rg"
                                                                      "--files"
                                                                      "--iglob"
                                                                      "!fontawesome"
