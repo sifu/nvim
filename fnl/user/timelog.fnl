@@ -104,6 +104,8 @@
       (show-virtual-text (format-duration (line->duration current-line))))))
 
 (fn get-visual-selection []
+  (vim.cmd "normal! `<`>")
+  ;; Jump to the visual selection to ensure marks are updated
   (let [start-pos (vim.fn.getpos "'<")
         end-pos (vim.fn.getpos "'>")
         start-line (- (. start-pos 2) 1)
@@ -146,6 +148,8 @@
                     (close-popup)) 4000)))
 
 (fn sum-selected-durations []
+  (vim.cmd "normal! \027")
+  (vim.cmd "normal! gv")
   (let [lines (get-visual-selection)
         total (sum-durations lines)]
     (show-popup (.. "Total: " (format-duration total)))))
@@ -225,7 +229,7 @@
                                                           append-new-task-with-current-message
                                                           {:buffer true
                                                            :desc "Switch to this task"})
-                                          (vim.keymap.set "x" "€ts"
+                                          (vim.keymap.set "x" "ts"
                                                           sum-selected-durations
                                                           {:buffer true
                                                            :desc "Sum selected time entries"}))})
