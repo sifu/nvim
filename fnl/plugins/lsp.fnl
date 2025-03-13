@@ -23,16 +23,17 @@
                   cmp-nvim-lsp (require "cmp_nvim_lsp")
                   capabilities (cmp-nvim-lsp.default_capabilities)]
               (mason-lspconfig.setup {:ensure_installed ["fennel_language_server"
-                                                         "ts_ls"
+                                                         "vtsls"
                                                          "cssmodules_ls"
                                                          "cssls"
                                                          "tailwindcss"
                                                          "clojure_lsp"]}
                                      (lspconfig.fennel_language_server.setup {: capabilities
                                                                               :settings {:fennel {:diagnostics {:globals ["vim"]}}}})
-                                     (lspconfig.ts_ls.setup {: capabilities
-                                                             :init_options {:hostInfo "Neovim"
-                                                                            :preferences {:importModuleSpecifierPreference "non-relative"}}})
+                                     ; (lspconfig.ts_ls.setup {: capabilities
+                                     ;                         :init_options {:hostInfo "Neovim"
+                                     ;                                        :preferences {:importModuleSpecifierPreference "non-relative"}}})
+                                     (lspconfig.vtsls.setup {: capabilities})
                                      (lspconfig.cssmodules_ls.setup {: capabilities})
                                      (lspconfig.cssls.setup {: capabilities})
                                      (lspconfig.tailwindcss.setup {: capabilities})
