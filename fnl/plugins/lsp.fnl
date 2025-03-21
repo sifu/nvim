@@ -10,6 +10,24 @@
 
 (define-signs "Diagnostic")
 
+(local cmp-nvim-lsp (require "cmp_nvim_lsp"))
+(local capabilities (cmp-nvim-lsp.default_capabilities))
+
+(local vtsls-opts
+       {: capabilities
+        :settings {:complete_function_calls true
+                   :vtsls {:enableMoveToFileCodeAction true}
+                   :typescript {:preferences {:importModuleSpecifier "non-relative"
+                                              :importModuleSpecifierEnding "minimal"}
+                                :updateImportsOnFileMove {:enabled "always"}}
+                   :suggest {:completeFunctionCalls true}
+                   :inlayHints {:enumMemberValues {:enabled true}
+                                :functionLikeReturnTypes {:enabled true}
+                                :parameterNames {:enabled "literals"}
+                                :parameterTypes {:enabled true}
+                                :propertyDeclarationTypes {:enabled true}
+                                :variableTypes {:enabled false}}}})
+
 [{1 "neovim/nvim-lspconfig" :dependencies ["williamboman/mason.nvim"]}
  {1 "williamboman/mason.nvim"
   :config (fn []
@@ -19,9 +37,7 @@
   :dependencies ["williamboman/mason.nvim" "hrsh7th/cmp-nvim-lsp"]
   :config (fn []
             (let [mason-lspconfig (require "mason-lspconfig")
-                  lspconfig (require "lspconfig")
-                  cmp-nvim-lsp (require "cmp_nvim_lsp")
-                  capabilities (cmp-nvim-lsp.default_capabilities)]
+                  lspconfig (require "lspconfig")]
               (mason-lspconfig.setup {:ensure_installed ["fennel_language_server"
                                                          "vtsls"
                                                          "cssmodules_ls"
@@ -33,7 +49,7 @@
                                      ; (lspconfig.ts_ls.setup {: capabilities
                                      ;                         :init_options {:hostInfo "Neovim"
                                      ;                                        :preferences {:importModuleSpecifierPreference "non-relative"}}})
-                                     (lspconfig.vtsls.setup {: capabilities})
+                                     (lspconfig.vtsls.setup vtsls-opts)
                                      (lspconfig.cssmodules_ls.setup {: capabilities})
                                      (lspconfig.cssls.setup {: capabilities})
                                      (lspconfig.tailwindcss.setup {: capabilities})
