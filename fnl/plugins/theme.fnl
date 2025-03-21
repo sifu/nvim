@@ -33,7 +33,7 @@
                                                :TelescopeResultsBorder {:fg "#e0e0e0"}
                                                :TelescopePreviewBorder {:fg "#e0e0e0"}
                                                :NormalFloat {:fg "#2E3440"
-                                                             :bg "#DFDFDF"}
+                                                             :bg "#FFFFFF"}
                                                :FloatBorder {:fg "#6087d7"
                                                              :bg "#FFFFFF"}
                                                :FloatTitle {:fg "#6087d7"}
