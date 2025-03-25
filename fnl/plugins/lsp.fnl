@@ -46,9 +46,6 @@
                                                          "clojure_lsp"]}
                                      (lspconfig.fennel_language_server.setup {: capabilities
                                                                               :settings {:fennel {:diagnostics {:globals ["vim"]}}}})
-                                     ; (lspconfig.ts_ls.setup {: capabilities
-                                     ;                         :init_options {:hostInfo "Neovim"
-                                     ;                                        :preferences {:importModuleSpecifierPreference "non-relative"}}})
                                      (lspconfig.vtsls.setup vtsls-opts)
                                      (lspconfig.cssmodules_ls.setup {: capabilities})
                                      (lspconfig.cssls.setup {: capabilities})
