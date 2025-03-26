@@ -1,1 +1,1 @@
-{1 "supermaven-inc/supermaven-nvim" :config true}
+{1 "supermaven-inc/supermaven-nvim" :event "VeryLazy" :config true}
