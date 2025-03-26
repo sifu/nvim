@@ -8,7 +8,8 @@
                                               "-analyzers"
                                               (vim.fn.expand "$MASON/share/sonarlint-analyzers/sonarjs.jar")]
                                         :settings {:sonarlint {:rules {"typescript:S6660" {:level "off"}
-                                                                       "typescript:S6819" {:level "off"}}}}}
+                                                                       "typescript:S6819" {:level "off"}
+                                                                       "typescript:S6478" {:level "off"}}}}}
                                :filetypes ["javascript"
                                            "javascriptreact"
                                            "typescript"
