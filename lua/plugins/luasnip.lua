@@ -18,7 +18,7 @@ local function setup()
       return ls.jump(-1)
     else
       if supermaven.has_suggestion() then
-        return supermaven.on_accept_suggestion()
+        return supermaven.on_accept_suggestion_word()
       else
         return nil
       end

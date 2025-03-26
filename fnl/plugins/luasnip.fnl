@@ -13,7 +13,7 @@
                     (fn []
                       (if (ls.jumpable -1) (ls.jump -1)
                           (if (supermaven.has_suggestion)
-                              (supermaven.on_accept_suggestion))))
+                              (supermaven.on_accept_suggestion_word))))
                     {:desc "LuaSnip expand/jump" :silent true})
     (vim.keymap.set ["i" "s"] "<c-l>"
                     (fn [] (if (ls.choice_active) (ls.change_choice 1)))
