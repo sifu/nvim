@@ -1,5 +1,5 @@
 {1 "https://github.com/lewis6991/gitsigns.nvim"
- :event "VeryLazy"
+ :ft ["typescriptreact" "javascriptreact" "typescript" "javascript"]
  :opts {:signs {:add {:text "┃"
                       :change {:text "┃"}
                       :delete {:text "_"}
