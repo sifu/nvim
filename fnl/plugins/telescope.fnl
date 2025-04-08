@@ -39,6 +39,7 @@
                                             :sessions_picker {:sessions_dir (.. (vim.fn.stdpath "data")
                                                                                 "/session/")}}
                                :pickers {:buffers {:theme "ivy"}
+                                         :git_branches {:mappings {:i {:<cr> actions.git_switch_branch}}}
                                          :find_files {:find_command ["rg"
                                                                      "--files"
                                                                      "--iglob"
@@ -46,7 +47,6 @@
                                                                      "--iglob"
                                                                      "!.git"
                                                                      "--hidden"]}}})
-             ; :theme "ivy"}}})
              (telescope.load_extension "ui-select")
              (telescope.load_extension "oil")
              (telescope.load_extension "fzf")
