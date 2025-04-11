@@ -32,6 +32,10 @@
 (local mappings [;; misc
                  ["n" ";i" add-to-obsidian-inbox "Add to Obsidian Inbox"]
                  ["n"
+                  "<leader>C"
+                  ":!echo -n % | pbcopy<cr>"
+                  "Copy current filepath"]
+                 ["n"
                   "yc"
                   "yy<cmd>normal gcc<CR>p"
                   "Copy line and comment out original"]
