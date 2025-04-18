@@ -6,6 +6,9 @@
  :cmd ["ConformInfo"]
  :opts {:formatters_by_ft {:lua ["stylua"]
                            :fennel ["fnlfmt"]
+                           :json {1 "prettierd"
+                                  2 "prettier"
+                                  :stop_after_first true}
                            :typescriptreact {1 "prettierd"
                                              2 "prettier"
                                              :stop_after_first true}
