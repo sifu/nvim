@@ -7,9 +7,7 @@ local finders = require("telescope.finders")
 local make_entry = require("telescope.make_entry")
 local conf = require("telescope.config")
 local sorters = require("telescope.sorters")
-local themes = require("telescope.themes")
 local function multigrep()
-  local opts = themes.get_ivy({cwd = vim.uv.cwd()})
   local finder
   local function _2_(prompt)
     if (not prompt or (prompt == "")) then
@@ -27,11 +25,11 @@ local function multigrep()
         table.insert(args, pieces[2])
       else
       end
-      return core.concat(args, {"--color=never", "--no-heading", "--with-filename", "--line-number", "--column", "--iglob", "!fontawesome", "--iglob", "!.git", "--smart-case"})
+      return core.concat(args, {"--color=never", "--no-heading", "--with-filename", "--line-number", "--column", "--iglob", "!.git", "--smart-case"})
     end
   end
-  finder = finders.new_async_job({command_generator = _2_, entry_maker = make_entry.gen_from_vimgrep(opts), cwd = opts.cwd})
-  local picker = pickers.new(opts, {finder = finder, prompt_title = "Multi Grep", debounce = 100, previewer = conf.values.grep_previewer(opts), sorter = sorters.empty()})
+  finder = finders.new_async_job({command_generator = _2_, entry_maker = make_entry.gen_from_vimgrep({}), cwd = vim.uv.cwd()})
+  local picker = pickers.new({}, {finder = finder, prompt_title = "Multi Grep", debounce = 100, previewer = conf.values.grep_previewer({}), sorter = sorters.empty()})
   return picker:find()
 end
 return {multigrep = multigrep}
