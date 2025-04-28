@@ -29,12 +29,19 @@
     (when (not= filename "")
       (vim.cmd (.. ":split /s/Obsidian/Main/Inbox/" filename ".md")))))
 
+(fn copy-filepath-with-line []
+  (let [filepath (vim.fn.expand "%")
+        line-number (vim.fn.line ".")
+        filepath-with-line (.. filepath ":" line-number)]
+    (vim.fn.setreg "+" filepath-with-line)
+    (vim.notify (.. "Copied: " filepath-with-line))))
+
 (local mappings [;; misc
                  ["n" ";i" add-to-obsidian-inbox "Add to Obsidian Inbox"]
                  ["n"
                   "<leader>C"
-                  ":!echo -n % | pbcopy<cr>"
-                  "Copy current filepath"]
+                  copy-filepath-with-line
+                  "Copy current filepath with line number"]
                  ["n"
                   "yc"
                   "yy<cmd>normal gcc<CR>p"
