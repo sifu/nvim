@@ -33,6 +33,7 @@
                :display "lastline"
                :history 1000
                :tabpagemax 50
+               :number true
                :relativenumber true
                :splitright true
                :splitbelow true
