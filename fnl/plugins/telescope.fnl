@@ -12,6 +12,7 @@
              (telescope.setup {:defaults {:file_ignore_patterns ["node_modules"
                                                                  "lua/plugins"
                                                                  "lua/config"]
+                                          :path_display ["truncate"]
                                           :dynamic_preview_title true
                                           :mappings {:i {:<esc> actions.close
                                                          :<c-q> (+ actions.send_to_qflist
