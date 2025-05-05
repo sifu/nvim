@@ -1,4 +1,4 @@
--- [nfnl] Compiled from fnl/plugins/luasnip.fnl by https://github.com/Olical/nfnl, do not edit.
+-- [nfnl] fnl/plugins/luasnip.fnl
 local function setup()
   local ls = require("luasnip")
   local supermaven = require("supermaven-nvim.completion_preview")
@@ -7,24 +7,24 @@ local function setup()
   snippets.setup()
   local function _1_()
     if ls.expand_or_jumpable() then
-      return ls.expand_or_jump()
+      ls.expand_or_jump()
+    else
+    end
+    if supermaven.has_suggestion() then
+      return supermaven.on_accept_suggestion_word()
     else
       return nil
     end
   end
   vim.keymap.set({"i", "s"}, "<c-k>", _1_, {desc = "LuaSnip expand/jump", silent = true})
-  local function _3_()
+  local function _4_()
     if ls.jumpable(-1) then
       return ls.jump(-1)
     else
-      if supermaven.has_suggestion() then
-        return supermaven.on_accept_suggestion_word()
-      else
-        return nil
-      end
+      return nil
     end
   end
-  vim.keymap.set({"i", "s"}, "<c-j>", _3_, {desc = "LuaSnip expand/jump", silent = true})
+  vim.keymap.set({"i", "s"}, "<c-j>", _4_, {desc = "LuaSnip expand/jump", silent = true})
   local function _6_()
     if ls.choice_active() then
       return ls.change_choice(1)
