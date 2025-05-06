@@ -74,7 +74,7 @@
                   ":!tmux bind t new-window -c $(pwd)<cr><cr>"
                   "Set Tmux to CWD"]
                  ["n" "<leader>o" ":!open %<cr>" "Open file"]
-                 ["n" "<leader>O" ":!open .<cr>" "Open directory"]
+                 ["n" "<leader>O" ":!open %:p:h<cr>" "Open directory"]
                  ["n"
                   "-"
                   ":lua require('oil').open_float()<cr>"
