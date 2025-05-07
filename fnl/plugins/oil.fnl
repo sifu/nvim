@@ -17,6 +17,8 @@
         :keymaps {:<esc> (fn []
                            (let [oil (require "oil")]
                              (oil.close)))
+                  :q (fn []
+                       (let [oil (require "oil")] (oil.close)))
                   :gd (fn []
                         (let [oil (require "oil")]
                           (oil.set_columns ["icon"

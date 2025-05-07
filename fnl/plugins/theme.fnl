@@ -1,3 +1,5 @@
+; TODO: check out: https://github.com/webhooked/kanso.nvim
+
 {1 "https://github.com/rmehri01/onenord.nvim"
  :lazy false
  :priority 1000
