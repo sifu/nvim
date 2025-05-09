@@ -2,7 +2,9 @@
  :keys [{1 "<leader>aa" 2 "<cmd>AvanteToggle<cr>" :desc "Avante Toggle"}
         {1 "<leader>ae" 2 "<cmd>AvanteEdit<cr>" :desc "Avante Edit" :mode "v"}]
  :version false
- :opts {:mappings {:diff {:ours ",co"
+ :opts {:provider "gemini"
+        :gemini {:model "gemini-2.5-pro-preview-05-06"}
+        :mappings {:diff {:ours ",co"
                           :theirs ",ct"
                           :all_theirs ",ca"
                           :both ",cb"
