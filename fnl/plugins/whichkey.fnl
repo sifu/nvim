@@ -42,10 +42,6 @@
                   "<leader>C"
                   copy-filepath-with-line
                   "Copy current filepath with line number"]
-                 ["n"
-                  "yc"
-                  "yy<cmd>normal gcc<CR>p"
-                  "Copy line and comment out original"]
                  ["n" "gp" "`[v`]" "Select last changed text"]
                  ["n" "<c-d>" "<c-d>zz" "Down half a page"]
                  ["n" "<c-u>" "<c-u>zz" "Up half a page"]
