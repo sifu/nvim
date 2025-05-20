@@ -1,3 +1,3 @@
 {1 "supermaven-inc/supermaven-nvim"
  :event "VeryLazy"
- :opts {:color {:cterm 117}}}
+ :opts {:color {:suggestion_color "#DC8CE2" :cterm 117}}}
