@@ -81,6 +81,24 @@
                  ["n" "ge" ":e <cfile><cr>" "Open file under cursor"]
                  ["n" ",," ":e#<cr>" "Switch between alternate buffers"]
                  ["n" "<leader>P" "<cmd>ParinferToggle<cr>" "Toggle Parinfer"]
+                 ;; Treewalker
+                 ["n" "<up>" "<cmd>Treewalker Up<cr>" "Treewalker up"]
+                 ["n" "<down>" "<cmd>Treewalker Down<cr>" "Treewalker down"]
+                 ["n" "<left>" "<cmd>Treewalker Left<cr>" "Treewalker left"]
+                 ["n" "<right>" "<cmd>Treewalker Right<cr>" "Treewalker right"]
+                 ["n" "<s-up>" "<cmd>Treewalker SwapUp<cr>" "Treewalker up"]
+                 ["n"
+                  "<s-down>"
+                  "<cmd>Treewalker SwapDown<cr>"
+                  "Treewalker down"]
+                 ["n"
+                  "<s-left>"
+                  "<cmd>Treewalker SwapLeft<cr>"
+                  "Treewalker left"]
+                 ["n"
+                  "<s-right>"
+                  "<cmd>Treewalker SwapRight<cr>"
+                  "Treewalker right"]
                  ;; LSP
                  ; not really a lsp thingy, but I think it fits
                  ["n" "<leader>lT" "<cmd>TodoTelescope<cr>" "Todos"]
