@@ -1,2 +1,2 @@
--- [nfnl] Compiled from fnl/plugins/supermaven.fnl by https://github.com/Olical/nfnl, do not edit.
-return {"supermaven-inc/supermaven-nvim", event = "VeryLazy", config = true}
+-- [nfnl] fnl/plugins/supermaven.fnl
+return {"supermaven-inc/supermaven-nvim", event = "VeryLazy", opts = {color = {cterm = 117}}}
