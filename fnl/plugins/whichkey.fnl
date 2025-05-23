@@ -32,7 +32,7 @@
 (fn copy-filepath-with-line []
   (let [filepath (vim.fn.expand "%")
         line-number (vim.fn.line ".")
-        filepath-with-line (.. filepath ":" line-number)]
+        filepath-with-line (.. "in " filepath " on line " line-number)]
     (vim.fn.setreg "+" filepath-with-line)
     (vim.notify (.. "Copied: " filepath-with-line))))
 
