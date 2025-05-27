@@ -25,7 +25,7 @@ end
 local function copy_filepath_with_line()
   local filepath = vim.fn.expand("%")
   local line_number = vim.fn.line(".")
-  local filepath_with_line = ("in " .. filepath .. " on line " .. line_number)
+  local filepath_with_line = (filepath .. " on line " .. line_number)
   vim.fn.setreg("+", filepath_with_line)
   return vim.notify(("Copied: " .. filepath_with_line))
 end
