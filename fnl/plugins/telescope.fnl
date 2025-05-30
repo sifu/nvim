@@ -1,3 +1,16 @@
+(local select-one-or-multi
+       (fn [prompt-bufnr]
+         (let [picker ((. (require "telescope.actions.state")
+                          "get_current_picker") prompt-bufnr)
+               multi (picker:get_multi_selection)]
+           (if (not (vim.tbl_isempty multi))
+               (do
+                 ((. (require "telescope.actions") "close") prompt-bufnr)
+                 (each [_ j (pairs multi)]
+                   (when (not= j.path nil)
+                     (vim.cmd (string.format "%s %s" "edit" j.path)))))
+               ((. (require "telescope.actions") "select_default") prompt-bufnr)))))
+
 {1 "nvim-telescope/telescope.nvim"
  :dependencies ["nvim-telescope/telescope-ui-select.nvim"
                 "nvim-lua/popup.nvim"
@@ -14,7 +27,8 @@
                                                                  "lua/config"]
                                           :path_display ["truncate"]
                                           :dynamic_preview_title true
-                                          :mappings {:i {:<esc> actions.close
+                                          :mappings {:i {:<cr> select-one-or-multi
+                                                         :<esc> actions.close
                                                          :<c-q> (+ actions.send_to_qflist
                                                                    actions.open_qflist)
                                                          :<c-f> (+ actions.send_selected_to_qflist
