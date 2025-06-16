@@ -2,7 +2,9 @@
  :keys [{1 "<leader>aa" 2 "<cmd>AvanteToggle<cr>" :desc "Avante Toggle"}
         {1 "<leader>ae" 2 "<cmd>AvanteEdit<cr>" :desc "Avante Edit" :mode "v"}]
  :version false
- :opts {:mappings {:diff {:ours ",co"
+ :opts {:claude {;; XXX just trying it out:
+                 :disable_tools true}
+        :mappings {:diff {:ours ",co"
                           :theirs ",ct"
                           :all_theirs ",ca"
                           :both ",cb"
