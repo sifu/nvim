@@ -9,6 +9,7 @@ require("config.rm")
 require("config.javascriptreact")
 require("config.mdx")
 require("user.html-to-jsx")
+require("user.follow-redirect")
 require("user.timelog")
 vim.filetype.add({extension = {ts = "typescriptreact"}})
 do
