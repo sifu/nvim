@@ -18,6 +18,7 @@
                ["<leader>s" "SQL"]
                ["<leader>t" "Tabs"]
                ["<leader>M" "Markdown"]
+               ["<leader>C" "Copy Filepath"]
                ["<space>" "Search"]
                ["ga" "Change Text Case"]])
 
@@ -36,12 +37,18 @@
     (vim.fn.setreg "+" filepath-with-line)
     (vim.notify (.. "Copied: " filepath-with-line))))
 
+(fn copy-filepath []
+  (let [filepath (vim.fn.expand "%")]
+    (vim.fn.setreg "+" filepath)
+    (vim.notify (.. "Copied: " filepath))))
+
 (local mappings [;; misc
                  ["n" ";i" add-to-obsidian-inbox "Add to Obsidian Inbox"]
                  ["n"
-                  "<leader>C"
+                  "<leader>Cc"
                   copy-filepath-with-line
                   "Copy current filepath with line number"]
+                 ["n" "<leader>CC" copy-filepath "Copy current filepath"]
                  ["n" "gp" "`[v`]" "Select last changed text"]
                  ["n" "<c-d>" "<c-d>zz" "Down half a page"]
                  ["n" "<c-u>" "<c-u>zz" "Up half a page"]
