@@ -1,6 +1,4 @@
 -- [nfnl] fnl/user/follow-redirect.fnl
-local _local_1_ = require("nfnl.module")
-local autoload = _local_1_["autoload"]
 local function follow_redirect()
   local line = vim.fn.getline(".")
   local col = (vim.fn.col(".") - 1)

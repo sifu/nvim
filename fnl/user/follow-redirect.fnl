@@ -1,5 +1,3 @@
-(local {: autoload} (require "nfnl.module"))
-
 (fn follow-redirect []
   (let [line (vim.fn.getline ".")
         col (- (vim.fn.col ".") 1) ;; Convert to 0-based indexing
