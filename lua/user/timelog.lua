@@ -1,4 +1,4 @@
--- [nfnl] Compiled from fnl/user/timelog.fnl by https://github.com/Olical/nfnl, do not edit.
+-- [nfnl] fnl/user/timelog.fnl
 local _local_1_ = require("nfnl.module")
 local autoload = _local_1_["autoload"]
 local core = autoload("nfnl.core")
@@ -241,4 +241,8 @@ local function _24_()
   vim.keymap.set("n", "<cr>", append_new_task_with_current_message, {buffer = true, desc = "Switch to this task"})
   return vim.keymap.set("x", "ts", sum_selected_durations, {buffer = true, desc = "Sum selected time entries"})
 end
-return vim.api.nvim_create_autocmd("FileType", {pattern = "timelog", callback = _24_})
+vim.api.nvim_create_autocmd("FileType", {pattern = "timelog", callback = _24_})
+local function _25_()
+  return vim.cmd("normal! G")
+end
+return vim.api.nvim_create_autocmd("BufReadPost", {pattern = "*.timelog", callback = _25_})

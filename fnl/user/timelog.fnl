@@ -233,3 +233,9 @@
                                                           sum-selected-durations
                                                           {:buffer true
                                                            :desc "Sum selected time entries"}))})
+
+;; always start on the last line:
+(vim.api.nvim_create_autocmd "BufReadPost"
+                             {:pattern "*.timelog"
+                              :callback (fn []
+                                          (vim.cmd "normal! G"))})
