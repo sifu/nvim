@@ -2,8 +2,9 @@
  :keys [{1 "<leader>aa" 2 "<cmd>AvanteToggle<cr>" :desc "Avante Toggle"}
         {1 "<leader>ae" 2 "<cmd>AvanteEdit<cr>" :desc "Avante Edit" :mode "v"}]
  :version false
- :opts {:claude {;; XXX just trying it out:
-                 :disable_tools true}
+ :opts {:provider "gemini"
+        ; :claude {:disable_tools true}
+        ; :gemini {:model "gemini-2.5-pro-preview-6"}
         :mappings {:diff {:ours ",co"
                           :theirs ",ct"
                           :all_theirs ",ca"
