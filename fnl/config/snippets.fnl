@@ -167,7 +167,9 @@
                                        [(text " ") (fmt "{{ {} }}" (insert 1))])
                                (text [") {" "  return (" "    "])
                                (choice 2
-                                       [(func #(.. "<div>"
+                                       [(func #(.. "<div data-component='"
+                                                   (kebab-to-pascal-case (filename-without-extension))
+                                                   "'>"
                                                    (kebab-to-pascal-case (filename-without-extension))
                                                    "</div>"))
                                         (text "")])
