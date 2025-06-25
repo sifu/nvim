@@ -192,4 +192,84 @@
 (fn setup []
   (ls.add_snippets nil (map-value dict->snippet-table filetype-snippets)))
 
+; TODO: make this work:
+;
+; (local s ls.snippet)
+; (local t ls.text_node)
+; (local i ls.insert_node)
+; (local f ls.function_node)
+;
+; (fn add-import [symbol-name module-name]
+;   (fn []
+;     (let [buf (vim.api.nvim_get_current_buf)
+;           lines (vim.api.nvim_buf_get_lines buf 0 -1 false)]
+;       ;; Check if symbol is already imported
+;       (var already-imported false)
+;       (each [_ line (ipairs lines)]
+;         (when (line:match (.. "import.*{.*" symbol-name ".*}.*from.*['\"]"
+;                               module-name "['\"]"))
+;           (set already-imported true)))
+;       (if already-imported
+;           ""
+;           ;; Already imported
+;           (do
+;             ;; Look for existing import from the same module
+;             (var found-existing false)
+;             (each [i line (ipairs lines) &until found-existing]
+;               (let [existing-import (line:match (.. "import%s*{([^}]*)}%s*from%s*['\"]"
+;                                                     module-name "['\"]"))]
+;                 (when existing-import
+;                   ;; Add to existing import
+;                   (let [new-import (.. (existing-import:gsub "%s*$" "") ", "
+;                                        symbol-name)
+;                         new-line (line:gsub "{[^}]*}" (.. "{" new-import "}"))]
+;                     (vim.api.nvim_buf_set_lines buf (- i 1) i false [new-line])
+;                     (set found-existing true)))))
+;             (when (not found-existing)
+;               ;; No existing import, create new one
+;               (var insert-line 0)
+;               (each [i line (ipairs lines)]
+;                 (if (line:match "^import") (set insert-line i)
+;                     (and (not (line:match "^import"))
+;                          (not (line:match "^%s*$")) (not (line:match "^//"))) (lua "break")))
+;               (let [import-statement (.. "import { " symbol-name " } from '"
+;                                          module-name "';")]
+;                 (vim.api.nvim_buf_set_lines buf insert-line insert-line false
+;                                             [import-statement])))
+;             "")))))
+;
+; ;; React snippets with smart imports
+; (s "ue" [(f (add-import "useEffect" "react"))
+;          (t "useEffect(() => {")
+;          (t ["" "  "])
+;          (i 1)
+;          (t ["" "}, ["])
+;          (i 2)
+;          (t "])")
+;          (i 0)])
+;
+; (s "us"
+;    [(f (add-import "useState" "react" (t "const [") (i 1 "state")
+;                          (t ", set") (f (fn [args]
+;                                          (-> (. args 1 1)
+;                                              (: "gsub" "^%l" string.upper)))
+;                                        [1])
+;                          (t "] = useState(") (i 2) (t ")") (i 0)))])
+;
+; ;; Additional React hooks
+; (s "uc" [(f (add-import "useCallback" "react" (t "useCallback(() => {")
+;                               (t ["" "  "]) (i 1) (t ["" "}, ["]) (i 2) (t "])")
+;                               (i 0)))])
+;
+; (s "um" [(f (add-import "useMemo" "react"))
+;          (t "useMemo(() => {")
+;          (t ["" "  return "])
+;          (i 1 (t ["" "}, ["]) (i 2) (t "])") (i 0))])
+;
+; (s "ur" [(f (add-import "useRef" "react"))
+;          (t "const ")
+;          (i 1 "ref")
+;          (t " = useRef(")
+;          (i 2 (t ")") (i 0))])
+
 {: setup}
