@@ -42,6 +42,22 @@
     (vim.fn.setreg "+" filepath)
     (vim.notify (.. "Copied: " filepath))))
 
+(fn copy-word-with-filepath []
+  (let [word (vim.fn.expand "<cword>")
+        filepath (vim.fn.expand "%:p")
+        line-number (vim.fn.line ".")
+        word-with-filepath (.. word " (" filepath " on line " line-number ")")]
+    (vim.fn.setreg "+" word-with-filepath)
+    (vim.notify (.. "Copied: " word-with-filepath))))
+
+(fn copy-filepath-with-line-range []
+  (let [filepath (vim.fn.expand "%")
+        start-line (. (vim.fn.getpos "v") 2)
+        end-line (vim.fn.line ".")
+        filepath-with-range (.. filepath " line " start-line " to " end-line)]
+    (vim.fn.setreg "+" filepath-with-range)
+    (vim.notify (.. "Copied: " filepath-with-range))))
+
 (local mappings [;; misc
                  ["n" ";i" add-to-obsidian-inbox "Add to Obsidian Inbox"]
                  ["n"
@@ -49,6 +65,14 @@
                   copy-filepath-with-line
                   "Copy current filepath with line number"]
                  ["n" "<leader>CC" copy-filepath "Copy current filepath"]
+                 ["n"
+                  "<leader>Cw"
+                  copy-word-with-filepath
+                  "Copy word under cursor with filepath and line number"]
+                 ["v"
+                  "<leader>Cr"
+                  copy-filepath-with-line-range
+                  "Copy filepath with line range"]
                  ["n" "gp" "`[v`]" "Select last changed text"]
                  ["n" "<c-d>" "<c-d>zz" "Down half a page"]
                  ["n" "<c-u>" "<c-u>zz" "Up half a page"]
