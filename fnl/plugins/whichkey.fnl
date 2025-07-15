@@ -38,9 +38,10 @@
     (vim.notify (.. "Copied: " filepath-with-line))))
 
 (fn copy-filepath []
-  (let [filepath (vim.fn.expand "%")]
-    (vim.fn.setreg "+" filepath)
-    (vim.notify (.. "Copied: " filepath))))
+  (let [filepath (vim.fn.expand "%")
+        prefixed (.. "@" filepath)]
+    (vim.fn.setreg "+" prefixed)
+    (vim.notify (.. "Copied: " prefixed))))
 
 (fn copy-word-with-filepath []
   (let [word (vim.fn.expand "<cword>")

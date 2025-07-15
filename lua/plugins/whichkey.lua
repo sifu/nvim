@@ -31,8 +31,9 @@ local function copy_filepath_with_line()
 end
 local function copy_filepath()
   local filepath = vim.fn.expand("%")
-  vim.fn.setreg("+", filepath)
-  return vim.notify(("Copied: " .. filepath))
+  local prefixed = ("@" .. filepath)
+  vim.fn.setreg("+", prefixed)
+  return vim.notify(("Copied: " .. prefixed))
 end
 local function copy_word_with_filepath()
   local word = vim.fn.expand("<cword>")
