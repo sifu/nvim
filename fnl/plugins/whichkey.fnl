@@ -118,6 +118,10 @@
                  ["n" "<leader>lT" "<cmd>TodoTelescope<cr>" "Todos"]
                  ["n"
                   "<leader>lt"
+                  "<cmd>lua vim.lsp.buf.type_definition()<cr>"
+                  "TypeScript Type"]
+                 ["n"
+                  "<leader>lw"
                   "<cmd>TailwindConcealToggle<cr>"
                   "Tailwind Conceal Toggle"]
                  ["n"
