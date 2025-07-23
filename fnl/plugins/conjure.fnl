@@ -1,6 +1,6 @@
 {1 "Olical/conjure"
  :ft ["fennel" "clojure"]
- :branch "master"
+ :branch "main"
  :init (fn []
          (set vim.g.conjure#mapping#prefix "€c")
          (set vim.g.conjure#mapping#doc_word "K")

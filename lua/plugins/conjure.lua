@@ -1,4 +1,4 @@
--- [nfnl] Compiled from fnl/plugins/conjure.fnl by https://github.com/Olical/nfnl, do not edit.
+-- [nfnl] fnl/plugins/conjure.fnl
 local function _1_()
   vim.g["conjure#mapping#prefix"] = "\226\130\172c"
   vim.g["conjure#mapping#doc_word"] = "K"
@@ -6,4 +6,4 @@ local function _1_()
   vim.g["conjure#client#clojure#nrepl#connection#auto_repl#enabled"] = false
   return nil
 end
-return {"Olical/conjure", ft = {"fennel", "clojure"}, branch = "master", init = _1_}
+return {"Olical/conjure", ft = {"fennel", "clojure"}, branch = "main", init = _1_}
