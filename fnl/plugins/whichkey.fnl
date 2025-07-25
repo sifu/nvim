@@ -22,6 +22,12 @@
                ["<space>" "Search"]
                ["ga" "Change Text Case"]])
 
+;; disable the <enter> key in the command window `q:`
+(vim.api.nvim_create_autocmd "CmdwinEnter"
+                             {:callback (fn []
+                                          (vim.keymap.set "n" "<enter>" "<Nop>"
+                                                          {:buffer true}))})
+
 (fn show-help []
   (let [wk (require "which-key")] (wk.show)))
 
@@ -33,7 +39,7 @@
 (fn copy-filepath-with-line []
   (let [filepath (vim.fn.expand "%")
         line-number (vim.fn.line ".")
-        filepath-with-line (.. filepath " on line " line-number)]
+        filepath-with-line (.. "@" filepath " on line " line-number)]
     (vim.fn.setreg "+" filepath-with-line)
     (vim.notify (.. "Copied: " filepath-with-line))))
 
@@ -47,7 +53,7 @@
   (let [word (vim.fn.expand "<cword>")
         filepath (vim.fn.expand "%:p")
         line-number (vim.fn.line ".")
-        word-with-filepath (.. word " (" filepath " on line " line-number ")")]
+        word-with-filepath (.. word " (@" filepath " on line " line-number ")")]
     (vim.fn.setreg "+" word-with-filepath)
     (vim.notify (.. "Copied: " word-with-filepath))))
 
@@ -55,7 +61,8 @@
   (let [filepath (vim.fn.expand "%")
         start-line (. (vim.fn.getpos "v") 2)
         end-line (vim.fn.line ".")
-        filepath-with-range (.. filepath " line " start-line " to " end-line)]
+        filepath-with-range (.. "@" filepath " line " start-line " to "
+                                end-line)]
     (vim.fn.setreg "+" filepath-with-range)
     (vim.notify (.. "Copied: " filepath-with-range))))
 
