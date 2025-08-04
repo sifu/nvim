@@ -247,7 +247,14 @@
                   "<space>f"
                   ":lua require('telescope.builtin').find_files()<CR>"
                   "Find Files"]
-                 ["n" "<space>d" "<cmd>Telescope oil<cr>" "Find Directories"]
+                 ["n"
+                  "<space>F"
+                  "<cmd>:lua MiniFiles.open(vim.uv.cwd(), true)<CR>"
+                  "Explore"]
+                 ["n"
+                  "<space>d"
+                  "<cmd>:lua MiniFiles.open(vim.api.nvim_buf_get_name(0), true)<CR>"
+                  "Explore Directory"]
                  ["n"
                   "<space>g"
                   ":lua require('user.telescope-multigrep').multigrep()<CR>"
