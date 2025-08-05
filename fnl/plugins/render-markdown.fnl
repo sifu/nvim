@@ -11,7 +11,7 @@
  :cmd ["RenderMarkdown"]
  :dependencies ["nvim-treesitter/nvim-treesitter"
                 "nvim-tree/nvim-web-devicons"]
- :opts {:render_modes true
+ :opts {:render_modes ["n" "c" "t"]
         :checkbox {:custom {:todo {:raw "[-]"
                                    :rendered "󱋭 "
                                    :highlight "RenderMarkdownCanceled"}}}
