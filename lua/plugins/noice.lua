@@ -1,2 +1,2 @@
--- [nfnl] Compiled from fnl/plugins/noice.fnl by https://github.com/Olical/nfnl, do not edit.
+-- [nfnl] fnl/plugins/noice.fnl
 return {"folke/noice.nvim", event = "VeryLazy", opts = {}, dependencies = {"MunifTanjim/nui.nvim"}}
