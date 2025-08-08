@@ -28,6 +28,10 @@
                                 :propertyDeclarationTypes {:enabled true}
                                 :variableTypes {:enabled false}}}})
 
+(local cssls-opts
+       {: capabilities
+        :settings {:css {:validate true :lint {:unknownAtRules "ignore"}}}})
+
 [{1 "neovim/nvim-lspconfig" :dependencies ["williamboman/mason.nvim"]}
  {1 "williamboman/mason.nvim"
   :config (fn []
@@ -48,6 +52,6 @@
                                                                               :settings {:fennel {:diagnostics {:globals ["vim"]}}}})
                                      (lspconfig.vtsls.setup vtsls-opts)
                                      (lspconfig.cssmodules_ls.setup {: capabilities})
-                                     (lspconfig.cssls.setup {: capabilities})
+                                     (lspconfig.cssls.setup cssls-opts)
                                      (lspconfig.tailwindcss.setup {: capabilities})
                                      (lspconfig.clojure_lsp.setup {: capabilities}))))}]
