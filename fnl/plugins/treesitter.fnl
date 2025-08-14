@@ -3,19 +3,19 @@
  :build ":TSUpdate"
  :config (fn []
            (let [ts (require "nvim-treesitter.configs")]
-             (ts.setup {:highlight {:enable true
-                                    :indent {:enable true}
-                                    :ensure_installed ["bash"
-                                                       "clojure"
-                                                       "commonlisp"
-                                                       "dockerfile"
-                                                       "fennel"
-                                                       "html"
-                                                       "java"
-                                                       "javascript"
-                                                       "typescript"
-                                                       "tsx"
-                                                       "json"
-                                                       "lua"
-                                                       "markdown"
-                                                       "yaml"]}})))}
+             (ts.setup {:highlight {:enable true}
+                        :indent {:enable true}
+                        :ensure_installed ["bash"
+                                           "clojure"
+                                           "commonlisp"
+                                           "dockerfile"
+                                           "fennel"
+                                           "html"
+                                           "java"
+                                           "javascript"
+                                           "typescript"
+                                           "tsx"
+                                           "json"
+                                           "lua"
+                                           "markdown"
+                                           "yaml"]})))}
