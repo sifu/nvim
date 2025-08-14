@@ -12,11 +12,15 @@
  :dependencies ["nvim-treesitter/nvim-treesitter"
                 "nvim-tree/nvim-web-devicons"]
  :opts {:render_modes ["n" "c" "t"]
+        :indent {:enabled true :skip_level 1 :skip_heading true :icon ""}
         :checkbox {:custom {:todo {:raw "[-]"
                                    :rendered "󱋭 "
-                                   :highlight "RenderMarkdownCanceled"}}}
+                                   :highlight "RenderMarkdownCanceled"}}
+                   :bullet true}
         :heading {:icons [" " " " " " " " " "]
-                  :signs ["" "" "" "" ""]}}
+                  :signs ["" "" "" "" ""]
+                  :position "inline"
+                  :backgrounds []}}
  :config (fn [_ opts]
            (let [render-markdown (require "render-markdown")]
              (render-markdown.setup opts)
