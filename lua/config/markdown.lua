@@ -1,5 +1,6 @@
 -- [nfnl] fnl/config/markdown.fnl
 local wk = require("which-key")
+vim.g.markdown_recommended_style = 0
 local function toggle_todo()
   local line = vim.api.nvim_get_current_line()
   if string.match(line, "- %[.%]") then

@@ -1,5 +1,7 @@
 (local wk (require "which-key"))
 
+(set vim.g.markdown_recommended_style 0)
+
 (fn toggle-todo []
   (let [line (vim.api.nvim_get_current_line)]
     (if (string.match line "- %[.%]")
