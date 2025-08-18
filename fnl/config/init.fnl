@@ -5,13 +5,14 @@
 ;; € is reserved to be lead
 (vim.keymap.set "n" "€" "<nop>" {:noremap true})
 
-(require "config.session-sharing")
-(require "config.session-load")
-(require "config.rm")
 (require "config.javascriptreact")
+(require "config.markdown")
 (require "config.mdx")
-(require "user.html-to-jsx")
+(require "config.rm")
+(require "config.session-load")
+(require "config.session-sharing")
 (require "user.follow-redirect")
+(require "user.html-to-jsx")
 (require "user.timelog")
 
 (vim.filetype.add {:extension {:ts "typescriptreact"}})
