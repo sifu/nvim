@@ -178,7 +178,7 @@
                                (text ["" "  )" "}"])]
                         "todo:" (text "TODO: ")})
 
-(local markdown {:td [(text "- [ ]")]})
+(local markdown {:td [(text "- [ ] ")]})
 
 (local filetype-snippets {: all : fennel : typescriptreact : markdown})
 
