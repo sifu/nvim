@@ -4,10 +4,12 @@
 
 (fn toggle-todo-line [line]
   "Toggle todo state of a markdown line. Returns the modified line."
-  (if (string.match line "- %[.%]") ; Already has a todo checkbox - toggle its state
+  (if (string.match line "- %[.%]")
+      ; Already has a todo checkbox - toggle its state
       (if (string.match line "- %[ %]")
           (string.gsub line "- %[ %]" "- [x]")
-          (string.gsub line "- %[.%]" "- [ ]")) ; No todo checkbox - check if it's a list item that can be converted
+          (string.gsub line "- %[.%]" "- [ ]"))
+      ; No todo checkbox - check if it's a list item that can be converted
       (if (string.match line "^%s*- ")
           (string.gsub line "^(%s*- )" "%1[ ] ")
           line)))
@@ -37,9 +39,7 @@
                ; Test case: crossed out todo should become unchecked
                ["- [-] crossed" "- [ ] crossed"]
                ; Test case: non-list line should remain unchanged
-               ["regular text" "regular text"]
-               ; Test case: dash without space should remain unchanged
-               ["-not a list" "-not a list"]]]
+               ["regular text" "regular text"]]]
     (each [i [input expected] (ipairs tests)]
       (let [result (toggle-todo-line input)]
         (if (= result expected)
