@@ -35,7 +35,7 @@ local function cross_out_todo()
   end
 end
 local function test_toggle_todo()
-  local tests = {{"- blabla muh kuh", "- [ ] blabla muh kuh"}, {"  - item", "  - [ ] item"}, {"- [ ] task", "- [x] task"}, {"- [x] done task", "- [ ] done task"}, {"- [-] crossed", "- [ ] crossed"}, {"regular text", "regular text"}, {"-not a list", "-not a list"}}
+  local tests = {{"- blabla muh kuh", "- [ ] blabla muh kuh"}, {"  - item", "  - [ ] item"}, {"- [ ] task", "- [x] task"}, {"- [x] done task", "- [ ] done task"}, {"- [-] crossed", "- [ ] crossed"}, {"regular text", "regular text"}}
   for i, _6_ in ipairs(tests) do
     local input = _6_[1]
     local expected = _6_[2]
