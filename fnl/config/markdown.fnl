@@ -4,10 +4,10 @@
 
 (fn toggle-todo-line [line]
   "Toggle todo state of a markdown line. Returns the modified line."
-  (if (string.match line "- %[.%]") ; Already has a todo checkbox - toggle its state
+  (if (string.match line "- %[.%]")
       (if (string.match line "- %[ %]")
           (string.gsub line "- %[ %]" "- [x]")
-          (string.gsub line "- %[.%]" "- [ ]")) ; No todo checkbox - check if it's a list item that can be converted
+          (string.gsub line "- %[.%]" "- [ ]"))
       (if (string.match line "^%s*- ")
           (string.gsub line "^(%s*- )" "%1[ ] ")
           line)))
@@ -52,10 +52,15 @@
 (vim.api.nvim_create_autocmd "FileType"
                              {:pattern "markdown"
                               :callback (fn []
-                                          (wk.register {:<c-space> [toggle-todo
-                                                                    "Toggle Todo"]
-                                                        :glt [toggle-todo
-                                                              "Toggle Todo"]
-                                                        :glx [cross-out-todo
-                                                              "Cross out Todo"]}
-                                                       {:buffer 0}))})
+                                          (wk.add [["<c-space>"
+                                                    toggle-todo
+                                                    {:buffer 0
+                                                     :desc "Toggle Todo"}]
+                                                   ["glt"
+                                                    toggle-todo
+                                                    {:buffer 0
+                                                     :desc "Toggle Todo"}]
+                                                   ["glx"
+                                                    cross-out-todo
+                                                    {:buffer 0
+                                                     :desc "Cross out Todo"}]]))})
