@@ -49,6 +49,6 @@ local function test_toggle_todo()
   return nil
 end
 local function _8_()
-  return wk.register({glt = {toggle_todo, "Toggle Todo"}, glx = {cross_out_todo, "Cross out Todo"}}, {buffer = 0})
+  return wk.register({["<c-space>"] = {toggle_todo, "Toggle Todo"}, glt = {toggle_todo, "Toggle Todo"}, glx = {cross_out_todo, "Cross out Todo"}}, {buffer = 0})
 end
 return vim.api.nvim_create_autocmd("FileType", {pattern = "markdown", callback = _8_})
