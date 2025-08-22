@@ -12,6 +12,7 @@
  :dependencies ["nvim-treesitter/nvim-treesitter"
                 "nvim-tree/nvim-web-devicons"]
  :opts {:render_modes ["n" "c" "t"]
+        :anti_conceal {:enabled false}
         :indent {:enabled true :skip_level 1 :skip_heading true :icon ""}
         :checkbox {:custom {:todo {:raw "[-]"
                                    :rendered "󱋭 "
@@ -20,7 +21,8 @@
         :heading {:icons [" " " " " " " " " "]
                   :signs ["" "" "" "" ""]
                   :position "inline"
-                  :backgrounds []}}
+                  :backgrounds []}
+        :completions {:lsp {:enabled true}}}
  :config (fn [_ opts]
            (let [render-markdown (require "render-markdown")]
              (render-markdown.setup opts)

@@ -52,6 +52,7 @@
 (vim.api.nvim_create_autocmd "FileType"
                              {:pattern "markdown"
                               :callback (fn []
+                                          (set vim.opt_local.cursorline false)
                                           (wk.add [["<c-space>"
                                                     toggle-todo
                                                     {:buffer 0

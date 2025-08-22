@@ -49,6 +49,7 @@ local function test_toggle_todo()
   return nil
 end
 local function _8_()
+  vim.opt_local.cursorline = false
   return wk.add({{"<c-space>", toggle_todo, {buffer = 0, desc = "Toggle Todo"}}, {"glt", toggle_todo, {buffer = 0, desc = "Toggle Todo"}}, {"glx", cross_out_todo, {buffer = 0, desc = "Cross out Todo"}}})
 end
 return vim.api.nvim_create_autocmd("FileType", {pattern = "markdown", callback = _8_})
