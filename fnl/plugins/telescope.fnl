@@ -16,7 +16,6 @@
                 "nvim-lua/popup.nvim"
                 "nvim-lua/plenary.nvim"
                 "albenisolmos/telescope-oil.nvim"
-                "danielvolchek/tailiscope.nvim"
                 "JoseConseco/telescope_sessions_picker.nvim"]
  :config (fn []
            (let [telescope (require "telescope")
@@ -65,5 +64,4 @@
              (telescope.load_extension "ui-select")
              (telescope.load_extension "oil")
              (telescope.load_extension "fzf")
-             (telescope.load_extension "tailiscope")
              (telescope.load_extension "sessions_picker")))}

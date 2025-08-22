@@ -25,7 +25,6 @@ local function _4_()
   telescope.load_extension("ui-select")
   telescope.load_extension("oil")
   telescope.load_extension("fzf")
-  telescope.load_extension("tailiscope")
   return telescope.load_extension("sessions_picker")
 end
-return {"nvim-telescope/telescope.nvim", dependencies = {"nvim-telescope/telescope-ui-select.nvim", "nvim-lua/popup.nvim", "nvim-lua/plenary.nvim", "albenisolmos/telescope-oil.nvim", "danielvolchek/tailiscope.nvim", "JoseConseco/telescope_sessions_picker.nvim"}, config = _4_}
+return {"nvim-telescope/telescope.nvim", dependencies = {"nvim-telescope/telescope-ui-select.nvim", "nvim-lua/popup.nvim", "nvim-lua/plenary.nvim", "albenisolmos/telescope-oil.nvim", "JoseConseco/telescope_sessions_picker.nvim"}, config = _4_}
