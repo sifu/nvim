@@ -74,6 +74,7 @@ User-defined functions are in `fnl/user/`:
 
 ## Important Notes
 
+- Always remind me to save the file in Neovim when you make any changes
 - The configuration is compiled from Fennel to Lua using NFNL
 - Persistent undo is enabled with files stored in `undodir/`
 - The leader key is `€` (Euro symbol) - ensure this is properly handled in text processing
