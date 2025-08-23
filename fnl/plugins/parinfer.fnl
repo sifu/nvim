@@ -1,1 +1,1 @@
-{1 "gpanders/nvim-parinfer" :ft ["fennel" "clojure"]}
+{1 "gpanders/nvim-parinfer" :ft ["fennel" "clojure" "lisp" "scheme"]}
