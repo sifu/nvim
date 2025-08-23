@@ -67,7 +67,13 @@
     (vim.notify (.. "Copied: " filepath-with-range))))
 
 (local mappings [;; misc
-                 ["n" ";i" add-to-obsidian-inbox "Add to Obsidian Inbox"]
+                 ["n" ",i" add-to-obsidian-inbox "Add to Obsidian Inbox"]
+                 ["n" ",o" "<cmd>Obsidian<cr>" "Open Obsidian"]
+                 ["n"
+                  ",s"
+                  "<cmd>Obsidian quick_switch<cr>"
+                  "Obsidian Quick Switch"]
+                 ["n" ",n" "<cmd>Obsidian new<cr>" "New Obsidian Note"]
                  ["n"
                   "<leader>Cc"
                   copy-filepath-with-line
