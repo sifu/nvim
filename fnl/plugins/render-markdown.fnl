@@ -6,6 +6,14 @@
   (core.assoc vim.o "shiftwidth" 2)
   (core.assoc vim.o "softtabstop" 2))
 
+(vim.api.nvim_create_autocmd "FileType"
+                             {:pattern "markdown"
+                              :callback (fn []
+                                          (vim.keymap.set "n" ",T"
+                                                          "<cmd>RenderMarkdown toggle<cr>"
+                                                          {:buffer true
+                                                           :desc "Toggle Render Markdown"}))})
+
 {1 "MeanderingProgrammer/render-markdown.nvim"
  :ft ["markdown"]
  :cmd ["RenderMarkdown"]
