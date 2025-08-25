@@ -31,21 +31,24 @@ local function copy_filepath_with_line()
   local line_number = vim.fn.line(".")
   local filepath_with_line = ("@" .. filepath .. " on line " .. line_number)
   vim.fn.setreg("+", filepath_with_line)
-  return vim.notify(("Copied: " .. filepath_with_line))
+  vim.notify(("Copied: " .. filepath_with_line))
+  return filepath_with_line
 end
 local function copy_filepath()
   local filepath = vim.fn.expand("%")
   local prefixed = ("@" .. filepath)
   vim.fn.setreg("+", prefixed)
-  return vim.notify(("Copied: " .. prefixed))
+  vim.notify(("Copied: " .. prefixed))
+  return prefixed
 end
 local function copy_word_with_filepath()
   local word = vim.fn.expand("<cword>")
   local filepath = vim.fn.expand("%:p")
   local line_number = vim.fn.line(".")
-  local word_with_filepath = (word .. " (@" .. filepath .. " on line " .. line_number .. ")")
+  local word_with_filepath = ("`" .. word .. "` (@" .. filepath .. " on line " .. line_number .. ")")
   vim.fn.setreg("+", word_with_filepath)
-  return vim.notify(("Copied: " .. word_with_filepath))
+  vim.notify(("Copied: " .. word_with_filepath))
+  return word_with_filepath
 end
 local function copy_filepath_with_line_range()
   local filepath = vim.fn.expand("%")

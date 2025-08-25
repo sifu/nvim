@@ -41,21 +41,25 @@
         line-number (vim.fn.line ".")
         filepath-with-line (.. "@" filepath " on line " line-number)]
     (vim.fn.setreg "+" filepath-with-line)
-    (vim.notify (.. "Copied: " filepath-with-line))))
+    (vim.notify (.. "Copied: " filepath-with-line))
+    filepath-with-line))
 
 (fn copy-filepath []
   (let [filepath (vim.fn.expand "%")
         prefixed (.. "@" filepath)]
     (vim.fn.setreg "+" prefixed)
-    (vim.notify (.. "Copied: " prefixed))))
+    (vim.notify (.. "Copied: " prefixed))
+    prefixed))
 
 (fn copy-word-with-filepath []
   (let [word (vim.fn.expand "<cword>")
         filepath (vim.fn.expand "%:p")
         line-number (vim.fn.line ".")
-        word-with-filepath (.. word " (@" filepath " on line " line-number ")")]
+        word-with-filepath (.. "`" word "` (@" filepath " on line " line-number
+                               ")")]
     (vim.fn.setreg "+" word-with-filepath)
-    (vim.notify (.. "Copied: " word-with-filepath))))
+    (vim.notify (.. "Copied: " word-with-filepath))
+    word-with-filepath))
 
 (fn copy-filepath-with-line-range []
   (let [filepath (vim.fn.expand "%")
