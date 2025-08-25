@@ -6,15 +6,12 @@ local function today()
   local today0 = os.date("%Y-%m-%d")
   return ("[[/Daily/" .. today0 .. "|" .. today0 .. "]]")
 end
-local function delete_cr_mapping()
-  return pcall(vim.keymap.del, "n", "<CR>", {buffer = 0})
-end
 local function _2_(ev)
   vim.keymap.set("n", "gf", "<cmd>Obsidian follow_link<cr>", {buffer = ev.buf, desc = "Follow Link"})
   vim.keymap.set("n", ",s", "<cmd>Obsidian quick_switch<cr>", {buffer = ev.buf, desc = "Quick Switch"})
   vim.keymap.set("n", ",b", "<cmd>Obsidian backlinks<cr>", {buffer = ev.buf, desc = "Backlinks"})
   vim.keymap.set("n", ",t", "<cmd>Obsidian tags<cr>", {buffer = ev.buf, desc = "Tags"})
-  return delete_cr_mapping()
+  return vim.keymap.del("n", "<CR>", {buffer = ev.buf})
 end
 vim.api.nvim_create_autocmd("User", {pattern = "ObsidianNoteEnter", callback = _2_})
 local function _3_(uri)

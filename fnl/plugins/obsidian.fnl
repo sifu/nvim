@@ -6,8 +6,6 @@
   (let [today (os.date "%Y-%m-%d")]
     (.. "[[/Daily/" today "|" today "]]")))
 
-(fn delete-cr-mapping [] (pcall vim.keymap.del "n" "<CR>" {:buffer 0}))
-
 (vim.api.nvim_create_autocmd "User"
                              {:pattern "ObsidianNoteEnter"
                               :callback (fn [ev]
@@ -32,7 +30,8 @@
                                                           "<cmd>Obsidian tags<cr>"
                                                           {:buffer ev.buf
                                                            :desc "Tags"})
-                                          (delete-cr-mapping))})
+                                          (vim.keymap.del "n" "<CR>"
+                                                          {:buffer ev.buf}))})
 
 {1 "obsidian-nvim/obsidian.nvim"
  :dependencies ["nvim-lua/plenary.nvim"]
