@@ -54,7 +54,8 @@
                :smartcase true
                :smartindent true
                :spelllang "en_us,de_at"
-               :autoread true}]
+               :autoread true
+               :foldenable false}]
   (each [option value (pairs options)]
     (core.assoc vim.o option value)))
 
