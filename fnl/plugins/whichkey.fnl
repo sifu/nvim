@@ -36,20 +36,27 @@
     (when (not= filename "")
       (vim.cmd (.. ":split /s/Obsidian/Main/Inbox/" filename ".md")))))
 
+(fn copy-and-notify [text]
+  (vim.fn.setreg "+" text)
+  (vim.notify (.. "Copied: " text))
+  text)
+
 (fn copy-filepath-with-line []
   (let [filepath (vim.fn.expand "%")
         line-number (vim.fn.line ".")
         filepath-with-line (.. "@" filepath " on line " line-number)]
-    (vim.fn.setreg "+" filepath-with-line)
-    (vim.notify (.. "Copied: " filepath-with-line))
-    filepath-with-line))
+    (copy-and-notify filepath-with-line)))
+
+(fn copy-file-reference []
+  (let [filepath (vim.fn.expand "%")
+        line-number (vim.fn.line ".")
+        filepath-with-line (.. filepath ":" line-number)]
+    (copy-and-notify filepath-with-line)))
 
 (fn copy-filepath []
   (let [filepath (vim.fn.expand "%")
         prefixed (.. "@" filepath)]
-    (vim.fn.setreg "+" prefixed)
-    (vim.notify (.. "Copied: " prefixed))
-    prefixed))
+    (copy-and-notify prefixed)))
 
 (fn copy-word-with-filepath []
   (let [word (vim.fn.expand "<cword>")
@@ -57,9 +64,7 @@
         line-number (vim.fn.line ".")
         word-with-filepath (.. "`" word "` (@" filepath " on line " line-number
                                ")")]
-    (vim.fn.setreg "+" word-with-filepath)
-    (vim.notify (.. "Copied: " word-with-filepath))
-    word-with-filepath))
+    (copy-and-notify word-with-filepath)))
 
 (fn copy-filepath-with-line-range []
   (let [filepath (vim.fn.expand "%")
@@ -67,8 +72,7 @@
         end-line (vim.fn.line ".")
         filepath-with-range (.. "@" filepath " line " start-line " to "
                                 end-line)]
-    (vim.fn.setreg "+" filepath-with-range)
-    (vim.notify (.. "Copied: " filepath-with-range))))
+    (copy-and-notify filepath-with-range)))
 
 (local mappings [;; misc
                  ["n" ",i" add-to-obsidian-inbox "Add to Obsidian Inbox"]
@@ -78,6 +82,10 @@
                   "<cmd>Obsidian quick_switch<cr>"
                   "Obsidian Quick Switch"]
                  ["n" ",n" "<cmd>Obsidian new<cr>" "New Obsidian Note"]
+                 ["n"
+                  "<leader>Cr"
+                  copy-file-reference
+                  "Copy current file reference"]
                  ["n"
                   "<leader>Cc"
                   copy-filepath-with-line
