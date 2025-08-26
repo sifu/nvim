@@ -18,6 +18,10 @@
                                                           "<cmd>Obsidian follow_link<cr>"
                                                           {:buffer ev.buf
                                                            :desc "Follow Link"})
+                                          (vim.keymap.set "n" ",O"
+                                                          "<cmd>Obsidian open<cr>"
+                                                          {:buffer ev.buf
+                                                           :desc "Open in App"})
                                           (vim.keymap.set "n" ",s"
                                                           "<cmd>Obsidian quick_switch<cr>"
                                                           {:buffer ev.buf

@@ -8,6 +8,7 @@ local function today()
 end
 local function _2_(ev)
   vim.keymap.set("n", "gf", "<cmd>Obsidian follow_link<cr>", {buffer = ev.buf, desc = "Follow Link"})
+  vim.keymap.set("n", ",O", "<cmd>Obsidian open<cr>", {buffer = ev.buf, desc = "Open in App"})
   vim.keymap.set("n", ",s", "<cmd>Obsidian quick_switch<cr>", {buffer = ev.buf, desc = "Quick Switch"})
   vim.keymap.set("n", ",b", "<cmd>Obsidian backlinks<cr>", {buffer = ev.buf, desc = "Backlinks"})
   vim.keymap.set("n", ",t", "<cmd>Obsidian tags<cr>", {buffer = ev.buf, desc = "Tags"})
