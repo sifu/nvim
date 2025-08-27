@@ -7,38 +7,28 @@
 (local conf (require "telescope.config"))
 (local sorters (require "telescope.sorters"))
 
+(fn command-generator [prompt]
+  (if (or (not prompt) (= prompt ""))
+      nil
+      (let [pieces (vim.split prompt "  ")
+            args ["rg"]]
+        (when (. pieces 1)
+          (table.insert args "-e")
+          (table.insert args (. pieces 1)))
+        (when (. pieces 2)
+          (table.insert args "-g")
+          (table.insert args (. pieces 2)))
+        (core.concat args ["--color=never"
+                           "--no-heading"
+                           "--with-filename"
+                           "--line-number"
+                           "--column"
+                           "--iglob"
+                           "!.git"
+                           "--smart-case"]))))
+
 (fn multigrep []
-  (local finder (finders.new_async_job {:command_generator (fn [prompt]
-                                                             (if (or (not prompt)
-                                                                     (= prompt
-                                                                        ""))
-                                                                 nil
-                                                                 (let [pieces (vim.split prompt
-                                                                                         "  ")
-                                                                       args ["rg"]]
-                                                                   (when (. pieces
-                                                                            1)
-                                                                     (table.insert args
-                                                                                   "-e")
-                                                                     (table.insert args
-                                                                                   (. pieces
-                                                                                      1)))
-                                                                   (when (. pieces
-                                                                            2)
-                                                                     (table.insert args
-                                                                                   "-g")
-                                                                     (table.insert args
-                                                                                   (. pieces
-                                                                                      2)))
-                                                                   (core.concat args
-                                                                                ["--color=never"
-                                                                                 "--no-heading"
-                                                                                 "--with-filename"
-                                                                                 "--line-number"
-                                                                                 "--column"
-                                                                                 "--iglob"
-                                                                                 "!.git"
-                                                                                 "--smart-case"]))))
+  (local finder (finders.new_async_job {:command_generator command-generator
                                         :entry_maker (make_entry.gen_from_vimgrep {})
                                         :cwd (vim.uv.cwd)}))
   (local picker (pickers.new {}

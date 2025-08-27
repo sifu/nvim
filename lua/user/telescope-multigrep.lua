@@ -7,28 +7,27 @@ local finders = require("telescope.finders")
 local make_entry = require("telescope.make_entry")
 local conf = require("telescope.config")
 local sorters = require("telescope.sorters")
-local function multigrep()
-  local finder
-  local function _2_(prompt)
-    if (not prompt or (prompt == "")) then
-      return nil
+local function command_generator(prompt)
+  if (not prompt or (prompt == "")) then
+    return nil
+  else
+    local pieces = vim.split(prompt, "  ")
+    local args = {"rg"}
+    if pieces[1] then
+      table.insert(args, "-e")
+      table.insert(args, pieces[1])
     else
-      local pieces = vim.split(prompt, "  ")
-      local args = {"rg"}
-      if pieces[1] then
-        table.insert(args, "-e")
-        table.insert(args, pieces[1])
-      else
-      end
-      if pieces[2] then
-        table.insert(args, "-g")
-        table.insert(args, pieces[2])
-      else
-      end
-      return core.concat(args, {"--color=never", "--no-heading", "--with-filename", "--line-number", "--column", "--iglob", "!.git", "--smart-case"})
     end
+    if pieces[2] then
+      table.insert(args, "-g")
+      table.insert(args, pieces[2])
+    else
+    end
+    return core.concat(args, {"--color=never", "--no-heading", "--with-filename", "--line-number", "--column", "--iglob", "!.git", "--smart-case"})
   end
-  finder = finders.new_async_job({command_generator = _2_, entry_maker = make_entry.gen_from_vimgrep({}), cwd = vim.uv.cwd()})
+end
+local function multigrep()
+  local finder = finders.new_async_job({command_generator = command_generator, entry_maker = make_entry.gen_from_vimgrep({}), cwd = vim.uv.cwd()})
   local picker = pickers.new({}, {finder = finder, prompt_title = "Multi Grep", debounce = 100, previewer = conf.values.grep_previewer({}), sorter = sorters.empty()})
   return picker:find()
 end
