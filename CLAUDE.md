@@ -70,7 +70,6 @@ Plugins are defined in Fennel files under `fnl/plugins/` and loaded via lazy.nvi
 User-defined functions are in `fnl/user/`:
 - `timelog.fnl`: Time tracking functionality
 - `html-to-jsx.fnl`: HTML to JSX conversion
-- `follow-redirect.fnl`: URL redirect following
 
 ## Important Notes
 
