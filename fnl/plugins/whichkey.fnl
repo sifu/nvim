@@ -48,7 +48,7 @@
     (copy-and-notify filepath-with-line)))
 
 (fn copy-file-reference []
-  (let [filepath (vim.fn.expand "%")
+  (let [filepath (vim.fn.expand "%:p")
         line-number (vim.fn.line ".")
         filepath-with-line (.. filepath ":" line-number)]
     (copy-and-notify filepath-with-line)))

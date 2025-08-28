@@ -38,7 +38,7 @@ local function copy_filepath_with_line()
   return copy_and_notify(filepath_with_line)
 end
 local function copy_file_reference()
-  local filepath = vim.fn.expand("%")
+  local filepath = vim.fn.expand("%:p")
   local line_number = vim.fn.line(".")
   local filepath_with_line = (filepath .. ":" .. line_number)
   return copy_and_notify(filepath_with_line)
