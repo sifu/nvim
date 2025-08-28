@@ -55,12 +55,12 @@
  :config (fn []
            (let [chatgpt (require "chatgpt")]
              (chatgpt.setup {:openai_params {:model "gpt-4o"}
-                             :chat {:keymaps {:close "<C-c>"}
-                                    :yank_last_code "<C-k>"
-                                    :yank_last "<C-l>"
-                                    :scroll_up "<C-u>"
-                                    :scroll_down "<C-d>"
-                                    :toggle_settings "<C-o>"
-                                    :new_session "<C-n>"
-                                    :cycle_windows "<Tab>"}
+                             :chat {:keymaps {:close "<C-c>"
+                                              :yank_last_code "<C-k>"
+                                              :yank_last "<C-l>"
+                                              :scroll_up "<C-u>"
+                                              :scroll_down "<C-d>"
+                                              :toggle_settings "<C-o>"
+                                              :new_session "<C-n>"
+                                              :cycle_windows "<Tab>"}}
                              :popup_input {:submit "<C-s>"}})))}
