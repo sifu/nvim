@@ -1,4 +1,4 @@
-{1 "echasnovski/mini.move"
+{1 "nvim-mini/mini.move"
  :event "VeryLazy"
  :version false
  :opts {:mappings {:left ""
