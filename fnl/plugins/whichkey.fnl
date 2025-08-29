@@ -75,6 +75,10 @@
     (copy-and-notify filepath-with-range)))
 
 (local mappings [;; misc
+                 ["n"
+                  ",S"
+                  "<cmd>e /s/tmp/scratchpad.fnl<cr>"
+                  "Open Scratchpad"]
                  ["n" ",i" add-to-obsidian-inbox "Add to Obsidian Inbox"]
                  ["n" ",o" "<cmd>Obsidian<cr>" "Open Obsidian"]
                  ["n"
