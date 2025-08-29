@@ -3,6 +3,7 @@ local _local_1_ = require("nfnl.module")
 local autoload = _local_1_["autoload"]
 local core = autoload("nfnl.core")
 vim.keymap.set("n", "\226\130\172", "<nop>", {noremap = true})
+require("config.gitcommit")
 require("config.javascriptreact")
 require("config.markdown")
 require("config.mdx")

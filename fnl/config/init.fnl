@@ -5,6 +5,7 @@
 ;; € is reserved to be lead
 (vim.keymap.set "n" "€" "<nop>" {:noremap true})
 
+(require "config.gitcommit")
 (require "config.javascriptreact")
 (require "config.markdown")
 (require "config.mdx")
