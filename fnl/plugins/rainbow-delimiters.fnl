@@ -1,15 +1,17 @@
+(local file-types ["clojure" "scheme" "lisp" "fennel" "janet"])
+
+(local strategy
+       (collect [_ ft (ipairs file-types)]
+         (values ft "rainbow-delimiters.strategy.global")))
+(local query (collect [_ ft (ipairs file-types)]
+               (values ft "rainbow-delimiters")))
+
 [{1 "HiPhish/rainbow-delimiters.nvim"
-  :ft ["clojure" "scheme" "lisp" "janet"]
+  :ft file-types
   :config (fn []
             (set vim.g.rainbow_delimiters
-                 {:strategy {:scheme "rainbow-delimiters.strategy.global"
-                             :lisp "rainbow-delimiters.strategy.global"
-                             :clojure "rainbow-delimiters.strategy.global"
-                             :janet "rainbow-delimiters.strategy.global"}
-                  :query {:scheme "rainbow-delimiters"
-                          :lisp "rainbow-delimiters"
-                          :clojure "rainbow-delimiters"
-                          :janet "rainbow-delimiters"}
+                 {: strategy
+                  : query
                   :highlight ["RainbowDelimiterRed"
                               "RainbowDelimiterYellow"
                               "RainbowDelimiterBlue"
