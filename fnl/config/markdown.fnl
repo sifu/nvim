@@ -53,6 +53,12 @@
                              {:pattern "markdown"
                               :callback (fn []
                                           (set vim.opt_local.cursorline false)
+                                          (set vim.opt_local.wrap true)
+                                          (set vim.opt_local.linebreak true)
+                                          (set vim.opt_local.textwidth 0)
+                                          (set vim.opt_local.number false)
+                                          (set vim.opt_local.relativenumber
+                                               false)
                                           (wk.add [["<c-space>"
                                                     toggle-todo
                                                     {:buffer 0
