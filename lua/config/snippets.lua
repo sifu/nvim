@@ -66,7 +66,10 @@ local markdown
 local function _11_()
   return daily_link(os.date("%Y-%m-%d"))
 end
-markdown = {td = {text("- [ ] ")}, info = {text("> [!INFO] ")}, warning = {text("> [!WARNING] ")}, warn = {text("> [!WARNING] ")}, question = {text("> [!QUESTION] ")}, today = {func(_11_)}}
+local function _12_()
+  return daily_link(os.date("%Y-%m-%d", (os.time() - 86400)))
+end
+markdown = {td = {text("- [ ] ")}, info = {text("> [!INFO] ")}, warning = {text("> [!WARNING] ")}, warn = {text("> [!WARNING] ")}, question = {text("> [!QUESTION] ")}, today = {func(_11_)}, yesterday = {func(_12_)}}
 local filetype_snippets = {all = all, fennel = fennel, typescriptreact = typescriptreact, markdown = markdown}
 local function dict__3esnippet_table(dict)
   local result = {}

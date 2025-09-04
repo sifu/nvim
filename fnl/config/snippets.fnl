@@ -186,7 +186,9 @@
         :warning [(text "> [!WARNING] ")]
         :warn [(text "> [!WARNING] ")]
         :question [(text "> [!QUESTION] ")]
-        :today [(func (fn [] (daily-link (os.date "%Y-%m-%d"))))]})
+        :today [(func (fn [] (daily-link (os.date "%Y-%m-%d"))))]
+        :yesterday [(func (fn []
+                            (daily-link (os.date "%Y-%m-%d" (- (os.time) 86400)))))]})
 
 (local filetype-snippets {: all : fennel : typescriptreact : markdown})
 
