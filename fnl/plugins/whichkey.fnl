@@ -1,6 +1,15 @@
 (local {: autoload} (require "nfnl.module"))
 (local core (autoload "nfnl.core"))
 
+;; Make j and k work as I would expect in case line wrap is enabled
+(vim.keymap.set "n" "k"
+                (fn []
+                  (if (= vim.v.count 0) "gk" "k")) {:expr true})
+
+(vim.keymap.set "n" "j"
+                (fn []
+                  (if (= vim.v.count 0) "gj" "j")) {:expr true})
+
 ;; cmdline emacs keys did not work with which-key so add them with vim.keymap.set:
 (vim.keymap.set "c" "<c-a>" "<home>" {:noremap true})
 (vim.keymap.set "c" "<c-b>" "<left>" {:noremap true})
