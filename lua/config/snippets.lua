@@ -53,7 +53,7 @@ local function _8_()
   return os.date("%H:%M")
 end
 all = {date = {func(_7_)}, time = {func(_8_)}}
-local fennel = {core = {text({"(local {: autoload} (require \"nfnl.module\"))", "(local core (autoload \"nfnl.core\"))"})}}
+local fennel = {core = {text({"(local {: autoload} (require \"nfnl.module\"))", "(local core (autoload \"nfnl.core\"))"})}, fn = {text("\206\187 ")}}
 local typescriptreact
 local function _9_()
   return kebab_to_pascal_case(filename_without_extension())

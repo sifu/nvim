@@ -47,9 +47,9 @@
 (local all {:date [(func (fn [] (os.date "%Y-%m-%d")))]
             :time [(func (fn [] (os.date "%H:%M")))]})
 
-(local fennel
-       {:core [(text ["(local {: autoload} (require \"nfnl.module\"))"
-                      "(local core (autoload \"nfnl.core\"))"])]})
+(local fennel {:core [(text ["(local {: autoload} (require \"nfnl.module\"))"
+                             "(local core (autoload \"nfnl.core\"))"])]
+               :fn [(text "λ ")]})
 
 (local typescriptreact {:l (fmt "{}"
                                 [(choice 1
