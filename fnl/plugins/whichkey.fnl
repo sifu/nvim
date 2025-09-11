@@ -79,8 +79,10 @@
   (let [filepath (vim.fn.expand "%")
         start-line (. (vim.fn.getpos "v") 2)
         end-line (vim.fn.line ".")
-        filepath-with-range (.. "@" filepath " line " start-line " to "
-                                end-line)]
+        sorted-start (math.min start-line end-line)
+        sorted-end (math.max start-line end-line)
+        filepath-with-range (.. "@" filepath " line " sorted-start " to "
+                                sorted-end)]
     (copy-and-notify filepath-with-range)))
 
 (local mappings [;; misc
