@@ -271,6 +271,7 @@
                  ["n" "ç" "<C-W>c" "Window close"]
                  ;; Telescope
                  ["n" "<enter>" "<cmd>Telescope buffers<cr>" "Buffers"]
+                 ["n" "<space>a" "<cmd>Telescope ast_grep<cr>" "AST Grep"]
                  ["n" "<space>y" "<cmd>Telescope neoclip<cr>" "Yank History"]
                  ["n"
                   "<space>f"
