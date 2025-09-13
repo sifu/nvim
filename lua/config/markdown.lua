@@ -50,6 +50,11 @@ local function test_toggle_todo()
 end
 local function _8_()
   vim.opt_local.cursorline = false
+  vim.opt_local.wrap = true
+  vim.opt_local.linebreak = true
+  vim.opt_local.textwidth = 0
+  vim.opt_local.number = false
+  vim.opt_local.relativenumber = false
   return wk.add({{"<c-space>", toggle_todo, {buffer = 0, desc = "Toggle Todo"}}, {"glt", toggle_todo, {buffer = 0, desc = "Toggle Todo"}}, {"glx", cross_out_todo, {buffer = 0, desc = "Cross out Todo"}}})
 end
 return vim.api.nvim_create_autocmd("FileType", {pattern = "markdown", callback = _8_})

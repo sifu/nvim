@@ -6,6 +6,14 @@
   (let [today (os.date "%Y-%m-%d")]
     (.. "[[/Daily/" today "|" today "]]")))
 
+(fn my-smart-action []
+  (let [obsidian (require "obsidian")
+        cursor-link obsidian.api.cursor_link
+        cursor-tag obsidian.api.cursor_tag]
+    (if (cursor-link) (vim.cmd "Obsidian follow_link")
+        (cursor-tag) (vim.cmd "Obsidian tags")
+        (vim.cmd "Telescope buffers"))))
+
 (vim.api.nvim_create_autocmd "User"
                              {:pattern "ObsidianNoteEnter"
                               :callback (fn [ev]
@@ -34,7 +42,8 @@
                                                           "<cmd>Obsidian tags<cr>"
                                                           {:buffer ev.buf
                                                            :desc "Tags"})
-                                          (vim.keymap.del "n" "<CR>"
+                                          (vim.keymap.set "n" "<CR>"
+                                                          my-smart-action
                                                           {:buffer ev.buf}))})
 
 {1 "obsidian-nvim/obsidian.nvim"

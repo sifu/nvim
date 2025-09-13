@@ -1,4 +1,4 @@
-{1 "echasnovski/mini.ai"
+{1 "nvim-mini/mini.ai"
  :version "*"
  :opts {:custom_textobjects nil
         :mappings {:around "a"

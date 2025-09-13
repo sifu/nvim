@@ -1,6 +1,15 @@
 (local {: autoload} (require "nfnl.module"))
 (local core (autoload "nfnl.core"))
 
+;; Make j and k work as I would expect in case line wrap is enabled
+(vim.keymap.set "n" "k"
+                (fn []
+                  (if (= vim.v.count 0) "gk" "k")) {:expr true})
+
+(vim.keymap.set "n" "j"
+                (fn []
+                  (if (= vim.v.count 0) "gj" "j")) {:expr true})
+
 ;; cmdline emacs keys did not work with which-key so add them with vim.keymap.set:
 (vim.keymap.set "c" "<c-a>" "<home>" {:noremap true})
 (vim.keymap.set "c" "<c-b>" "<left>" {:noremap true})
@@ -48,7 +57,7 @@
     (copy-and-notify filepath-with-line)))
 
 (fn copy-file-reference []
-  (let [filepath (vim.fn.expand "%")
+  (let [filepath (vim.fn.expand "%:p")
         line-number (vim.fn.line ".")
         filepath-with-line (.. filepath ":" line-number)]
     (copy-and-notify filepath-with-line)))
@@ -70,11 +79,17 @@
   (let [filepath (vim.fn.expand "%")
         start-line (. (vim.fn.getpos "v") 2)
         end-line (vim.fn.line ".")
-        filepath-with-range (.. "@" filepath " line " start-line " to "
-                                end-line)]
+        sorted-start (math.min start-line end-line)
+        sorted-end (math.max start-line end-line)
+        filepath-with-range (.. "@" filepath " line " sorted-start " to "
+                                sorted-end)]
     (copy-and-notify filepath-with-range)))
 
 (local mappings [;; misc
+                 ["n"
+                  ",S"
+                  "<cmd>e /s/tmp/scratchpad.fnl<cr>"
+                  "Open Scratchpad"]
                  ["n" ",i" add-to-obsidian-inbox "Add to Obsidian Inbox"]
                  ["n" ",o" "<cmd>Obsidian<cr>" "Open Obsidian"]
                  ["n"
@@ -256,6 +271,7 @@
                  ["n" "ç" "<C-W>c" "Window close"]
                  ;; Telescope
                  ["n" "<enter>" "<cmd>Telescope buffers<cr>" "Buffers"]
+                 ["n" "<space>a" "<cmd>Telescope ast_grep<cr>" "AST Grep"]
                  ["n" "<space>y" "<cmd>Telescope neoclip<cr>" "Yank History"]
                  ["n"
                   "<space>f"

@@ -16,6 +16,7 @@
                 "nvim-lua/popup.nvim"
                 "nvim-lua/plenary.nvim"
                 "albenisolmos/telescope-oil.nvim"
+                "Marskey/telescope-sg"
                 "JoseConseco/telescope_sessions_picker.nvim"]
  :config (fn []
            (let [telescope (require "telescope")
@@ -50,6 +51,10 @@
                                                               "!.git"
                                                               "--hidden"]}
                                :extensions {:ui-select {1 (themes.get_dropdown {})}
+                                            :ast_grep {:command ["sg"
+                                                                 "--json=stream"]
+                                                       :grep_open_files false
+                                                       :lang nil}
                                             :sessions_picker {:sessions_dir (.. (vim.fn.stdpath "data")
                                                                                 "/session/")}}
                                :pickers {:buffers {:theme "ivy"}

@@ -1,4 +1,4 @@
-{1 "echasnovski/mini.files"
+{1 "nvim-mini/mini.files"
  :version "*"
  :event "VeryLazy"
  :opts {;; Customization of shown content

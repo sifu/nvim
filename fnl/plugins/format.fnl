@@ -14,7 +14,8 @@
                            :css prettier
                            :typescriptreact prettier
                            :javascriptreact prettier
-                           :javascript prettier}
+                           :javascript prettier
+                           :sql ["sqruff"]}
         :default_format_opts {:lsp_format "fallback"}
         :format_on_save {:timeout_ms 2500}
         :formatters {:shfmt {:prepend_args ["-i" "2"]}

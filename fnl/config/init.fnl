@@ -5,6 +5,7 @@
 ;; € is reserved to be lead
 (vim.keymap.set "n" "€" "<nop>" {:noremap true})
 
+(require "config.gitcommit")
 (require "config.javascriptreact")
 (require "config.markdown")
 (require "config.mdx")
@@ -13,6 +14,7 @@
 (require "config.session-sharing")
 (require "user.html-to-jsx")
 (require "user.timelog")
+(require "user.open-file-with-line-number")
 
 (vim.filetype.add {:extension {:ts "typescriptreact"}})
 
