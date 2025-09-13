@@ -272,6 +272,8 @@
                  ;; Telescope
                  ["n" "<enter>" "<cmd>Telescope buffers<cr>" "Buffers"]
                  ["n" "<space>a" "<cmd>Telescope ast_grep<cr>" "AST Grep"]
+                 ["n" "<space>R" "<cmd>GrugFar<cr>" "Grug Far"]
+                 ["v" "<space>R" ":'<,'>GrugFar<cr>" "Grug Far"]
                  ["n" "<space>y" "<cmd>Telescope neoclip<cr>" "Yank History"]
                  ["n"
                   "<space>f"
