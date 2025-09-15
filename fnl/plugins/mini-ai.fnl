@@ -1,6 +1,6 @@
 {1 "nvim-mini/mini.ai"
  :version "*"
- :opts {:custom_textobjects nil
+ :opts {:custom_textobjects {}
         :mappings {:around "a"
                    :inside "i"
                    :around_next "an"
