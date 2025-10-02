@@ -62,6 +62,5 @@
         :note_path_func (fn [spec]
                           (let [path (/ spec.dir (tostring spec.title))]
                             (path:with_suffix ".md")))
-        :note_frontmatter_func (fn [note]
-                                 (core.merge {:date-created (today)}
-                                             note.metadata))}}
+        :frontmatter.func (fn [note]
+                            (core.merge {:date-created (today)} note.metadata))}}

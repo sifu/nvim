@@ -37,4 +37,4 @@ end
 local function _6_(note)
   return core.merge({["date-created"] = today()}, note.metadata)
 end
-return {"obsidian-nvim/obsidian.nvim", dependencies = {"nvim-lua/plenary.nvim"}, opts = {workspaces = {{name = "Main", path = "~/Obsidian/Main"}}, new_notes_location = "Notes", ui = {enable = false}, open = {func = _4_}, completion = {min_chars = 0}, daily_notes = {folder = "Daily"}, note_path_func = _5_, note_frontmatter_func = _6_, legacy_commands = false}}
+return {"obsidian-nvim/obsidian.nvim", dependencies = {"nvim-lua/plenary.nvim"}, opts = {workspaces = {{name = "Main", path = "~/Obsidian/Main"}}, new_notes_location = "Notes", ui = {enable = false}, open = {func = _4_}, completion = {min_chars = 0}, daily_notes = {folder = "Daily"}, note_path_func = _5_, ["frontmatter.func"] = _6_, legacy_commands = false}}
