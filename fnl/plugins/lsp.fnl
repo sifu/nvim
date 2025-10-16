@@ -40,18 +40,25 @@
  {1 "williamboman/mason-lspconfig.nvim"
   :dependencies ["williamboman/mason.nvim" "hrsh7th/cmp-nvim-lsp"]
   :config (fn []
-            (let [mason-lspconfig (require "mason-lspconfig")
-                  lspconfig (require "lspconfig")]
+            (let [mason-lspconfig (require "mason-lspconfig")]
               (mason-lspconfig.setup {:ensure_installed ["fennel_language_server"
                                                          "vtsls"
                                                          "cssmodules_ls"
                                                          "cssls"
                                                          "tailwindcss"
-                                                         "clojure_lsp"]}
-                                     (lspconfig.fennel_language_server.setup {: capabilities
-                                                                              :settings {:fennel {:diagnostics {:globals ["vim"]}}}})
-                                     (lspconfig.vtsls.setup vtsls-opts)
-                                     (lspconfig.cssmodules_ls.setup {: capabilities})
-                                     (lspconfig.cssls.setup cssls-opts)
-                                     (lspconfig.tailwindcss.setup {: capabilities})
-                                     (lspconfig.clojure_lsp.setup {: capabilities}))))}]
+                                                         "clojure_lsp"]})
+              ;; Configure language servers using vim.lsp.config() and vim.lsp.enable()
+              (vim.lsp.config "fennel_language_server"
+                              {: capabilities
+                               :settings {:fennel {:diagnostics {:globals ["vim"]}}}})
+              (vim.lsp.enable "fennel_language_server")
+              (vim.lsp.config "vtsls" vtsls-opts)
+              (vim.lsp.enable "vtsls")
+              (vim.lsp.config "cssmodules_ls" {: capabilities})
+              (vim.lsp.enable "cssmodules_ls")
+              (vim.lsp.config "cssls" cssls-opts)
+              (vim.lsp.enable "cssls")
+              (vim.lsp.config "tailwindcss" {: capabilities})
+              (vim.lsp.enable "tailwindcss")
+              (vim.lsp.config "clojure_lsp" {: capabilities})
+              (vim.lsp.enable "clojure_lsp")))}]
