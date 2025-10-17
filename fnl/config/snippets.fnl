@@ -63,7 +63,8 @@
                                                 [(insert 1) (rep 1)])
                                            (fmt "console.log('%c {} ', 'background: #222; color: #bada55; padding: 2px', JSON.stringify({},null, 2))"
                                                 [(insert 1) (rep 1)])])])
-                        :copy (fmt "navigator.clipboard.writeText(JSON.stringify({}, null, 2)).then(() => console.log('Text copied to clipboard', JSON.stringify({}, null, 2)))"
+                        :copy (fmt "// prettier-ignore
+navigator.clipboard.writeText(JSON.stringify({}, null, 2)).then(() => console.log('Text copied to clipboard', JSON.stringify({}, null, 2)))"
                                    [(insert 1) (rep 1)])
                         "{l" (fmt "{}"
                                   [(choice 1
