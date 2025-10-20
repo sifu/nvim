@@ -25,7 +25,7 @@ vim.keymap.set("c", "<c-e>", "<end>", {noremap = true})
 vim.keymap.set("c", "<c-f>", "<right>", {noremap = true})
 vim.keymap.set("c", "<c-n>", "<down>", {noremap = true})
 vim.keymap.set("c", "<c-p>", "<up>", {noremap = true})
-local groups = {{"<leader>g", "Git"}, {"<leader>l", "LSP"}, {"<leader>a", "Avante/ChatGPT"}, {"<leader>ac", "ChatGPT"}, {"<leader>c", "Conjure"}, {"<leader>s", "SQL"}, {"<leader>t", "Tabs"}, {"<leader>M", "Markdown"}, {"<leader>C", "Copy Filepath"}, {"<space>", "Search"}, {"ga", "Change Text Case"}}
+local groups = {{"<leader>g", "Git"}, {"<leader>l", "LSP"}, {"<leader>a", "ChatGPT"}, {"<leader>c", "Conjure"}, {"<leader>s", "SQL"}, {"<leader>t", "Tabs"}, {"<leader>M", "Markdown"}, {"<leader>C", "Copy Filepath"}, {"<space>", "Search"}, {"ga", "Change Text Case"}}
 local function _6_()
   return vim.keymap.set("n", "<enter>", "<Nop>", {buffer = true})
 end
