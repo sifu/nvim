@@ -4,7 +4,7 @@
 ;      false))}
 
 {1 "Olical/conjure"
- :ft ["fennel" "clojure" "janet"]
+ :ft ["fennel" "clojure" "janet" "javascript"]
  :branch "main"
  :init (fn []
          (set vim.g.conjure#mapping#prefix ",")
