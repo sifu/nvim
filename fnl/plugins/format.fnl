@@ -12,6 +12,7 @@
                            :fennel ["fnlfmt"]
                            :json ["fixjson"]
                            :css prettier
+                           :typescript prettier
                            :typescriptreact prettier
                            :javascriptreact prettier
                            :javascript prettier

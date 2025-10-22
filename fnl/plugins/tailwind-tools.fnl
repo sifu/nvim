@@ -6,4 +6,5 @@
  :build ":UpdateRemotePlugins"
  :dependencies ["nvim-treesitter/nvim-treesitter"
                 "nvim-telescope/telescope.nvim"]
- :opts {}}
+ ;; Disable automatic LSP setup since we handle it in lsp.fnl
+ :opts {:server {:override false}}}

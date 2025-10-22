@@ -9,19 +9,4 @@
          2 (fn []
              (let [flash (require "flash")] (flash.treesitter)))
          :mode ["n" "x" "o"]
-         :desc "Flash Treesitter"}
-        {1 "r"
-         2 (fn []
-             (let [flash (require "flash")] (flash.remote)))
-         :mode ["o"]
-         :desc "Flash Remote"}
-        {1 "R"
-         2 (fn []
-             (let [flash (require "flash")] (flash.treesitter_search)))
-         :mode ["o"]
-         :desc "Flash Treesitter Search"}
-        {1 "<c-s>"
-         2 (fn []
-             (let [flash (require "flash")] (flash.toggle)))
-         :mode ["c"]
-         :desc "Toggle Flash Search"}]}
+         :desc "Flash Treesitter"}]}

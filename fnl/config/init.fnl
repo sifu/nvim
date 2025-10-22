@@ -16,8 +16,6 @@
 (require "user.timelog")
 (require "user.open-file-with-line-number")
 
-(vim.filetype.add {:extension {:ts "typescriptreact"}})
-
 ;; sets a nvim global options
 (let [options {:background "light"
                :termguicolors true

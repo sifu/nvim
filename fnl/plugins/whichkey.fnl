@@ -21,8 +21,7 @@
 
 (local groups [["<leader>g" "Git"]
                ["<leader>l" "LSP"]
-               ["<leader>a" "Avante/ChatGPT"]
-               ["<leader>ac" "ChatGPT"]
+               ["<leader>a" "ChatGPT"]
                ["<leader>c" "Conjure"]
                ["<leader>s" "SQL"]
                ["<leader>t" "Tabs"]
