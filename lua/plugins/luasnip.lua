@@ -1,4 +1,4 @@
--- [nfnl] Compiled from fnl/plugins/luasnip.fnl by https://github.com/Olical/nfnl, do not edit.
+-- [nfnl] fnl/plugins/luasnip.fnl
 local function setup()
   local ls = require("luasnip")
   local supermaven = require("supermaven-nvim.completion_preview")

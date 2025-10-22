@@ -3,6 +3,7 @@
 (local strategy
        (collect [_ ft (ipairs file-types)]
          (values ft "rainbow-delimiters.strategy.global")))
+
 (local query (collect [_ ft (ipairs file-types)]
                (values ft "rainbow-delimiters")))
 
