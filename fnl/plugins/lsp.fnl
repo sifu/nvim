@@ -46,6 +46,7 @@
                                                          "cssmodules_ls"
                                                          "cssls"
                                                          "html"
+                                                         "emmet_language_server"
                                                          "tailwindcss"
                                                          "clojure_lsp"]})
               ;; Configure language servers using vim.lsp.config() and vim.lsp.enable()
@@ -63,5 +64,7 @@
               (vim.lsp.enable "tailwindcss")
               (vim.lsp.config "html" {: capabilities})
               (vim.lsp.enable "html")
+              (vim.lsp.config "emmet_language_server" {: capabilities})
+              (vim.lsp.enable "emmet_language_server")
               (vim.lsp.config "clojure_lsp" {: capabilities})
               (vim.lsp.enable "clojure_lsp")))}]
