@@ -45,6 +45,7 @@
                                                          "vtsls"
                                                          "cssmodules_ls"
                                                          "cssls"
+                                                         "html"
                                                          "tailwindcss"
                                                          "clojure_lsp"]})
               ;; Configure language servers using vim.lsp.config() and vim.lsp.enable()
@@ -60,5 +61,7 @@
               (vim.lsp.enable "cssls")
               (vim.lsp.config "tailwindcss" {: capabilities})
               (vim.lsp.enable "tailwindcss")
+              (vim.lsp.config "html" {: capabilities})
+              (vim.lsp.enable "html")
               (vim.lsp.config "clojure_lsp" {: capabilities})
               (vim.lsp.enable "clojure_lsp")))}]
