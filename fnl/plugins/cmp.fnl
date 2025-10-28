@@ -2,17 +2,8 @@
                  {:name "nvim_lsp_signature_help"}
                  {:name "conjure"}
                  {:name "render-markdown"}
-                 ; {:name "codeium"}
                  {:name "path"}
-                 ; {:name "buffer"}
                  {:name "luasnip"}])
-
-(fn has-words-before []
-  (let [(line col) (unpack (vim.api.nvim_win_get_cursor 0))]
-    (and (not= col 0) (= (: (: (. (vim.api.nvim_buf_get_lines 0 (- line 1) line
-                                                              true)
-                                  1) "sub" col
-                               col) "match" "%s") nil))))
 
 (fn formatting [entry vim-item]
   (let [completion-item (entry:get_completion_item)
@@ -53,23 +44,12 @@
                                    :<Down> (cmp.mapping.select_next_item)
                                    :<C-b> (cmp.mapping.scroll_docs (- 4))
                                    :<C-f> (cmp.mapping.scroll_docs 4)
-                                   ; :<C-Space> (cmp.mapping.confirm {:select true})
                                    :<C-Space> (cmp.mapping (fn []
                                                              (if (cmp.visible)
                                                                  (cmp.confirm {:select true})
                                                                  "else"
                                                                  (cmp.complete))))
                                    :<C-e> (cmp.mapping.close)
-                                   ; :<Tab> (cmp.mapping (fn [fallback]
-                                   ;                       (if (cmp.visible)
-                                   ;                           (cmp.select_next_item)
-                                   ;                           (luasnip.expand_or_jumpable)
-                                   ;                           (luasnip.expand_or_jump)
-                                   ;                           (has-words-before)
-                                   ;                           (cmp.complete)
-                                   ;                           "else"
-                                   ;                           (fallback)))
-                                   ;                     {1 "i" 2 "s"})
                                    :<S-Tab> (cmp.mapping (fn [fallback]
                                                            (if (cmp.visible)
                                                                (cmp.select_prev_item)

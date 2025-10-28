@@ -1,9 +1,5 @@
 -- [nfnl] fnl/plugins/cmp.fnl
 local cmp_srcs = {{name = "nvim_lsp"}, {name = "nvim_lsp_signature_help"}, {name = "conjure"}, {name = "render-markdown"}, {name = "path"}, {name = "luasnip"}}
-local function has_words_before()
-  local line, col = unpack(vim.api.nvim_win_get_cursor(0))
-  return ((col ~= 0) and (vim.api.nvim_buf_get_lines(0, (line - 1), line, true)[1]:sub(col, col):match("%s") == nil))
-end
 local function formatting(entry, vim_item)
   local completion_item = entry:get_completion_item()
   local colorful_menu = require("colorful-menu")
