@@ -3,5 +3,5 @@
 {1 "rachartier/tiny-inline-diagnostic.nvim"
  :event "LspAttach"
  :priority 1000
- :opts {:preset "powerline" :options {:multilines {:enabled true}}}
+ :opts {:preset "modern" :options {:multilines {:enabled true}}}
  :config true}
