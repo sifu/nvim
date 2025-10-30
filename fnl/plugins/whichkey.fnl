@@ -283,10 +283,7 @@
                   "<space>F"
                   "<cmd>:lua MiniFiles.open(vim.uv.cwd(), true)<CR>"
                   "Explore"]
-                 ["n"
-                  "<space>d"
-                  "<cmd>:lua MiniFiles.open(vim.api.nvim_buf_get_name(0), true)<CR>"
-                  "Explore Directory"]
+                 ["n" "<space>d" "<cmd>Telescope oil<CR>" "Explore Directory"]
                  ["n"
                   "<space>g"
                   ":lua require('user.telescope-multigrep').multigrep()<CR>"

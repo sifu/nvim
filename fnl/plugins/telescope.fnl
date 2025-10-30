@@ -51,6 +51,8 @@
                                                               "!.git"
                                                               "--hidden"]}
                                :extensions {:ui-select {1 (themes.get_dropdown {})}
+                                            :oil {:hidden false
+                                                  :no_ignore true}
                                             :ast_grep {:command ["sg"
                                                                  "--json=stream"]
                                                        :grep_open_files false
