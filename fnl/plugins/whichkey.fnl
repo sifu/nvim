@@ -96,6 +96,7 @@
                   "<cmd>Obsidian quick_switch<cr>"
                   "Obsidian Quick Switch"]
                  ["n" ",n" "<cmd>Obsidian new<cr>" "New Obsidian Note"]
+                 ["n" "<leader>u" "<cmd>Atone toggle<cr>" "Undo Tree"]
                  ["n"
                   "<leader>Cr"
                   copy-file-reference
