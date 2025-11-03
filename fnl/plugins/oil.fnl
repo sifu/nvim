@@ -1,12 +1,3 @@
-(vim.api.nvim_create_autocmd "User"
-                             {:pattern "OilEnter"
-                              :callback (vim.schedule_wrap (fn [args]
-                                                             (let [oil (require "oil")]
-                                                               (when (and (= (vim.api.nvim_get_current_buf)
-                                                                             args.data.buf)
-                                                                          (oil.get_cursor_entry))
-                                                                 (oil.open_preview)))))})
-
 {1 "stevearc/oil.nvim"
  :opts {:columns ["icon"]
         :delete_to_trash true
