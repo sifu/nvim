@@ -36,11 +36,6 @@
                                           (vim.keymap.set "n" "<enter>" "<Nop>"
                                                           {:buffer true}))})
 
-;; disable our default <enter> key mapping in the quickfix window
-(vim.api.nvim_create_autocmd "FileType"
-                             {:pattern "qf"
-                              :callback (fn [] (vim.keymap.del "n" "<enter>"))})
-
 (fn show-help []
   (let [wk (require "which-key")] (wk.show)))
 

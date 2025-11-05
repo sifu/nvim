@@ -15,6 +15,7 @@
 (require "user.html-to-jsx")
 (require "user.timelog")
 (require "user.open-file-with-line-number")
+(require "user.qf-improvements")
 
 ;; sets a nvim global options
 (let [options {:background "light"
