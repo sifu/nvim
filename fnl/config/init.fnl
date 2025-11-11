@@ -17,6 +17,20 @@
 (require "user.open-file-with-line-number")
 (require "user.qf-improvements")
 
+;; ## Misc auto commands
+
+;; Resize all splits when the terminal is resized
+(vim.api.nvim_create_autocmd "VimResized" {:command "wincmd ="})
+
+;; Don't continue commenting on new line
+(vim.api.nvim_create_autocmd "FileType"
+                             {:group (vim.api.nvim_create_augroup "no_auto_comment"
+                                                                  {})
+                              :callback (fn []
+                                          (vim.opt_local.formatoptions:remove ["c"
+                                                                               "r"
+                                                                               "o"]))})
+
 ;; sets a nvim global options
 (let [options {:background "light"
                :termguicolors true
