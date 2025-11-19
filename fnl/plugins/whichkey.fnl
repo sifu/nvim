@@ -97,6 +97,7 @@
                   "Obsidian Quick Switch"]
                  ["n" ",n" "<cmd>Obsidian new<cr>" "New Obsidian Note"]
                  ["n" "<leader>u" "<cmd>Atone toggle<cr>" "Undo Tree"]
+                 ["n" "<leader>U" "gUiw" "Uppercase word"]
                  ["n"
                   "<leader>Cr"
                   copy-file-reference
