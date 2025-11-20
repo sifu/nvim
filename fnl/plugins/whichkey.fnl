@@ -19,6 +19,9 @@
 (vim.keymap.set "c" "<c-n>" "<down>" {:noremap true})
 (vim.keymap.set "c" "<c-p>" "<up>" {:noremap true})
 
+;; this did not work with which-key so add them with vim.keymap.set:
+(vim.keymap.set "n" "<leader>e" ":E<space>" {:noremap true})
+
 (local groups [["<leader>g" "Git"]
                ["<leader>l" "LSP"]
                ["<leader>a" "ChatGPT"]
