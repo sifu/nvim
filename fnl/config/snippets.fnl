@@ -91,6 +91,7 @@ navigator.clipboard.writeText(JSON.stringify({}, null, 2)).then(() => console.lo
                                 [(insert 1) (insert 2)])
                    :it (fmt "it( 'should {}', () => {{\n  {}\n}})"
                             [(insert 1) (insert 2)])
+                   :border (text "border-1 border-[#ff0000]")
                    :ihtml (fmt "dangerouslySetInnerHTML={{{{__html: {}}}}}"
                                [(insert 1)])
                    :json (fmt "JSON.stringify({}, null, 2)" [(insert 1)])
