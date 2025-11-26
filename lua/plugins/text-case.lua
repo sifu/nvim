@@ -1,4 +1,4 @@
--- [nfnl] Compiled from fnl/plugins/text-case.fnl by https://github.com/Olical/nfnl, do not edit.
+-- [nfnl] fnl/plugins/text-case.fnl
 local function _1_()
   local textcase = require("textcase")
   local telescope = require("telescope")
