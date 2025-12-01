@@ -175,6 +175,7 @@
                   "<leader>ld"
                   "<cmd>Telescope lsp_definitions<cr>"
                   "Code Definition"]
+                 ["n" "<leader>lD" "<c-w>]" "Code Definition Split"]
                  ["n" "<leader>li" "<cmd>Telescope import<cr>" "Add Import"]
                  ["n"
                   "<leader>lR"
