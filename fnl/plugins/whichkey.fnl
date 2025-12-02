@@ -25,11 +25,10 @@
 (local groups [["<leader>g" "Git"]
                ["<leader>l" "LSP"]
                ["<leader>a" "ChatGPT"]
-               ["<leader>c" "Conjure"]
                ["<leader>s" "SQL"]
                ["<leader>t" "Tabs"]
                ["<leader>M" "Markdown"]
-               ["<leader>C" "Copy Filepath"]
+               ["<leader>c" "Copy Filepath"]
                ["<space>" "Search"]
                ["ga" "Change Text Case"]])
 
@@ -101,20 +100,20 @@
                  ["n" ",n" "<cmd>Obsidian new<cr>" "New Obsidian Note"]
                  ["n" "<leader>u" "<cmd>Atone toggle<cr>" "Undo Tree"]
                  ["n"
-                  "<leader>Cr"
+                  "<leader>cr"
                   copy-file-reference
                   "Copy current file reference"]
                  ["n"
-                  "<leader>Cc"
+                  "<leader>cC"
                   copy-filepath-with-line
                   "Copy current filepath with line number"]
-                 ["n" "<leader>CC" copy-filepath "Copy current filepath"]
+                 ["n" "<leader>cc" copy-filepath "Copy current filepath"]
                  ["n"
-                  "<leader>Cw"
+                  "<leader>cw"
                   copy-word-with-filepath
                   "Copy word under cursor with filepath and line number"]
                  ["v"
-                  "<leader>Cr"
+                  "<leader>cr"
                   copy-filepath-with-line-range
                   "Copy filepath with line range"]
                  ["n" "gp" "`[v`]" "Select last changed text"]
