@@ -63,6 +63,9 @@
         filepath-with-line (.. filepath ":" line-number)]
     (copy-and-notify filepath-with-line)))
 
+(fn copy-filepath-raw []
+  (copy-and-notify (vim.fn.expand "%:p")))
+
 (fn copy-filepath []
   (let [filepath (vim.fn.expand "%")
         prefixed (.. "@" filepath)]
@@ -116,6 +119,7 @@
                   "<leader>cr"
                   copy-filepath-with-line-range
                   "Copy filepath with line range"]
+                 ["n" "<leader>cp" copy-filepath-raw "Copy filepath raw"]
                  ["n" "gp" "`[v`]" "Select last changed text"]
                  ["n" "<c-d>" "<c-d>zz" "Down half a page"]
                  ["n" "<c-u>" "<c-u>zz" "Up half a page"]
