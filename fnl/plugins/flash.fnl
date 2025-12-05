@@ -8,5 +8,5 @@
         {1 "S"
          2 (fn []
              (let [flash (require "flash")] (flash.treesitter)))
-         :mode ["n" "x" "o"]
+         :mode ["n"]
          :desc "Flash Treesitter"}]}
