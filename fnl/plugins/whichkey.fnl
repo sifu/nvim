@@ -140,7 +140,7 @@
                  ["n" "<leader>d" ":bd<cr>" "Delete buffer"]
                  ["n"
                   "<leader>p"
-                  ":!git pull<cr><cmd>MasonUpdate<cr><cmd>Lazy update<cr>"
+                  ":!rm -r ~/.local/share/nvim/lazy.last<cr>:!cp -r ~/.local/share/nvim/lazy ~/.local/share/nvim/lazy.last<cr>:!git pull<cr><cmd>MasonUpdate<cr><cmd>Lazy update<cr>"
                   "Update packages"]
                  ["n" "<leader>x" ":wa<cr>:!%:p<cr>" "Execute file"]
                  ["n"
