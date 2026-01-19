@@ -7,6 +7,7 @@
 
 (require "config.gitcommit")
 (require "config.javascriptreact")
+(require "config.json")
 (require "config.markdown")
 (require "config.mdx")
 (require "config.rm")
