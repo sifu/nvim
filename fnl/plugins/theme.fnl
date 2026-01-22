@@ -9,7 +9,7 @@
                  color-module (require "onenord.colors")
                  colors (color-module.load)]
              (theme.setup {:theme "light"
-                           :borders true
+                           :borders false
                            :fade_nc false
                            :styles {:comments "NONE"
                                     :strings "NONE"
@@ -36,7 +36,7 @@
                                                :TelescopePreviewBorder {:fg "#e0e0e0"}
                                                :NormalFloat {:fg "#2E3440"
                                                              :bg "#efefef"}
-                                               :FloatBorder {:fg "#6087d7"
+                                               :FloatBorder {:fg "#efefef"
                                                              :bg "#efefef"}
                                                :FloatTitle {:fg "#6087d7"}
                                                :RenderMarkdownH1Bg {:bg "#efefef"}
