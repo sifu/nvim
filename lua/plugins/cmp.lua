@@ -52,7 +52,7 @@ local function _5_()
   local function _10_(args)
     return luasnip.lsp_expand(args.body)
   end
-  cmp.setup({formatting = {format = formatting}, completion = {autocomplete = false}, window = {completion = cmp.config.window.bordered(), documentation = cmp.config.window.bordered()}, mapping = {["<Up>"] = cmp.mapping.select_prev_item(), ["<Down>"] = cmp.mapping.select_next_item(), ["<C-b>"] = cmp.mapping.scroll_docs(( - 4)), ["<C-f>"] = cmp.mapping.scroll_docs(4), ["<C-Space>"] = cmp.mapping(_6_), ["<C-e>"] = cmp.mapping.close(), ["<S-Tab>"] = cmp.mapping(_8_, {"i", "s"})}, snippet = {expand = _10_}, sources = cmp_srcs})
+  cmp.setup({formatting = {format = formatting}, completion = {autocomplete = false}, window = {completion = cmp.config.window.bordered({border = {" ", " ", " ", " ", " ", " ", " ", " "}, winhighlight = "NormalFloat:NormalFloat,FloatBorder:FloatBorder", scrollbar = false}), documentation = cmp.config.window.bordered({winhighlight = "NormalFloat:NormalFloat,FloatBorder:FloatBorder"})}, mapping = {["<Up>"] = cmp.mapping.select_prev_item(), ["<Down>"] = cmp.mapping.select_next_item(), ["<C-b>"] = cmp.mapping.scroll_docs(( - 4)), ["<C-f>"] = cmp.mapping.scroll_docs(4), ["<C-Space>"] = cmp.mapping(_6_), ["<C-e>"] = cmp.mapping.close(), ["<S-Tab>"] = cmp.mapping(_8_, {"i", "s"})}, snippet = {expand = _10_}, sources = cmp_srcs})
   cmp.setup.filetype("oil", {enabled = false})
   cmp.setup.filetype("chatgpt-input", {enabled = false})
   cmp.setup.cmdline("/", {mapping = cmp.mapping.preset.cmdline(), sources = {{name = "buffer"}}})

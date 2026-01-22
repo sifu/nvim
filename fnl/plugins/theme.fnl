@@ -35,9 +35,9 @@
                                                :TelescopeResultsBorder {:fg "#e0e0e0"}
                                                :TelescopePreviewBorder {:fg "#e0e0e0"}
                                                :NormalFloat {:fg "#2E3440"
-                                                             :bg "#FFFFFF"}
+                                                             :bg "#efefef"}
                                                :FloatBorder {:fg "#6087d7"
-                                                             :bg "#FFFFFF"}
+                                                             :bg "#efefef"}
                                                :FloatTitle {:fg "#6087d7"}
                                                :RenderMarkdownH1Bg {:bg "#efefef"}
                                                :RenderMarkdownH2Bg {:bg "#efefef"}

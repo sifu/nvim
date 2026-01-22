@@ -21,6 +21,12 @@
     (set vim-item.menu "")
     vim-item))
 
+; :window {:completion {:border "none"
+;                       :side_padding 1
+;                       :col_offset 0
+;                       :scrollbar true
+;                       :winhighlight "NormalFloat:NormalFloat,FloatBorder:FloatBorder"}}))
+
 {1 "hrsh7th/nvim-cmp"
  :dependencies ["hrsh7th/cmp-buffer"
                 "hrsh7th/cmp-nvim-lsp"
@@ -38,8 +44,17 @@
                  luasnip (require "luasnip")]
              (cmp.setup {:formatting {:format formatting}
                          :completion {:autocomplete false}
-                         :window {:completion (cmp.config.window.bordered)
-                                  :documentation (cmp.config.window.bordered)}
+                         :window {:completion (cmp.config.window.bordered {:border [" "
+                                                                                    " "
+                                                                                    " "
+                                                                                    " "
+                                                                                    " "
+                                                                                    " "
+                                                                                    " "
+                                                                                    " "]
+                                                                           :scrollbar false
+                                                                           :winhighlight "NormalFloat:NormalFloat,FloatBorder:FloatBorder"})
+                                  :documentation (cmp.config.window.bordered {:winhighlight "NormalFloat:NormalFloat,FloatBorder:FloatBorder"})}
                          :mapping {:<Up> (cmp.mapping.select_prev_item)
                                    :<Down> (cmp.mapping.select_next_item)
                                    :<C-b> (cmp.mapping.scroll_docs (- 4))

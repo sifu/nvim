@@ -1,2 +1,2 @@
 -- [nfnl] fnl/plugins/noice.fnl
-return {"folke/noice.nvim", event = "VeryLazy", opts = {}, dependencies = {"MunifTanjim/nui.nvim"}}
+return {"folke/noice.nvim", event = "VeryLazy", opts = {lsp = {override = {["vim.lsp.util.convert_input_to_markdown"] = true, ["vim.lsp.util.stylize_markdown"] = true, ["cmp.entry.get_documentation"] = true}, hover = {opts = {border = {style = "none", padding = {1, 1}}}}, signature = {enabled = true, auto_open = {enabled = true}}}, presets = {lsp_doc_border = true, command_palette = false}, views = {cmdline_popup = {border = {style = "none", padding = {1, 1}}, win_options = {winhighlight = "NormalFloat:NormalFloat,FloatBorder:FloatBorder"}}}}, dependencies = {"MunifTanjim/nui.nvim"}}
