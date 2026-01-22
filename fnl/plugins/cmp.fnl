@@ -21,12 +21,6 @@
     (set vim-item.menu "")
     vim-item))
 
-; :window {:completion {:border "none"
-;                       :side_padding 1
-;                       :col_offset 0
-;                       :scrollbar true
-;                       :winhighlight "NormalFloat:NormalFloat,FloatBorder:FloatBorder"}}))
-
 {1 "hrsh7th/nvim-cmp"
  :dependencies ["hrsh7th/cmp-buffer"
                 "hrsh7th/cmp-nvim-lsp"
