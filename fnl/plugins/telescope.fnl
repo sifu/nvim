@@ -25,6 +25,14 @@
              (telescope.setup {:defaults {:file_ignore_patterns ["node_modules"
                                                                  "lua/plugins"
                                                                  "lua/config"]
+                                          :borderchars [" "
+                                                        " "
+                                                        " "
+                                                        " "
+                                                        " "
+                                                        " "
+                                                        " "
+                                                        " "]
                                           :path_display ["truncate"]
                                           :dynamic_preview_title true
                                           :mappings {:i {:<cr> select-one-or-multi
@@ -59,7 +67,15 @@
                                                        :lang nil}
                                             :sessions_picker {:sessions_dir (.. (vim.fn.stdpath "data")
                                                                                 "/session/")}}
-                               :pickers {:buffers {:theme "ivy"}
+                               :pickers {:buffers {:theme "ivy"
+                                                   :borderchars [" "
+                                                                 " "
+                                                                 " "
+                                                                 " "
+                                                                 " "
+                                                                 " "
+                                                                 " "
+                                                                 " "]}
                                          :git_branches {:mappings {:i {:<cr> actions.git_switch_branch}}}
                                          :find_files {:find_command ["rg"
                                                                      "--files"

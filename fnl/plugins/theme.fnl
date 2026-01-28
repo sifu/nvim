@@ -31,14 +31,29 @@
                                                :Search {:guibg "#f1f1f1"
                                                         :guifg nil}
                                                :TreesitterContextLineNumber {:bg "#eeeeee"}
-                                               :TelescopePromptBorder {:fg "#e0e0e0"}
-                                               :TelescopeResultsBorder {:fg "#e0e0e0"}
-                                               :TelescopePreviewBorder {:fg "#e0e0e0"}
                                                :NormalFloat {:fg "#2E3440"
                                                              :bg "#efefef"}
                                                :FloatBorder {:fg "#efefef"
                                                              :bg "#efefef"}
                                                :FloatTitle {:fg "#6087d7"}
+                                               :TelescopeNormal {:bg "#efefef"}
+                                               :TelescopeBorder {:bg "#eeeeee"
+                                                                 :fg "#000000"}
+                                               :TelescopePromptNormal {:bg "#cccccc"}
+                                               :TelescopeResultsNormal {:bg "#efefef"}
+                                               :TelescopePreviewNormal {:bg "#dedede"}
+                                               :TelescopePromptBorder {:fg "#000000"
+                                                                       :bg "#cccccc"}
+                                               :TelescopeResultsBorder {:fg "#e0e0e0"
+                                                                        :bg "#efefef"}
+                                               :TelescopePreviewBorder {:fg "#e0e0e0"
+                                                                        :bg "#dedede"}
+                                               :TelescopeResultsTitle {:bg "#efefef"
+                                                                       :fg colors.purple}
+                                               :TelescopePromptTitle {:bg "#cccccc"
+                                                                      :fg colors.purple}
+                                               :TelescopePreviewTitle {:bg "#dedede"
+                                                                       :fg colors.purple}
                                                :RenderMarkdownH1Bg {:bg "#efefef"}
                                                :RenderMarkdownH2Bg {:bg "#efefef"}
                                                :RenderMarkdownH3Bg {:bg "#efefef"}
