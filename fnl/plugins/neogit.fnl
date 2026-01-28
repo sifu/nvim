@@ -15,10 +15,11 @@
  :dependencies ["nvim-lua/plenary.nvim"
                 "sindrets/diffview.nvim"
                 "nvim-telescope/telescope.nvim"]
- :opts {:integrations {:telescope true :diffview true}
-        :disable_hint true
-        :graph_style "kitty"
-        :kind "floating"
-        :commit_editor {:kind "floating" :spell_check false}
-        :sections {:recent {:folded false :hidden false}}
-        :mappings {:status {:<esc> "Close"}}}}
+ :config (fn []
+           (let [neogit (require "neogit")]
+             (neogit.setup {:integrations {:telescope true :diffview true}
+                            :disable_hint true
+                            :graph_style "kitty"
+                            :kind "replace"
+                            :sections {:recent {:folded false :hidden false}}
+                            :mappings {:status {:<esc> "Close"}}})))}
