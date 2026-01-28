@@ -58,7 +58,14 @@
                                                               "--iglob"
                                                               "!.git"
                                                               "--hidden"]}
-                               :extensions {:ui-select {1 (themes.get_dropdown {})}
+                               :extensions {:ui-select {1 (themes.get_dropdown {:borderchars [" "
+                                                                                              " "
+                                                                                              " "
+                                                                                              " "
+                                                                                              " "
+                                                                                              " "
+                                                                                              " "
+                                                                                              " "]})}
                                             :oil {:hidden false
                                                   :no_ignore true}
                                             :ast_grep {:command ["sg"
