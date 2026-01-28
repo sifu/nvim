@@ -35,7 +35,8 @@
                                                              :bg "#efefef"}
                                                :FloatBorder {:fg "#efefef"
                                                              :bg "#efefef"}
-                                               :FloatTitle {:fg "#6087d7"}
+                                               :FloatTitle {:fg colors.purple
+                                                            :bg "#efefef"}
                                                :TelescopeNormal {:bg "#efefef"}
                                                :TelescopeBorder {:bg "#eeeeee"
                                                                  :fg "#000000"}
