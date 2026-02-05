@@ -18,7 +18,7 @@
              ;; Set dark background for neotest summary window
              (local set-neotest-highlights
                     (fn []
-                      (let [bg "#666666"]
+                      (let [bg "#2e3c43"]
                         (vim.api.nvim_set_hl 0 "NeotestDir"
                                              {: bg :fg "#87CEEB"})
                         (vim.api.nvim_set_hl 0 "NeotestFile"
@@ -28,11 +28,11 @@
                         (vim.api.nvim_set_hl 0 "NeotestTest"
                                              {: bg :fg "#ffffff"})
                         (vim.api.nvim_set_hl 0 "NeotestExpandMarker"
-                                             {: bg :fg "#333333"})
+                                             {: bg :fg "#ffffff"})
                         (vim.api.nvim_set_hl 0 "NeotestAdapterName"
                                              {: bg :fg "#FFA500"})
                         (vim.api.nvim_set_hl 0 "NeotestIndent"
-                                             {: bg :fg "#333333"})
+                                             {: bg :fg "#ffffff"})
                         (vim.api.nvim_set_hl 0 "NeotestWinSelect"
                                              {: bg :fg "#FFA500" :bold true})
                         (vim.api.nvim_set_hl 0 "NeotestMarked"

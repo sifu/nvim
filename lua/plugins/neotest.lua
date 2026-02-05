@@ -8,14 +8,14 @@ local function _1_()
   neotest.setup({adapters = {vitest({filter_dir = _2_})}, summary = {open = "botright vsplit | vertical resize 50"}})
   local set_neotest_highlights
   local function _3_()
-    local bg = "#666666"
+    local bg = "#2e3c43"
     vim.api.nvim_set_hl(0, "NeotestDir", {bg = bg, fg = "#87CEEB"})
     vim.api.nvim_set_hl(0, "NeotestFile", {bg = bg, fg = "#ffffff"})
     vim.api.nvim_set_hl(0, "NeotestNamespace", {bg = bg, fg = "#90EE90"})
     vim.api.nvim_set_hl(0, "NeotestTest", {bg = bg, fg = "#ffffff"})
-    vim.api.nvim_set_hl(0, "NeotestExpandMarker", {bg = bg, fg = "#333333"})
+    vim.api.nvim_set_hl(0, "NeotestExpandMarker", {bg = bg, fg = "#ffffff"})
     vim.api.nvim_set_hl(0, "NeotestAdapterName", {bg = bg, fg = "#FFA500"})
-    vim.api.nvim_set_hl(0, "NeotestIndent", {bg = bg, fg = "#333333"})
+    vim.api.nvim_set_hl(0, "NeotestIndent", {bg = bg, fg = "#ffffff"})
     vim.api.nvim_set_hl(0, "NeotestWinSelect", {bg = bg, fg = "#FFA500", bold = true})
     vim.api.nvim_set_hl(0, "NeotestMarked", {bg = bg, fg = "#FFD700"})
     return vim.api.nvim_set_hl(0, "NeotestTarget", {bg = bg, fg = "#FF6347"})
