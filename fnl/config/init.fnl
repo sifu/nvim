@@ -10,6 +10,7 @@
 (require "config.json")
 (require "config.markdown")
 (require "config.mdx")
+(require "config.babashka")
 (require "config.rm")
 (require "config.session-load")
 (require "config.session-sharing")
