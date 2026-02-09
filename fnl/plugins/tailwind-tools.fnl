@@ -4,7 +4,6 @@
 {1 "luckasRanarison/tailwind-tools.nvim"
  :name "tailwind-tools"
  :build ":UpdateRemotePlugins"
- :dependencies ["nvim-treesitter/nvim-treesitter"
-                "nvim-telescope/telescope.nvim"]
+ :dependencies ["nvim-treesitter/nvim-treesitter"]
  ;; Disable automatic LSP setup since we handle it in lsp.fnl
  :opts {:server {:override false}}}

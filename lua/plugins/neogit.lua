@@ -6,6 +6,6 @@ end
 vim.api.nvim_create_autocmd({"BufNew", "BufEnter", "BufWinEnter"}, {pattern = "*COMMIT_EDITMSG", callback = _1_})
 local function _2_()
   local neogit = require("neogit")
-  return neogit.setup({integrations = {telescope = true, diffview = true}, disable_hint = true, graph_style = "kitty", kind = "replace", sections = {recent = {folded = false, hidden = false}}, mappings = {status = {["<esc>"] = "Close"}}})
+  return neogit.setup({integrations = {fzf_lua = true, diffview = true}, disable_hint = true, graph_style = "kitty", kind = "replace", sections = {recent = {folded = false, hidden = false}}, mappings = {status = {["<esc>"] = "Close"}}})
 end
-return {"NeogitOrg/neogit", cmd = "Neogit", dependencies = {"nvim-lua/plenary.nvim", "sindrets/diffview.nvim", "nvim-telescope/telescope.nvim"}, config = _2_}
+return {"NeogitOrg/neogit", cmd = "Neogit", dependencies = {"nvim-lua/plenary.nvim", "sindrets/diffview.nvim", "ibhagwan/fzf-lua"}, config = _2_}

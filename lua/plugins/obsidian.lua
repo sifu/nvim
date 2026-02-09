@@ -1,6 +1,6 @@
 -- [nfnl] fnl/plugins/obsidian.fnl
 local _local_1_ = require("nfnl.module")
-local autoload = _local_1_["autoload"]
+local autoload = _local_1_.autoload
 local core = autoload("nfnl.core")
 local function today()
   local today0 = os.date("%Y-%m-%d")
@@ -15,7 +15,7 @@ local function my_smart_action()
   elseif cursor_tag() then
     return vim.cmd("Obsidian tags")
   else
-    return vim.cmd("Telescope buffers")
+    return vim.cmd("FzfLua buffers")
   end
 end
 local function _3_(ev)

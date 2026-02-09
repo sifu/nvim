@@ -14,10 +14,10 @@
  :cmd "Neogit"
  :dependencies ["nvim-lua/plenary.nvim"
                 "sindrets/diffview.nvim"
-                "nvim-telescope/telescope.nvim"]
+                "ibhagwan/fzf-lua"]
  :config (fn []
            (let [neogit (require "neogit")]
-             (neogit.setup {:integrations {:telescope true :diffview true}
+             (neogit.setup {:integrations {:fzf_lua true :diffview true}
                             :disable_hint true
                             :graph_style "kitty"
                             :kind "replace"

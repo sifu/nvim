@@ -1,3 +1,11 @@
 {
+  "permissions": {
+    "allow": [
+      "Bash(find:*)",
+      "WebSearch",
+      "WebFetch(domain:github.com)",
+      "Bash(fzf:*)"
+    ]
+  },
   "enableAllProjectMcpServers": false
 }

@@ -37,6 +37,15 @@
                                                              :bg "#efefef"}
                                                :FloatTitle {:fg colors.purple
                                                             :bg "#efefef"}
+                                               ;; fzf-lua uses similar highlight groups
+                                               :FzfLuaNormal {:bg "#efefef"}
+                                               :FzfLuaBorder {:bg "#eeeeee"
+                                                              :fg "#000000"}
+                                               :FzfLuaPreviewNormal {:bg "#dedede"}
+                                               :FzfLuaPreviewBorder {:fg "#e0e0e0"
+                                                                     :bg "#dedede"}
+                                               :FzfLuaTitle {:fg colors.purple}
+                                               ;; Keep Telescope theme for TodoTelescope and any extensions
                                                :TelescopeNormal {:bg "#efefef"}
                                                :TelescopeBorder {:bg "#eeeeee"
                                                                  :fg "#000000"}

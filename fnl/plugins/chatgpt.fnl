@@ -1,7 +1,5 @@
 {1 "jackMort/ChatGPT.nvim"
- :dependencies ["MunifTanjim/nui.nvim"
-                "nvim-lua/plenary.nvim"
-                "nvim-telescope/telescope.nvim"]
+ :dependencies ["MunifTanjim/nui.nvim" "nvim-lua/plenary.nvim"]
  :keys [{1 "<leader>ac" 2 "<cmd>ChatGPT<CR>" :desc "ChatGPT" :mode ["n"]}
         {1 "<leader>aa" 2 "<cmd>ChatGPTActAs<cr>" :desc "Act as"}
         {1 "<leader>ae"

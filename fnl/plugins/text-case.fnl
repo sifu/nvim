@@ -1,12 +1,10 @@
 {1 "johmsalas/text-case.nvim"
- :dependencies ["nvim-telescope/telescope.nvim"]
+ :dependencies []
  :config (fn []
-           (let [textcase (require "textcase")
-                 telescope (require "telescope")]
-             (textcase.setup)
-             (telescope.load_extension "textcase")))
+           (let [textcase (require "textcase")]
+             (textcase.setup)))
  :keys [{1 "gaa"
-         2 "<cmd>TextCaseOpenTelescope<cr>"
+         2 ":lua require('textcase').quick_replace()<cr>"
          :mode ["n" "x"]
          :desc "Change Text Case"}
         {1 "gau"

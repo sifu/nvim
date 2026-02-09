@@ -12,7 +12,7 @@
         cursor-tag obsidian.api.cursor_tag]
     (if (cursor-link) (vim.cmd "Obsidian follow_link")
         (cursor-tag) (vim.cmd "Obsidian tags")
-        (vim.cmd "Telescope buffers"))))
+        (vim.cmd "FzfLua buffers"))))
 
 (vim.api.nvim_create_autocmd "User"
                              {:pattern "ObsidianNoteEnter"

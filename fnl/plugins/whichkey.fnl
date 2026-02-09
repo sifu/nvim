@@ -161,7 +161,7 @@
                  ["n" "<leader>P" "<cmd>ParinferToggle<cr>" "Toggle Parinfer"]
                  ;; LSP
                  ; not really a lsp thingy, but I think it fits
-                 ["n" "<leader>lT" "<cmd>TodoTelescope<cr>" "Todos"]
+                 ["n" "<leader>lT" "<cmd>TodoFzfLua<cr>" "Todos"]
                  ["n"
                   "<leader>lt"
                   "<cmd>lua vim.lsp.buf.type_definition()<cr>"
@@ -176,21 +176,22 @@
                   "Code Action"]
                  ["n"
                   "<leader>ld"
-                  "<cmd>Telescope lsp_definitions<cr>"
+                  "<cmd>FzfLua lsp_definitions<cr>"
                   "Code Definition"]
                  ["n" "<leader>lD" "<c-w>]" "Code Definition Split"]
-                 ["n" "<leader>li" "<cmd>Telescope import<cr>" "Add Import"]
+                 ;; Import command - use LSP code action instead
+                 ;; ["n" "<leader>li" "<cmd>Telescope import<cr>" "Add Import"]
                  ["n"
                   "<leader>lR"
                   "<cmd>lua vim.lsp.buf.rename()<cr>"
                   "Rename"]
                  ["n"
                   "<leader>lr"
-                  "<cmd>Telescope lsp_references<cr>"
+                  "<cmd>FzfLua lsp_references<cr>"
                   "References"]
                  ["n"
                   "<leader>ls"
-                  "<cmd>Telescope lsp_document_symbols<cr>"
+                  "<cmd>FzfLua lsp_document_symbols<cr>"
                   "Document Symbols"]
                  ["n"
                   "<leader>lI"
@@ -208,20 +209,20 @@
                  ["n" "<leader>gg" "<cmd>wa<cr><cmd>Neogit<cr>" "Neogit"]
                  ["n"
                   "<leader>gb"
-                  "<cmd>Telescope git_branches<cr>"
+                  "<cmd>FzfLua git_branches<cr>"
                   "Checkout branch"]
                  ["n"
                   "<leader>gc"
-                  "<cmd>Telescope git_commits<cr>"
+                  "<cmd>FzfLua git_commits<cr>"
                   "Checkout commit"]
                  ["n"
                   "<leader>gC"
-                  "<cmd>Telescope git_bcommits<cr>"
+                  "<cmd>FzfLua git_bcommits<cr>"
                   "Checkout commit"]
                  ["n" "<leader>gt" "<cmd>Tardis<cr>" "Open Tardis"]
                  ["n"
                   "<leader>go"
-                  "<cmd>Telescope git_status<cr>"
+                  "<cmd>FzfLua git_status<cr>"
                   "Open changed file"]
                  ["n"
                   "<leader>gv"
@@ -276,50 +277,43 @@
                  ["n" "ß" "<C-W><C-S>" "Window split"]
                  ["n" "√" "<C-W><C-V>" "Window split vertically"]
                  ["n" "ç" "<C-W>c" "Window close"]
-                 ;; Telescope
-                 ["n" "<enter>" "<cmd>Telescope buffers<cr>" "Buffers"]
-                 ["n" "<space>a" "<cmd>Telescope ast_grep<cr>" "AST Grep"]
+                 ;; fzf-lua
+                 ["n" "<enter>" "<cmd>FzfLua buffers<cr>" "Buffers"]
+                 ;; AST Grep temporarily disabled - no fzf-lua equivalent yet
+                 ;; ["n" "<space>a" "<cmd>Telescope ast_grep<cr>" "AST Grep"]
                  ["n" "<space>R" "<cmd>GrugFar<cr>" "Grug Far"]
                  ["v" "<space>R" ":'<,'>GrugFar<cr>" "Grug Far"]
-                 ["n" "<space>y" "<cmd>Telescope neoclip<cr>" "Yank History"]
                  ["n"
-                  "<space>f"
-                  ":lua require('telescope.builtin').find_files()<CR>"
-                  "Find Files"]
+                  "<space>y"
+                  "<cmd>lua require('neoclip.fzf')()<cr>"
+                  "Yank History"]
+                 ["n" "<space>f" "<cmd>FzfLua files<cr>" "Find Files"]
                  ["n"
                   "<space>F"
                   "<cmd>:lua MiniFiles.open(vim.uv.cwd(), true)<CR>"
                   "Explore"]
-                 ["n" "<space>d" "<cmd>Telescope oil<CR>" "Explore Directory"]
+                 ["n" "<space>d" "<cmd>Oil --float<cr>" "Explore Directory"]
                  ["n"
                   "<space>g"
-                  ":lua require('user.telescope-multigrep').multigrep()<CR>"
+                  "<cmd>FzfLua live_grep_glob<cr>"
                   "Multigrep (with `  `)"]
                  ["n"
                   "<space>w"
-                  "<cmd>Telescope grep_string<cr>"
+                  "<cmd>FzfLua grep_cword<cr>"
                   "Find Current Word"]
                  ["n"
                   "<space>m"
-                  "<cmd>Telescope macroscope<cr>"
-                  "Macro History"]
-                 ["n"
-                  "<space>s"
-                  "<cmd>Telescope sessions_picker<cr>"
-                  "Sessions"]
-                 ["n"
-                  "<space>h"
-                  ":lua require('telescope.builtin').help_tags(require('telescope.themes').get_ivy())<CR>"
-                  "Help Tags"]
-                 ["n" "<space>b" "<cmd>Telescope builtin<cr>" "Builtin"]
-                 ["n"
-                  "<space>r"
-                  ":lua require('telescope.builtin').resume()<CR>"
-                  "Resume last search"]
-                 ["n"
-                  "<space>e"
-                  ":lua require('telescope.builtin').live_grep({additional_args = function() return {'--fixed-strings'} end})<CR>"
-                  "Search Exact String"]
+                  "<cmd>FzfLua registers<cr>"
+                  "Registers/Macros"]
+                 ;; Sessions picker temporarily disabled - needs custom fzf-lua implementation
+                 ;; ["n"
+                 ;;  "<space>s"
+                 ;;  "<cmd>Telescope sessions_picker<cr>"
+                 ;;  "Sessions"]
+                 ["n" "<space>h" "<cmd>FzfLua helptags<cr>" "Help Tags"]
+                 ["n" "<space>b" "<cmd>FzfLua builtin<cr>" "Builtin"]
+                 ["n" "<space>r" "<cmd>FzfLua resume<cr>" "Resume last search"]
+                 ["n" "<space>e" "<cmd>FzfLua grep<cr>" "Search Exact String"]
                  ;; Visual Mappings
                  ["v" "<" "<gv" "Visualmode indent"]
                  ["v" ">" ">gv" "Visualmode indent"]])
