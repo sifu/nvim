@@ -79,6 +79,38 @@
                                ")")]
     (copy-and-notify word-with-filepath)))
 
+(fn show-in-popup [lines]
+  (let [buf (vim.api.nvim_create_buf false true)
+        width (math.min 100 (- vim.o.columns 4))
+        height (math.min (+ (length lines) 2) (- vim.o.lines 4))
+        row (math.floor (/ (- vim.o.lines height) 2))
+        col (math.floor (/ (- vim.o.columns width) 2))]
+    (vim.api.nvim_open_win buf true
+                           {:relative "editor"
+                            : width
+                            : height
+                            : row
+                            : col
+                            :style "minimal"
+                            :border "rounded"
+                            :title " i18n Translation "
+                            :title_pos "center"})
+    (vim.api.nvim_buf_set_lines buf 0 -1 false lines)
+    (vim.api.nvim_set_option_value "modifiable" false {: buf})
+    (vim.api.nvim_set_option_value "bufhidden" "wipe" {: buf})
+    (vim.keymap.set "n" "q" "<cmd>close<cr>" {:buffer buf})
+    (vim.keymap.set "n" "<esc>" "<cmd>close<cr>" {:buffer buf})))
+
+(fn find-i18n-key []
+  (vim.cmd "normal! yi'")
+  (let [key (vim.fn.getreg "\"")]
+    (when (and key (not= key ""))
+      (vim.fn.setreg "+" key)
+      (let [output (vim.fn.system (.. "/Users/sifu/.claude/skills/find-i18n/find-i18n.sh "
+                                      (vim.fn.shellescape key)))
+            lines (vim.split output "\n" {:trimempty true})]
+        (show-in-popup lines)))))
+
 (fn copy-filepath-with-line-range []
   (let [filepath (vim.fn.expand "%")
         start-line (. (vim.fn.getpos "v") 2)
@@ -162,6 +194,7 @@
                  ;; LSP
                  ; not really a lsp thingy, but I think it fits
                  ["n" "<leader>lT" "<cmd>TodoTelescope<cr>" "Todos"]
+                 ["n" "<leader>li" find-i18n-key "Find i18n Translation"]
                  ["n"
                   "<leader>lt"
                   "<cmd>lua vim.lsp.buf.type_definition()<cr>"
@@ -179,7 +212,6 @@
                   "<cmd>Telescope lsp_definitions<cr>"
                   "Code Definition"]
                  ["n" "<leader>lD" "<c-w>]" "Code Definition Split"]
-                 ["n" "<leader>li" "<cmd>Telescope import<cr>" "Add Import"]
                  ["n"
                   "<leader>lR"
                   "<cmd>lua vim.lsp.buf.rename()<cr>"
