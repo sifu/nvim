@@ -172,9 +172,7 @@ navigator.clipboard.writeText(JSON.stringify({}, null, 2)).then(() => console.lo
                           (choice 1 [(text " ") (fmt "{{ {} }}" (insert 1))])
                           (text [") {" "  return (" "    "])
                           (choice 2
-                                  [(func #(.. "<div data-component='"
-                                              (kebab-to-pascal-case (filename-without-extension))
-                                              "'>"
+                                  [(func #(.. "<div>"
                                               (kebab-to-pascal-case (filename-without-extension))
                                               "</div>"))
                                    (text "")])
