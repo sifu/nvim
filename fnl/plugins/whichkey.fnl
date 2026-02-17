@@ -221,6 +221,10 @@
                   "<cmd>Telescope lsp_references<cr>"
                   "References"]
                  ["n"
+                  "<leader>lf"
+                  ":lua require('user.lsp-unique-references').references()<CR>"
+                  "References (unique files)"]
+                 ["n"
                   "<leader>ls"
                   "<cmd>Telescope lsp_document_symbols<cr>"
                   "Document Symbols"]
