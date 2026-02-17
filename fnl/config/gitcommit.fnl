@@ -2,5 +2,4 @@
                              {:pattern "gitcommit"
                               :callback (fn []
                                           (set vim.opt_local.textwidth 72)
-                                          (set vim.opt_local.colorcolumn
-                                               "51,73"))})
+                                          (set vim.opt_local.colorcolumn "73"))})
