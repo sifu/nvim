@@ -1,6 +1,6 @@
 -- [nfnl] fnl/user/qf-improvements.fnl
 local function _1_()
-  return pcall(vim.keymap.del, "n", "<enter>")
+  return vim.keymap.set("n", "<CR>", "<CR>", {buffer = true, silent = true, noremap = true})
 end
 vim.api.nvim_create_autocmd("FileType", {pattern = "qf", callback = _1_})
 local function remove_qf_item()

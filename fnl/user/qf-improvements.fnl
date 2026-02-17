@@ -1,8 +1,11 @@
-;; disable our default <enter> key mapping in the quickfix window
+;; restore default <enter> behavior in the quickfix window to open the file under cursor
 (vim.api.nvim_create_autocmd "FileType"
                              {:pattern "qf"
                               :callback (fn []
-                                          (pcall vim.keymap.del "n" "<enter>"))})
+                                          (vim.keymap.set "n" "<CR>" "<CR>"
+                                                          {:buffer true
+                                                           :silent true
+                                                           :noremap true}))})
 
 (fn remove-qf-item []
   (let [curqfidx (vim.fn.line ".")
