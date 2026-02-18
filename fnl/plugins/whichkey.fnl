@@ -47,6 +47,7 @@
       (vim.cmd (.. ":split /s/Obsidian/Main/Inbox/" filename ".md")))))
 
 (fn copy-and-notify [text]
+  (vim.cmd "silent! wa")
   (vim.fn.setreg "+" text)
   (vim.notify (.. "Copied: " text))
   text)

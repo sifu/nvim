@@ -44,6 +44,7 @@ local function add_to_obsidian_inbox()
   end
 end
 local function copy_and_notify(text)
+  vim.cmd("silent! wa")
   vim.fn.setreg("+", text)
   vim.notify(("Copied: " .. text))
   return text
