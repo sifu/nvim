@@ -241,6 +241,10 @@
                   "<leader>ln"
                   "<cmd>lua vim.diagnostic.goto_next({ border = 'rounded' })<cr>"
                   "Diagnostic"]
+                 ["n"
+                  "<leader>lu"
+                  ":lua require('user.telescope-routes').routes()<CR>"
+                  "Routes"]
                  ;; Git
                  ["n" "<leader>gg" "<cmd>wa<cr><cmd>Neogit<cr>" "Neogit"]
                  ["n"
