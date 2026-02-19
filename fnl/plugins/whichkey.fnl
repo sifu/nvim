@@ -320,7 +320,7 @@
                  ["v" "<space>R" ":'<,'>GrugFar<cr>" "Grug Far"]
                  ["n" "<space>y" "<cmd>Telescope neoclip<cr>" "Yank History"]
                  ["n"
-                  "<space>f"
+                  "<space><space>"
                   ":lua require('telescope.builtin').find_files()<CR>"
                   "Find Files"]
                  ["n"
