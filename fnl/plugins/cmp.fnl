@@ -24,7 +24,7 @@
 (local win-options
        {:border [" " " " " " " " " " " " " " " "]
         :scrollbar false
-        :winhighlight "NormalFloat:NormalFloat,FloatBorder:FloatBorder"})
+        :winhighlight "NormalFloat:NormalFloat,FloatBorder:FloatBorder,CursorLine:PmenuSel,Search:None"})
 
 {1 "hrsh7th/nvim-cmp"
  :dependencies ["hrsh7th/cmp-buffer"

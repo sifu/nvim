@@ -32,7 +32,7 @@
   "mason.nvim": { "branch": "main", "commit": "44d1e90e1f66e077268191e3ee9d2ac97cc18e65" },
   "mini.ai": { "branch": "main", "commit": "bfb26d9072670c3aaefab0f53024b2f3729c8083" },
   "mini.files": { "branch": "main", "commit": "22c64f010eef047ed270e29e7cc266cd4740787e" },
-  "neogit": { "branch": "master", "commit": "df323856553d4c5e5c41117606c63f628b24a3b0" },
+  "neogit": { "branch": "master", "commit": "2a47e1df95605b232fbdd5d369ab1bfaaf40fce4" },
   "neotest": { "branch": "master", "commit": "deadfb1af5ce458742671ad3a013acb9a6b41178" },
   "neotest-vitest": { "branch": "main", "commit": "f01addc6f07b79ef1be5f4297eafbee9e0959018" },
   "nfnl": { "branch": "main", "commit": "fecf731e02bc51d88372c4f992fe1ef0c19c02ae" },

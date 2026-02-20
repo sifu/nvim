@@ -26,7 +26,7 @@ local function formatting(entry, vim_item)
   vim_item.menu = ""
   return vim_item
 end
-local win_options = {border = {" ", " ", " ", " ", " ", " ", " ", " "}, winhighlight = "NormalFloat:NormalFloat,FloatBorder:FloatBorder", scrollbar = false}
+local win_options = {border = {" ", " ", " ", " ", " ", " ", " ", " "}, winhighlight = "NormalFloat:NormalFloat,FloatBorder:FloatBorder,CursorLine:PmenuSel,Search:None", scrollbar = false}
 local function _5_()
   local cmp = require("cmp")
   local luasnip = require("luasnip")
