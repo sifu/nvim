@@ -1,6 +1,6 @@
 -- [nfnl] fnl/plugins/obsidian.fnl
 local _local_1_ = require("nfnl.module")
-local autoload = _local_1_["autoload"]
+local autoload = _local_1_.autoload
 local core = autoload("nfnl.core")
 local function today()
   local today0 = os.date("%Y-%m-%d")
@@ -30,11 +30,18 @@ vim.api.nvim_create_autocmd("User", {pattern = "ObsidianNoteEnter", callback = _
 local function _4_(uri)
   return vim.ui.open(uri, {cmd = {"open", "-a", "/Applications/Obsidian.app"}})
 end
-local function _5_(spec)
-  local path = (spec.dir / tostring(spec.title))
+local function _5_(title)
+  if (title and (title ~= "")) then
+    return title:gsub("%s+", "-"):gsub("[^A-Za-z0-9-]", ""):lower()
+  else
+    return tostring(vim.fn.strftime("%Y%m%d-%H%M%S"))
+  end
+end
+local function _7_(spec)
+  local path = (spec.dir / tostring(spec.id))
   return path:with_suffix(".md")
 end
-local function _6_(note)
+local function _8_(note)
   return core.merge({["date-created"] = today()}, note.metadata)
 end
-return {"obsidian-nvim/obsidian.nvim", dependencies = {"nvim-lua/plenary.nvim"}, opts = {workspaces = {{name = "Main", path = "~/Obsidian/Main"}}, new_notes_location = "Notes", ui = {enable = false}, open = {func = _4_}, completion = {min_chars = 0}, daily_notes = {folder = "Daily"}, note_path_func = _5_, ["frontmatter.func"] = _6_, legacy_commands = false}}
+return {"obsidian-nvim/obsidian.nvim", dependencies = {"nvim-lua/plenary.nvim"}, opts = {workspaces = {{name = "Main", path = "~/Obsidian/Main"}}, new_notes_location = "Notes", ui = {enable = false}, open = {func = _4_}, completion = {min_chars = 0}, daily_notes = {folder = "Daily"}, note_id_func = _5_, note_path_func = _7_, ["frontmatter.func"] = _8_, legacy_commands = false}}

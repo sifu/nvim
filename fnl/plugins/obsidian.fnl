@@ -59,8 +59,15 @@
                                            "/Applications/Obsidian.app"]}))}
         :completion {:min_chars 0}
         :daily_notes {:folder "Daily"}
+        :note_id_func (fn [title]
+                        (if (and title (not= title ""))
+                            (-> title
+                                (: "gsub" "%s+" "-")
+                                (: "gsub" "[^A-Za-z0-9-]" "")
+                                (: "lower"))
+                            (tostring (vim.fn.strftime "%Y%m%d-%H%M%S"))))
         :note_path_func (fn [spec]
-                          (let [path (/ spec.dir (tostring spec.title))]
+                          (let [path (/ spec.dir (tostring spec.id))]
                             (path:with_suffix ".md")))
         :frontmatter.func (fn [note]
                             (core.merge {:date-created (today)} note.metadata))}}
