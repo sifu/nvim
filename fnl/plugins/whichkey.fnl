@@ -1,4 +1,5 @@
 (local {: autoload} (require "nfnl.module"))
+
 (local core (autoload "nfnl.core"))
 
 ;; Make j and k work as I would expect in case line wrap is enabled
@@ -214,7 +215,7 @@
                   "Tailwind Conceal Toggle"]
                  ["n"
                   "<leader>la"
-                  "<cmd>lua vim.lsp.buf.code_action()<cr>"
+                  "<cmd>lua require('user.code-action')['sorted-code-action']()<cr>"
                   "Code Action"]
                  ["n"
                   "<leader>ld"
