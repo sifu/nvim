@@ -8,6 +8,7 @@
 (require "config.gitcommit")
 (require "config.javascriptreact")
 (require "config.json")
+(require "config.json-path")
 (require "config.markdown")
 (require "config.mdx")
 (require "config.babashka")
