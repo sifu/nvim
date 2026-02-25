@@ -90,4 +90,4 @@ do
   end
   vim.api.nvim_create_autocmd({"CursorMoved", "CursorMovedI"}, {group = group, callback = _10_})
 end
-return {}
+return {["get-json-path"] = get_json_path}

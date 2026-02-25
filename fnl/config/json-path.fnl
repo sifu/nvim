@@ -67,4 +67,4 @@
                                                                                      :virt_text_pos "eol"}))))))
                                             nil)}))
 
-{}
+{: get-json-path}

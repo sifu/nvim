@@ -153,6 +153,14 @@
                   copy-filepath-with-line-range
                   "Copy filepath with line range"]
                  ["n" "<leader>cp" copy-filepath-raw "Copy filepath raw"]
+                 ["n"
+                  "<leader>cj"
+                  (fn []
+                    (let [{: get-json-path} (require "config.json-path")
+                          path (get-json-path (vim.api.nvim_get_current_buf))]
+                      (when path
+                        (copy-and-notify path))))
+                  "Copy JSON path"]
                  ["n" "gp" "`[v`]" "Select last changed text"]
                  ["n" "<c-d>" "<c-d>zz" "Down half a page"]
                  ["n" "<c-u>" "<c-u>zz" "Up half a page"]
