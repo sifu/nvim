@@ -64,7 +64,8 @@
                                                                                     0
                                                                                     {:virt_text [[path
                                                                                                   "Comment"]]
-                                                                                     :virt_text_pos "eol"}))))))
+                                                                                     :virt_text_pos "eol"
+                                                                                     :hl_mode "combine"}))))))
                                             nil)}))
 
 {: get-json-path}

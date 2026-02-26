@@ -86,7 +86,9 @@
   (clear-virtual-text)
   (let [buf (vim.api.nvim_get_current_buf)
         line (. (vim.api.nvim_win_get_cursor 0) 1)
-        opts {:virt_text [[text "Comment"]] :virt_text_pos "right_align"}]
+        opts {:virt_text [[text "Comment"]]
+              :virt_text_pos "right_align"
+              :hl_mode "combine"}]
     (set current-extmark-id
          (vim.api.nvim_buf_set_extmark buf timetracking-ns (- line 1) 0 opts))))
 

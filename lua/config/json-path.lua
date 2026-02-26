@@ -80,7 +80,7 @@ do
         local ok, path = pcall(get_json_path, buf)
         if (ok and path) then
           local row = (vim.fn.line(".") - 1)
-          vim.api.nvim_buf_set_extmark(buf, ns, row, 0, {virt_text = {{path, "Comment"}}, virt_text_pos = "eol"})
+          vim.api.nvim_buf_set_extmark(buf, ns, row, 0, {virt_text = {{path, "Comment"}}, virt_text_pos = "eol", hl_mode = "combine"})
         else
         end
       else

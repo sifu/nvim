@@ -1,6 +1,6 @@
 -- [nfnl] fnl/user/timelog.fnl
 local _local_1_ = require("nfnl.module")
-local autoload = _local_1_["autoload"]
+local autoload = _local_1_.autoload
 local core = autoload("nfnl.core")
 local str = autoload("nfnl.string")
 local hourly_rate = 75
@@ -95,7 +95,7 @@ local function show_virtual_text(text)
   clear_virtual_text()
   local buf = vim.api.nvim_get_current_buf()
   local line = vim.api.nvim_win_get_cursor(0)[1]
-  local opts = {virt_text = {{text, "Comment"}}, virt_text_pos = "right_align"}
+  local opts = {virt_text = {{text, "Comment"}}, virt_text_pos = "right_align", hl_mode = "combine"}
   current_extmark_id = vim.api.nvim_buf_set_extmark(buf, timetracking_ns, (line - 1), 0, opts)
   return nil
 end
