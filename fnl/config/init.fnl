@@ -15,6 +15,7 @@
 (require "config.rm")
 (require "config.session-load")
 (require "config.session-sharing")
+(require "config.shared-yank")
 (require "user.html-to-jsx")
 (require "user.timelog")
 (require "user.open-file-with-line-number")
