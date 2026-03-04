@@ -15,4 +15,4 @@ local function _4_()
   local s = require("substitute")
   return s.eol()
 end
-return {"https://github.com/gbprod/substitute.nvim", keys = {{"<leader>r", _1_}, {"<leader>rr", _2_}, {"<leader>R", _3_}, {"<leader>r", _4_, mode = "v"}}}
+return {"https://github.com/gbprod/substitute.nvim", opts = {}, keys = {{"<leader>r", _1_}, {"<leader>rr", _2_}, {"<leader>R", _3_}, {"<leader>r", _4_, mode = "v"}}}

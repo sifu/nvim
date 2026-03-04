@@ -1,4 +1,5 @@
 {1 "https://github.com/gbprod/substitute.nvim"
+ :opts {}
  :keys [{1 "<leader>r"
          2 (fn []
              (let [s (require "substitute")] (s.operator)))}
