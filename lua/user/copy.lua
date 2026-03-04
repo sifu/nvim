@@ -46,7 +46,34 @@ local function open_prompt_buffer()
     local text = table.concat(lines, "\n")
     vim.fn.setreg("+", text)
     vim.api.nvim_win_close(win, true)
-    return vim.notify("Copied to clipboard")
+    local current = tonumber(vim.fn.system("tmux display-message -p '#{window_index}'"))
+    local windows = vim.fn.system("tmux list-windows -F '#{window_index} #{window_name}'")
+    local indices = {}
+    for idx in string.gmatch(windows, "(%d+) Claude[^\n]*") do
+      table.insert(indices, tonumber(idx))
+    end
+    local target = nil
+    for _, idx in ipairs(indices) do
+      if ((idx > current) and (target == nil)) then
+        target = idx
+      else
+      end
+    end
+    if (target == nil) then
+      if (#indices > 0) then
+        target = indices[1]
+      else
+      end
+    else
+    end
+    if target then
+      vim.fn.system(("tmux set-buffer -- " .. vim.fn.shellescape(text)))
+      vim.fn.system(("tmux select-window -t " .. target))
+      vim.fn.system("tmux paste-buffer")
+      return vim.notify(("Pasted to Claude (window " .. target .. ")"))
+    else
+      return vim.notify("No Claude window found \226\128\148 copied to clipboard")
+    end
   end
   copy_and_close = _1_
   vim.api.nvim_buf_set_lines(buf, 0, -1, false, {("@" .. filepath)})

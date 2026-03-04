@@ -54,7 +54,29 @@
                                text (table.concat lines "\n")]
                            (vim.fn.setreg "+" text)
                            (vim.api.nvim_win_close win true)
-                           (vim.notify "Copied to clipboard")))]
+                           (let [current (tonumber (vim.fn.system "tmux display-message -p '#{window_index}'"))
+                                 windows (vim.fn.system "tmux list-windows -F '#{window_index} #{window_name}'")
+                                 indices []]
+                             (each [idx (string.gmatch windows "(%d+) Claude[^
+]*")]
+                               (table.insert indices (tonumber idx)))
+                             (var target nil)
+                             (each [_ idx (ipairs indices)]
+                               (when (and (> idx current) (= target nil))
+                                 (set target idx)))
+                             (when (= target nil)
+                               (when (> (length indices) 0)
+                                 (set target (. indices 1))))
+                             (if target
+                                 (do
+                                   (vim.fn.system (.. "tmux set-buffer -- "
+                                                      (vim.fn.shellescape text)))
+                                   (vim.fn.system (.. "tmux select-window -t "
+                                                      target))
+                                   (vim.fn.system "tmux paste-buffer")
+                                   (vim.notify (.. "Pasted to Claude (window "
+                                                   target ")")))
+                                 (vim.notify "No Claude window found — copied to clipboard")))))]
     (vim.api.nvim_buf_set_lines buf 0 -1 false [(.. "@" filepath)])
     (vim.api.nvim_set_option_value "filetype" "markdown" {: buf})
     (vim.api.nvim_set_option_value "bufhidden" "wipe" {: buf})
