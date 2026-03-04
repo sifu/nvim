@@ -9,6 +9,8 @@
   (set vim.g.startify_session_delete_buffers 1)
   (set vim.g.startify_session_persistence 1)
   (set vim.g.startify_enable_special 0)
-  (set vim.g.startify_custom_header ""))
+  (set vim.g.startify_custom_header "")
+  (set vim.g.startify_session_before_save
+       ["lua pcall(require('neogit').close)"]))
 
 {1 "mhinz/vim-startify" :init setup}
