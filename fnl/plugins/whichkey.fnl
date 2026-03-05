@@ -78,7 +78,7 @@
                   "<leader>cC"
                   copy-filepath-with-line
                   "Copy current filepath with line number"]
-                 ["n" "<leader>cc" copy-filepath "Copy current filepath"]
+                 ["n" "<leader>cp" copy-filepath "Copy current filepath"]
                  ["n"
                   "<leader>cw"
                   copy-word-with-filepath
@@ -87,9 +87,9 @@
                   "<leader>cr"
                   copy-filepath-with-line-range
                   "Copy filepath with line range"]
-                 ["n" "<leader>cp" copy-filepath-raw "Copy filepath raw"]
+                 ["n" "<leader>cP" copy-filepath-raw "Copy filepath raw"]
                  ["n"
-                  "<leader>cP"
+                  "<leader>cc"
                   open-prompt-buffer
                   "Copy prompt with file context"]
                  ["n"
