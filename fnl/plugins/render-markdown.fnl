@@ -29,6 +29,7 @@
                   :signs ["" "" "" "" ""]
                   :position "inline"
                   :backgrounds []}
+        :code {:enabled false}
         :completions {:lsp {:enabled true}}}
  :config (fn [_ opts]
            (let [render-markdown (require "render-markdown")]
