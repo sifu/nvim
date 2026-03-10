@@ -34,6 +34,7 @@
 
 (fn open-prompt-buffer []
   (let [filepath (vim.fn.expand "%:.")
+        line-number (vim.fn.line ".")
         buf (vim.api.nvim_create_buf false true)
         width (math.min 80 (- vim.o.columns 4))
         height (math.min 20 (- vim.o.lines 4))
@@ -77,13 +78,14 @@
                                    (vim.notify (.. "Pasted to Claude (window "
                                                    target ")")))
                                  (vim.notify "No Claude window found — copied to clipboard")))))]
-    (vim.api.nvim_buf_set_lines buf 0 -1 false [(.. "@" filepath)])
-    (vim.api.nvim_set_option_value "filetype" "markdown" {: buf})
-    (vim.api.nvim_set_option_value "bufhidden" "wipe" {: buf})
-    (vim.api.nvim_win_set_cursor win [1 (+ 1 (length filepath))])
-    (vim.keymap.set ["n" "i"] "<C-s>" copy-and-close {:buffer buf})
-    (vim.keymap.set "n" "q" copy-and-close {:buffer buf})
-    (vim.keymap.set "n" "<Esc>" copy-and-close {:buffer buf})))
+    (let [initial-text (.. "@" filepath " on line " line-number)]
+      (vim.api.nvim_buf_set_lines buf 0 -1 false [initial-text])
+      (vim.api.nvim_set_option_value "filetype" "markdown" {: buf})
+      (vim.api.nvim_set_option_value "bufhidden" "wipe" {: buf})
+      (vim.api.nvim_win_set_cursor win [1 (+ 1 (length filepath))])
+      (vim.keymap.set ["n" "i"] "<C-s>" copy-and-close {:buffer buf})
+      (vim.keymap.set "n" "q" (fn [] (vim.api.nvim_win_close win true))
+                      {:buffer buf}))))
 
 (fn show-in-popup [lines]
   (let [buf (vim.api.nvim_create_buf false true)

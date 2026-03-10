@@ -34,6 +34,7 @@ local function copy_word_with_filepath()
 end
 local function open_prompt_buffer()
   local filepath = vim.fn.expand("%:.")
+  local line_number = vim.fn.line(".")
   local buf = vim.api.nvim_create_buf(false, true)
   local width = math.min(80, (vim.o.columns - 4))
   local height = math.min(20, (vim.o.lines - 4))
@@ -76,13 +77,16 @@ local function open_prompt_buffer()
     end
   end
   copy_and_close = _1_
-  vim.api.nvim_buf_set_lines(buf, 0, -1, false, {("@" .. filepath)})
+  local initial_text = ("@" .. filepath .. " on line " .. line_number)
+  vim.api.nvim_buf_set_lines(buf, 0, -1, false, {initial_text})
   vim.api.nvim_set_option_value("filetype", "markdown", {buf = buf})
   vim.api.nvim_set_option_value("bufhidden", "wipe", {buf = buf})
   vim.api.nvim_win_set_cursor(win, {1, (1 + #filepath)})
   vim.keymap.set({"n", "i"}, "<C-s>", copy_and_close, {buffer = buf})
-  vim.keymap.set("n", "q", copy_and_close, {buffer = buf})
-  return vim.keymap.set("n", "<Esc>", copy_and_close, {buffer = buf})
+  local function _6_()
+    return vim.api.nvim_win_close(win, true)
+  end
+  return vim.keymap.set("n", "q", _6_, {buffer = buf})
 end
 local function show_in_popup(lines)
   local buf = vim.api.nvim_create_buf(false, true)
