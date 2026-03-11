@@ -32,57 +32,82 @@
                                ")")]
     (copy-and-notify word-with-filepath)))
 
+(var prompt-buf nil)
+
+(fn send-to-claude [text]
+  (let [current (tonumber (vim.fn.system "tmux display-message -p '#{window_index}'"))
+        windows (vim.fn.system "tmux list-windows -F '#{window_index} #{window_name}'")
+        indices []]
+    (each [idx (string.gmatch windows "(%d+) Claude[^\n]*")]
+      (table.insert indices (tonumber idx)))
+    (var target nil)
+    (each [_ idx (ipairs indices)]
+      (when (and (> idx current) (= target nil))
+        (set target idx)))
+    (when (= target nil)
+      (when (> (length indices) 0)
+        (set target (. indices 1))))
+    (if target
+        (do
+          (vim.fn.system (.. "tmux set-buffer -- " (vim.fn.shellescape text)))
+          (vim.fn.system (.. "tmux select-window -t " target))
+          (vim.fn.system "tmux paste-buffer")
+          (vim.notify (.. "Pasted to Claude (window " target ")")))
+        (vim.notify "No Claude window found — copied to clipboard"))))
+
 (fn open-prompt-buffer []
   (let [filepath (vim.fn.expand "%:.")
         line-number (vim.fn.line ".")
-        buf (vim.api.nvim_create_buf false true)
-        width (math.min 80 (- vim.o.columns 4))
-        height (math.min 20 (- vim.o.lines 4))
-        row (math.floor (/ (- vim.o.lines height) 2))
-        col (math.floor (/ (- vim.o.columns width) 2))
-        win (vim.api.nvim_open_win buf true
-                                   {:relative "editor"
-                                    : width
-                                    : height
-                                    : row
-                                    : col
-                                    :style "minimal"
-                                    :border "rounded"
-                                    :title " Prompt "
-                                    :title_pos "center"})
-        copy-and-close (fn []
-                         (let [lines (vim.api.nvim_buf_get_lines buf 0 -1 false)
-                               text (table.concat lines "\n")]
-                           (vim.fn.setreg "+" text)
-                           (vim.api.nvim_win_close win true)
-                           (let [current (tonumber (vim.fn.system "tmux display-message -p '#{window_index}'"))
-                                 windows (vim.fn.system "tmux list-windows -F '#{window_index} #{window_name}'")
-                                 indices []]
-                             (each [idx (string.gmatch windows "(%d+) Claude[^
-]*")]
-                               (table.insert indices (tonumber idx)))
-                             (var target nil)
-                             (each [_ idx (ipairs indices)]
-                               (when (and (> idx current) (= target nil))
-                                 (set target idx)))
-                             (when (= target nil)
-                               (when (> (length indices) 0)
-                                 (set target (. indices 1))))
-                             (if target
-                                 (do
-                                   (vim.fn.system (.. "tmux set-buffer -- "
-                                                      (vim.fn.shellescape text)))
-                                   (vim.fn.system (.. "tmux select-window -t "
-                                                      target))
-                                   (vim.fn.system "tmux paste-buffer")
-                                   (vim.notify (.. "Pasted to Claude (window "
-                                                   target ")")))
-                                 (vim.notify "No Claude window found — copied to clipboard")))))]
-    (let [initial-text (.. "@" filepath " on line " line-number)]
-      (vim.api.nvim_buf_set_lines buf 0 -1 false [initial-text])
-      (vim.api.nvim_set_option_value "filetype" "markdown" {: buf})
-      (vim.api.nvim_set_option_value "bufhidden" "wipe" {: buf})
-      (vim.api.nvim_win_set_cursor win [1 (+ 1 (length filepath))])
+        new-text (.. "@" filepath " on line " line-number)
+        reusing (and prompt-buf (vim.api.nvim_buf_is_valid prompt-buf))
+        buf (if reusing
+                prompt-buf
+                (let [b (vim.api.nvim_create_buf false true)]
+                  (set prompt-buf b)
+                  b))]
+    (var win nil)
+    (when reusing
+      (let [wins (vim.fn.win_findbuf buf)]
+        (when (> (length wins) 0)
+          (set win (. wins 1))
+          (vim.api.nvim_set_current_win win))))
+    (when (= win nil)
+      (let [width (math.min 80 (- vim.o.columns 4))
+            height (math.min 20 (- vim.o.lines 4))
+            row (math.floor (/ (- vim.o.lines height) 2))
+            col (math.floor (/ (- vim.o.columns width) 2))]
+        (set win (vim.api.nvim_open_win buf true
+                                        {:relative "editor"
+                                         : width
+                                         : height
+                                         : row
+                                         : col
+                                         :style "minimal"
+                                         :border "rounded"
+                                         :title " Prompt "
+                                         :title_pos "center"}))))
+    (if reusing
+        (let [lines (vim.api.nvim_buf_get_lines buf 0 -1 false)
+              has-content (or (> (length lines) 1) (not= (. lines 1) ""))]
+          (if has-content
+              (vim.api.nvim_buf_set_lines buf -1 -1 false [new-text])
+              (vim.api.nvim_buf_set_lines buf 0 -1 false [new-text])))
+        (do
+          (vim.api.nvim_buf_set_lines buf 0 -1 false [new-text])
+          (vim.api.nvim_set_option_value "filetype" "markdown" {: buf})))
+    (let [all-lines (vim.api.nvim_buf_get_lines buf 0 -1 false)
+          last-idx (length all-lines)]
+      (vim.api.nvim_win_set_cursor win [last-idx (+ 1 (length filepath))]))
+    (let [copy-and-close (fn []
+                           (let [lines (vim.api.nvim_buf_get_lines buf 0 -1
+                                                                   false)
+                                 text (table.concat lines "\n")]
+                             (vim.fn.setreg "+" text)
+                             (vim.api.nvim_win_close win true)
+                             (set prompt-buf nil)
+                             (when (vim.api.nvim_buf_is_valid buf)
+                               (vim.api.nvim_buf_delete buf {:force true}))
+                             (send-to-claude text)))]
       (vim.keymap.set ["n" "i"] "<C-s>" copy-and-close {:buffer buf})
       (vim.keymap.set "n" "q" (fn [] (vim.api.nvim_win_close win true))
                       {:buffer buf}))))

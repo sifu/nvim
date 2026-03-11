@@ -32,61 +32,104 @@ local function copy_word_with_filepath()
   local word_with_filepath = ("`" .. word .. "` (@" .. filepath .. " on line " .. line_number .. ")")
   return copy_and_notify(word_with_filepath)
 end
+local prompt_buf = nil
+local function send_to_claude(text)
+  local current = tonumber(vim.fn.system("tmux display-message -p '#{window_index}'"))
+  local windows = vim.fn.system("tmux list-windows -F '#{window_index} #{window_name}'")
+  local indices = {}
+  for idx in string.gmatch(windows, "(%d+) Claude[^\n]*") do
+    table.insert(indices, tonumber(idx))
+  end
+  local target = nil
+  for _, idx in ipairs(indices) do
+    if ((idx > current) and (target == nil)) then
+      target = idx
+    else
+    end
+  end
+  if (target == nil) then
+    if (#indices > 0) then
+      target = indices[1]
+    else
+    end
+  else
+  end
+  if target then
+    vim.fn.system(("tmux set-buffer -- " .. vim.fn.shellescape(text)))
+    vim.fn.system(("tmux select-window -t " .. target))
+    vim.fn.system("tmux paste-buffer")
+    return vim.notify(("Pasted to Claude (window " .. target .. ")"))
+  else
+    return vim.notify("No Claude window found \226\128\148 copied to clipboard")
+  end
+end
 local function open_prompt_buffer()
   local filepath = vim.fn.expand("%:.")
   local line_number = vim.fn.line(".")
-  local buf = vim.api.nvim_create_buf(false, true)
-  local width = math.min(80, (vim.o.columns - 4))
-  local height = math.min(20, (vim.o.lines - 4))
-  local row = math.floor(((vim.o.lines - height) / 2))
-  local col = math.floor(((vim.o.columns - width) / 2))
-  local win = vim.api.nvim_open_win(buf, true, {relative = "editor", width = width, height = height, row = row, col = col, style = "minimal", border = "rounded", title = " Prompt ", title_pos = "center"})
+  local new_text = ("@" .. filepath .. " on line " .. line_number)
+  local reusing = (prompt_buf and vim.api.nvim_buf_is_valid(prompt_buf))
+  local buf
+  if reusing then
+    buf = prompt_buf
+  else
+    local b = vim.api.nvim_create_buf(false, true)
+    prompt_buf = b
+    buf = b
+  end
+  local win = nil
+  if reusing then
+    local wins = vim.fn.win_findbuf(buf)
+    if (#wins > 0) then
+      win = wins[1]
+      vim.api.nvim_set_current_win(win)
+    else
+    end
+  else
+  end
+  if (win == nil) then
+    local width = math.min(80, (vim.o.columns - 4))
+    local height = math.min(20, (vim.o.lines - 4))
+    local row = math.floor(((vim.o.lines - height) / 2))
+    local col = math.floor(((vim.o.columns - width) / 2))
+    win = vim.api.nvim_open_win(buf, true, {relative = "editor", width = width, height = height, row = row, col = col, style = "minimal", border = "rounded", title = " Prompt ", title_pos = "center"})
+  else
+  end
+  if reusing then
+    local lines = vim.api.nvim_buf_get_lines(buf, 0, -1, false)
+    local has_content = ((#lines > 1) or (lines[1] ~= ""))
+    if has_content then
+      vim.api.nvim_buf_set_lines(buf, -1, -1, false, {new_text})
+    else
+      vim.api.nvim_buf_set_lines(buf, 0, -1, false, {new_text})
+    end
+  else
+    vim.api.nvim_buf_set_lines(buf, 0, -1, false, {new_text})
+    vim.api.nvim_set_option_value("filetype", "markdown", {buf = buf})
+  end
+  do
+    local all_lines = vim.api.nvim_buf_get_lines(buf, 0, -1, false)
+    local last_idx = #all_lines
+    vim.api.nvim_win_set_cursor(win, {last_idx, (1 + #filepath)})
+  end
   local copy_and_close
-  local function _1_()
+  local function _11_()
     local lines = vim.api.nvim_buf_get_lines(buf, 0, -1, false)
     local text = table.concat(lines, "\n")
     vim.fn.setreg("+", text)
     vim.api.nvim_win_close(win, true)
-    local current = tonumber(vim.fn.system("tmux display-message -p '#{window_index}'"))
-    local windows = vim.fn.system("tmux list-windows -F '#{window_index} #{window_name}'")
-    local indices = {}
-    for idx in string.gmatch(windows, "(%d+) Claude[^\n]*") do
-      table.insert(indices, tonumber(idx))
-    end
-    local target = nil
-    for _, idx in ipairs(indices) do
-      if ((idx > current) and (target == nil)) then
-        target = idx
-      else
-      end
-    end
-    if (target == nil) then
-      if (#indices > 0) then
-        target = indices[1]
-      else
-      end
+    prompt_buf = nil
+    if vim.api.nvim_buf_is_valid(buf) then
+      vim.api.nvim_buf_delete(buf, {force = true})
     else
     end
-    if target then
-      vim.fn.system(("tmux set-buffer -- " .. vim.fn.shellescape(text)))
-      vim.fn.system(("tmux select-window -t " .. target))
-      vim.fn.system("tmux paste-buffer")
-      return vim.notify(("Pasted to Claude (window " .. target .. ")"))
-    else
-      return vim.notify("No Claude window found \226\128\148 copied to clipboard")
-    end
+    return send_to_claude(text)
   end
-  copy_and_close = _1_
-  local initial_text = ("@" .. filepath .. " on line " .. line_number)
-  vim.api.nvim_buf_set_lines(buf, 0, -1, false, {initial_text})
-  vim.api.nvim_set_option_value("filetype", "markdown", {buf = buf})
-  vim.api.nvim_set_option_value("bufhidden", "wipe", {buf = buf})
-  vim.api.nvim_win_set_cursor(win, {1, (1 + #filepath)})
+  copy_and_close = _11_
   vim.keymap.set({"n", "i"}, "<C-s>", copy_and_close, {buffer = buf})
-  local function _6_()
+  local function _13_()
     return vim.api.nvim_win_close(win, true)
   end
-  return vim.keymap.set("n", "q", _6_, {buffer = buf})
+  return vim.keymap.set("n", "q", _13_, {buffer = buf})
 end
 local function show_in_popup(lines)
   local buf = vim.api.nvim_create_buf(false, true)
