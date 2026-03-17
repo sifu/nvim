@@ -25,7 +25,7 @@
 
 (local groups [["<leader>g" "Git"]
                ["<leader>l" "LSP"]
-               ["<leader>a" "ChatGPT"]
+               ["<leader>a" "Claude"]
                ["<leader>s" "SQL"]
                ["<leader>t" "Tabs"]
                ["<leader>M" "Markdown"]
@@ -56,6 +56,8 @@
         : open-prompt-buffer
         : find-i18n-key
         : copy-filepath-with-line-range} (autoload "user.copy"))
+
+(local {: chat} (autoload "user.claude"))
 
 (local mappings [;; misc
                  ["n"
@@ -308,6 +310,27 @@
                   "<space>e"
                   ":lua require('telescope.builtin').live_grep({additional_args = function() return {'--fixed-strings'} end})<CR>"
                   "Search Exact String"]
+                 ;; Claude
+                 ["n" "<leader>ac" chat "Chat"]
+                 ["v"
+                  "<leader>ae"
+                  ":'<,'>ClaudeEdit<CR>"
+                  "Edit with instruction"]
+                 ["v"
+                  "<leader>ag"
+                  ":'<,'>ClaudeGrammar<CR>"
+                  "Grammar Correction"]
+                 ["v" "<leader>at" ":'<,'>ClaudeTranslate<CR>" "Translate"]
+                 ["v" "<leader>ad" ":'<,'>ClaudeDocstring<CR>" "Docstring"]
+                 ["v" "<leader>aT" ":'<,'>ClaudeTests<CR>" "Add Tests"]
+                 ["v" "<leader>ao" ":'<,'>ClaudeOptimize<CR>" "Optimize Code"]
+                 ["v" "<leader>as" ":'<,'>ClaudeSummarize<CR>" "Summarize"]
+                 ["v" "<leader>af" ":'<,'>ClaudeFixBugs<CR>" "Fix Bugs"]
+                 ["v" "<leader>ax" ":'<,'>ClaudeExplain<CR>" "Explain Code"]
+                 ["v"
+                  "<leader>al"
+                  ":'<,'>ClaudeReadability<CR>"
+                  "Code Readability"]
                  ;; Visual Mappings
                  ["v" "<" "<gv" "Visualmode indent"]
                  ["v" ">" ">gv" "Visualmode indent"]])

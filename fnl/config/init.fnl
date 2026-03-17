@@ -19,6 +19,7 @@
 (require "user.timelog")
 (require "user.open-file-with-line-number")
 (require "user.qf-improvements")
+(require "user.claude")
 
 ;; ## Misc auto commands
 
