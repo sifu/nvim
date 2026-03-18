@@ -3,4 +3,5 @@
  :branch "main"
  :init (fn []
          (set vim.g.conjure#mapping#prefix ",")
-         (set vim.g.conjure#mapping#doc_word "K"))}
+         (set vim.g.conjure#mapping#doc_word "K")
+         (set vim.g.conjure#filetypes ["fennel" "clojure" "janet"]))}
