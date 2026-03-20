@@ -86,6 +86,7 @@
                                          :border "rounded"
                                          :title " Prompt "
                                          :title_pos "center"}))))
+    (vim.api.nvim_set_option_value "wrap" true {: win})
     (if reusing
         (let [lines (vim.api.nvim_buf_get_lines buf 0 -1 false)
               has-content (or (> (length lines) 1) (not= (. lines 1) ""))]

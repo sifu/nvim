@@ -94,6 +94,7 @@ local function open_prompt_buffer()
     win = vim.api.nvim_open_win(buf, true, {relative = "editor", width = width, height = height, row = row, col = col, style = "minimal", border = "rounded", title = " Prompt ", title_pos = "center"})
   else
   end
+  vim.api.nvim_set_option_value("wrap", true, {win = win})
   if reusing then
     local lines = vim.api.nvim_buf_get_lines(buf, 0, -1, false)
     local has_content = ((#lines > 1) or (lines[1] ~= ""))
