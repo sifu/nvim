@@ -63,7 +63,8 @@
                                                      :shorting_target 40}
                                                     [macro-recording]
                                                     {1 merge-conflict
-                                                     :color {:fg "#ff0000" :gui "bold"}}]
+                                                     :color {:fg "#ff0000"
+                                                             :gui "bold"}}]
                                         :lualine_x [[lsp-connection]
                                                     "location"
                                                     "progress"
