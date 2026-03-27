@@ -14,6 +14,18 @@
         "" ; else
         "")))
 
+(fn merge-conflict []
+  (let [git-dir (vim.fn.finddir ".git" ".;")]
+    (if (or (= git-dir "") (= git-dir nil))
+        ""
+        (let [merge (vim.fn.filereadable (.. git-dir "/MERGE_HEAD"))
+              rebase (vim.fn.isdirectory (.. git-dir "/rebase-merge"))
+              cherry (vim.fn.filereadable (.. git-dir "/CHERRY_PICK_HEAD"))]
+          (if (= merge 1) "MERGE CONFLICT"
+              (= rebase 1) "REBASING"
+              (= cherry 1) "CHERRY-PICK"
+              "")))))
+
 (fn macro-recording []
   (if (core.empty? (vim.fn.reg_recording)) ""
       (.. "🔴@" (vim.fn.reg_recording))))
@@ -49,7 +61,9 @@
                                                      :file_status true
                                                      :path 1
                                                      :shorting_target 40}
-                                                    [macro-recording]]
+                                                    [macro-recording]
+                                                    {1 merge-conflict
+                                                     :color {:fg "#ff0000" :gui "bold"}}]
                                         :lualine_x [[lsp-connection]
                                                     "location"
                                                     "progress"
