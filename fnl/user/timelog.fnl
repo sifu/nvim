@@ -12,6 +12,25 @@
 ;; [2025-01-02 18:08 - 2025-01-02 18:12] ISSUE-1234 some comment 
 ;; [2025-01-02 18:12] ISSUE-1111 not enddate yet
 
+(var debounce-timer nil)
+
+(fn auto-commit-and-push []
+  (when debounce-timer
+    (vim.fn.timer_stop debounce-timer))
+  (set debounce-timer
+       (vim.fn.timer_start 500
+                           (fn []
+                             (set debounce-timer nil)
+                             (let [file (vim.api.nvim_buf_get_name 0)
+                                   dir (vim.fn.fnamemodify file ":h")]
+                               (vim.fn.jobstart (: "cd %s && git commit -am 'auto' && git push"
+                                                   "format" dir)
+                                                {:on_exit (fn [_ code _]
+                                                            (when (not= code 0)
+                                                              (vim.notify "timelog: git commit/push failed"
+                                                                          vim.log.levels.WARN)))
+                                                 :detach true}))))))
+
 (local timestamp-regex "%d%d%d%d%-%d%d%-%d%d %d%d:%d%d")
 (local log-statement-regex "^%[.*%](%s*.*)$")
 
@@ -168,7 +187,8 @@
             stopped-line (stop-task running-line)]
         (vim.api.nvim_buf_set_lines buf running-line-idx (+ running-line-idx 1)
                                     false [stopped-line])
-        (vim.cmd "write")))))
+        (vim.cmd "write")
+        (auto-commit-and-push)))))
 
 (fn get-message-from-line [line]
   (string.match line log-statement-regex))
@@ -186,7 +206,8 @@
             new-line (create-new-task message)]
         (vim.api.nvim_buf_set_lines buf -1 -1 false [new-line])
         (vim.cmd "norm! G")
-        (vim.cmd "write")))))
+        (vim.cmd "write")
+        (auto-commit-and-push)))))
 
 (fn append-new-task []
   (let [buf (vim.api.nvim_get_current_buf)
@@ -204,7 +225,8 @@
     (let [new-line (create-new-task " ")]
       (vim.api.nvim_buf_set_lines buf -1 -1 false [new-line])
       (vim.cmd "norm! G")
-      (vim.cmd "write"))))
+      (vim.cmd "write")
+      (auto-commit-and-push))))
 
 (vim.filetype.add {:extension {:timelog "timelog"}})
 

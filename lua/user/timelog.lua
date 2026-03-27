@@ -4,6 +4,28 @@ local autoload = _local_1_.autoload
 local core = autoload("nfnl.core")
 local str = autoload("nfnl.string")
 local hourly_rate = 75
+local debounce_timer = nil
+local function auto_commit_and_push()
+  if debounce_timer then
+    vim.fn.timer_stop(debounce_timer)
+  else
+  end
+  local function _3_()
+    debounce_timer = nil
+    local file = vim.api.nvim_buf_get_name(0)
+    local dir = vim.fn.fnamemodify(file, ":h")
+    local function _4_(_, code, _0)
+      if (code ~= 0) then
+        return vim.notify("timelog: git commit/push failed", vim.log.levels.WARN)
+      else
+        return nil
+      end
+    end
+    return vim.fn.jobstart(("cd %s && git commit -am 'auto' && git push"):format(dir), {on_exit = _4_, detach = true})
+  end
+  debounce_timer = vim.fn.timer_start(500, _3_)
+  return nil
+end
 local timestamp_regex = "%d%d%d%d%-%d%d%-%d%d %d%d:%d%d"
 local log_statement_regex = "^%[.*%](%s*.*)$"
 local function now()
@@ -13,16 +35,16 @@ local function date_string__3etime(date_string)
   local year, month, day, hour, min = string.match(date_string, "(%d%d%d%d)-(%d%d)-(%d%d) (%d%d):(%d%d)")
   return os.time({year = tonumber(year), month = tonumber(month), day = tonumber(day), hour = tonumber(hour), min = tonumber(min)})
 end
-local function diff_time_in_seconds(_2_)
-  local start = _2_[1]
-  local _end = _2_[2]
-  local _3_
+local function diff_time_in_seconds(_6_)
+  local start = _6_[1]
+  local _end = _6_[2]
+  local _7_
   if _end then
-    _3_ = date_string__3etime(_end)
+    _7_ = date_string__3etime(_end)
   else
-    _3_ = os.time()
+    _7_ = os.time()
   end
-  return os.difftime(_3_, date_string__3etime(start))
+  return os.difftime(_7_, date_string__3etime(start))
 end
 local function is_timelog_line_3f(line)
   return (nil ~= string.find(line, "^%[[%d%-%s:]*%]"))
@@ -99,15 +121,15 @@ local function show_virtual_text(text)
   current_extmark_id = vim.api.nvim_buf_set_extmark(buf, timetracking_ns, (line - 1), 0, opts)
   return nil
 end
-local function _10_()
+local function _14_()
   return clear_virtual_text()
 end
-vim.api.nvim_create_autocmd({"CursorMoved", "CursorMovedI"}, {callback = _10_, group = vim.api.nvim_create_augroup("TimetrackingVirtualText", {clear = true})})
+vim.api.nvim_create_autocmd({"CursorMoved", "CursorMovedI"}, {callback = _14_, group = vim.api.nvim_create_augroup("TimetrackingVirtualText", {clear = true})})
 local function check_current_line()
   clear_virtual_text()
   local buf = vim.api.nvim_get_current_buf()
-  local _let_11_ = vim.api.nvim_win_get_cursor(0)
-  local row = _let_11_[1]
+  local _let_15_ = vim.api.nvim_win_get_cursor(0)
+  local row = _let_15_[1]
   local current_line = vim.api.nvim_buf_get_lines(buf, (row - 1), row, false)[1]
   if is_timelog_line_3f(current_line) then
     return show_virtual_text(format_duration(line__3eduration(current_line)))
@@ -154,10 +176,10 @@ local function show_popup(text)
   vim.api.nvim_buf_set_lines(buf, 0, -1, false, {text})
   popup_win_id = vim.api.nvim_open_win(buf, false, opts)
   vim.api.nvim_win_set_option(popup_win_id, "winhl", "Normal:TimelogPopup")
-  local function _15_()
+  local function _19_()
     return close_popup()
   end
-  return vim.defer_fn(_15_, 4000)
+  return vim.defer_fn(_19_, 4000)
 end
 local function sum_selected_durations()
   vim.cmd("normal! \27")
@@ -180,7 +202,8 @@ local function close_running_task()
     local running_line = lines[(running_line_idx + 1)]
     local stopped_line = stop_task(running_line)
     vim.api.nvim_buf_set_lines(buf, running_line_idx, (running_line_idx + 1), false, {stopped_line})
-    return vim.cmd("write")
+    vim.cmd("write")
+    return auto_commit_and_push()
   else
     return nil
   end
@@ -193,8 +216,8 @@ local function create_new_task(message)
 end
 local function append_new_task_with_current_message()
   local buf = vim.api.nvim_get_current_buf()
-  local _let_18_ = vim.api.nvim_win_get_cursor(0)
-  local row = _let_18_[1]
+  local _let_22_ = vim.api.nvim_win_get_cursor(0)
+  local row = _let_22_[1]
   local current_line = vim.api.nvim_buf_get_lines(buf, (row - 1), row, false)[1]
   if is_timelog_line_3f(current_line) then
     close_running_task()
@@ -202,15 +225,16 @@ local function append_new_task_with_current_message()
     local new_line = create_new_task(message)
     vim.api.nvim_buf_set_lines(buf, -1, -1, false, {new_line})
     vim.cmd("norm! G")
-    return vim.cmd("write")
+    vim.cmd("write")
+    return auto_commit_and_push()
   else
     return nil
   end
 end
 local function append_new_task()
   local buf = vim.api.nvim_get_current_buf()
-  local _let_20_ = vim.api.nvim_win_get_cursor(0)
-  local row = _let_20_[1]
+  local _let_24_ = vim.api.nvim_win_get_cursor(0)
+  local row = _let_24_[1]
   local lines = vim.api.nvim_buf_get_lines(buf, 0, -1, false)
   if core["empty?"](lines) then
     local new_line = create_new_task(" ")
@@ -225,24 +249,25 @@ local function append_new_task()
   local new_line = create_new_task(" ")
   vim.api.nvim_buf_set_lines(buf, -1, -1, false, {new_line})
   vim.cmd("norm! G")
-  return vim.cmd("write")
+  vim.cmd("write")
+  return auto_commit_and_push()
 end
 vim.filetype.add({extension = {timelog = "timelog"}})
-local function _23_()
+local function _27_()
   return check_current_line()
 end
-vim.api.nvim_create_autocmd({"CursorMoved", "CursorMovedI"}, {callback = _23_, group = vim.api.nvim_create_augroup("TimetrackingVirtualText", {clear = true})})
+vim.api.nvim_create_autocmd({"CursorMoved", "CursorMovedI"}, {callback = _27_, group = vim.api.nvim_create_augroup("TimetrackingVirtualText", {clear = true})})
 local function no_op()
 end
-local function _24_()
+local function _28_()
   vim.keymap.set("n", "<leader>d", no_op, {buffer = true})
   vim.keymap.set("n", "\226\130\172tb", append_new_task, {buffer = true, desc = "Start a new task"})
   vim.keymap.set("n", "\226\130\172te", close_running_task, {buffer = true, desc = "Stop the current task"})
   vim.keymap.set("n", "<cr>", append_new_task_with_current_message, {buffer = true, desc = "Switch to this task"})
   return vim.keymap.set("x", "ts", sum_selected_durations, {buffer = true, desc = "Sum selected time entries"})
 end
-vim.api.nvim_create_autocmd("FileType", {pattern = "timelog", callback = _24_})
-local function _25_()
+vim.api.nvim_create_autocmd("FileType", {pattern = "timelog", callback = _28_})
+local function _29_()
   return vim.cmd("normal! G")
 end
-return vim.api.nvim_create_autocmd("BufReadPost", {pattern = "*.timelog", callback = _25_})
+return vim.api.nvim_create_autocmd("BufReadPost", {pattern = "*.timelog", callback = _29_})
