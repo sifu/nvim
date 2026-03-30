@@ -1,11 +1,4 @@
 -- [nfnl] fnl/plugins/obsidian.fnl
-local _local_1_ = require("nfnl.module")
-local autoload = _local_1_.autoload
-local core = autoload("nfnl.core")
-local function today()
-  local today0 = os.date("%Y-%m-%d")
-  return ("[[/Daily/" .. today0 .. "|" .. today0 .. "]]")
-end
 local function my_smart_action()
   local obsidian = require("obsidian")
   local cursor_link = obsidian.api.cursor_link
@@ -18,7 +11,7 @@ local function my_smart_action()
     return vim.cmd("Telescope buffers")
   end
 end
-local function _3_(ev)
+local function _2_(ev)
   vim.keymap.set("n", "gf", "<cmd>Obsidian follow_link<cr>", {buffer = ev.buf, desc = "Follow Link"})
   vim.keymap.set("n", ",O", "<cmd>Obsidian open<cr>", {buffer = ev.buf, desc = "Open in App"})
   vim.keymap.set("n", ",s", "<cmd>Obsidian quick_switch<cr>", {buffer = ev.buf, desc = "Quick Switch"})
@@ -26,22 +19,24 @@ local function _3_(ev)
   vim.keymap.set("n", ",t", "<cmd>Obsidian tags<cr>", {buffer = ev.buf, desc = "Tags"})
   return vim.keymap.set("n", "<CR>", my_smart_action, {buffer = ev.buf})
 end
-vim.api.nvim_create_autocmd("User", {pattern = "ObsidianNoteEnter", callback = _3_})
-local function _4_(uri)
+vim.api.nvim_create_autocmd("User", {pattern = "ObsidianNoteEnter", callback = _2_})
+local function _3_(uri)
   return vim.ui.open(uri, {cmd = {"open", "-a", "/Applications/Obsidian.app"}})
 end
-local function _5_(title)
+local function _4_(title)
   if (title and (title ~= "")) then
-    return title:gsub("%s+", "-"):gsub("[^A-Za-z0-9-]", ""):lower()
+    if title:find("[*\"\\/<>:|?#%^%[%]]") then
+      vim.notify(("Invalid filename characters in: " .. title), vim.log.levels.ERROR)
+      error("Invalid filename characters")
+    else
+    end
+    return title
   else
     return tostring(vim.fn.strftime("%Y%m%d-%H%M%S"))
   end
 end
 local function _7_(spec)
-  local path = (spec.dir / tostring(spec.id))
+  local path = (spec.dir / "Notes" / tostring(spec.id))
   return path:with_suffix(".md")
 end
-local function _8_(note)
-  return core.merge({["date-created"] = today()}, note.metadata)
-end
-return {"obsidian-nvim/obsidian.nvim", dependencies = {"nvim-lua/plenary.nvim"}, opts = {workspaces = {{name = "Main", path = "~/Obsidian/Main"}}, new_notes_location = "Notes", ui = {enable = false}, open = {func = _4_}, completion = {min_chars = 0}, daily_notes = {folder = "Daily"}, note_id_func = _5_, note_path_func = _7_, ["frontmatter.func"] = _8_, legacy_commands = false}}
+return {"obsidian-nvim/obsidian.nvim", dependencies = {"nvim-lua/plenary.nvim"}, opts = {workspaces = {{name = "Main", path = "~/Obsidian/Main"}}, new_notes_location = "Notes", ui = {enable = false}, open = {func = _3_}, completion = {min_chars = 0}, daily_notes = {folder = "Daily"}, note_id_func = _4_, note_path_func = _7_, note = {template = nil}, frontmatter = {enabled = false}, legacy_commands = false}}

@@ -1,11 +1,3 @@
-(local {: autoload} (require "nfnl.module"))
-(local core (autoload "nfnl.core"))
-
-(fn today []
-  "[[/Daily/2024-11-16|2024-11-16]]"
-  (let [today (os.date "%Y-%m-%d")]
-    (.. "[[/Daily/" today "|" today "]]")))
-
 (fn my-smart-action []
   (let [obsidian (require "obsidian")
         cursor-link obsidian.api.cursor_link
@@ -61,13 +53,16 @@
         :daily_notes {:folder "Daily"}
         :note_id_func (fn [title]
                         (if (and title (not= title ""))
-                            (-> title
-                                (: "gsub" "%s+" "-")
-                                (: "gsub" "[^A-Za-z0-9-]" "")
-                                (: "lower"))
+                            (do
+                              (when (title:find "[*\"\\/<>:|?#%^%[%]]")
+                                (vim.notify (.. "Invalid filename characters in: "
+                                                title)
+                                            vim.log.levels.ERROR)
+                                (error "Invalid filename characters"))
+                              title)
                             (tostring (vim.fn.strftime "%Y%m%d-%H%M%S"))))
         :note_path_func (fn [spec]
-                          (let [path (/ spec.dir (tostring spec.id))]
+                          (let [path (/ spec.dir "Notes" (tostring spec.id))]
                             (path:with_suffix ".md")))
-        :frontmatter.func (fn [note]
-                            (core.merge {:date-created (today)} note.metadata))}}
+        :note {:template nil}
+        :frontmatter {:enabled false}}}
