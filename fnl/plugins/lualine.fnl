@@ -1,18 +1,11 @@
 (local {: autoload} (require "nfnl.module"))
 (local core (autoload "nfnl.core"))
-(local lsp (autoload "config.lsp"))
 
 (fn lsp-connection []
-  (let [message (lsp.get-progress-message)]
-    (if ; if has progress handler and is loading
-        (or (= message.status "begin") (= message.status "report"))
-        (.. message.msg " : " message.percent "%% ") ; if has progress handler and finished loading
-        (= message.status "end")
-        "" ; if hasn't progress handler, but has connected lsp client
-        (and (= message.status "")
-             (not (vim.tbl_isempty (vim.lsp.get_clients 0))))
-        "" ; else
-        "")))
+  (let [status (vim.lsp.status)]
+    (if (and (not= status "") (not= status nil)) (.. " " status)
+        (not (vim.tbl_isempty (vim.lsp.get_clients {:bufnr 0}))) ""
+        "")))
 
 (fn merge-conflict []
   (let [git-dir (vim.fn.finddir ".git" ".;")]

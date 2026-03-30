@@ -2,17 +2,14 @@
 local _local_1_ = require("nfnl.module")
 local autoload = _local_1_.autoload
 local core = autoload("nfnl.core")
-local lsp = autoload("config.lsp")
 local function lsp_connection()
-  local message = lsp["get-progress-message"]()
-  if ((message.status == "begin") or (message.status == "report")) then
-    return (message.msg .. " : " .. message.percent .. "%% \239\130\150")
-  elseif (message.status == "end") then
-    return "\239\131\136"
-  elseif ((message.status == "") and not vim.tbl_isempty(vim.lsp.get_clients(0))) then
+  local status = vim.lsp.status()
+  if ((status ~= "") and (status ~= nil)) then
+    return ("\239\131\136 " .. status)
+  elseif not vim.tbl_isempty(vim.lsp.get_clients({bufnr = 0})) then
     return "\239\131\136"
   else
-    return "\239\130\150"
+    return ""
   end
 end
 local function merge_conflict()
