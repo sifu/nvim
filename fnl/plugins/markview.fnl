@@ -42,6 +42,8 @@
                                           :hl "MarkviewHeading6"}}
                    :code_blocks {:enable false}
                    :list_items {:enable true
+                                :indent_size 2
+                                :shift_width 2
                                 :checkboxes {:enable true
                                              :checked {:text "󰗠"
                                                        :hl "MarkviewCheckboxChecked"}
