@@ -1,7 +1,6 @@
 (local cmp-srcs [{:name "nvim_lsp"}
                  {:name "nvim_lsp_signature_help"}
                  {:name "conjure"}
-                 {:name "render-markdown"}
                  {:name "path"}
                  {:name "luasnip"}])
 
@@ -35,7 +34,6 @@
                 "PaterJason/cmp-conjure"
                 "L3MON4D3/LuaSnip"
                 "saadparwaiz1/cmp_luasnip"
-                "MeanderingProgrammer/render-markdown.nvim"
                 "xzbdmw/colorful-menu.nvim"
                 "onsails/lspkind.nvim"]
  :config (fn []

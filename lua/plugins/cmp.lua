@@ -1,5 +1,5 @@
 -- [nfnl] fnl/plugins/cmp.fnl
-local cmp_srcs = {{name = "nvim_lsp"}, {name = "nvim_lsp_signature_help"}, {name = "conjure"}, {name = "render-markdown"}, {name = "path"}, {name = "luasnip"}}
+local cmp_srcs = {{name = "nvim_lsp"}, {name = "nvim_lsp_signature_help"}, {name = "conjure"}, {name = "path"}, {name = "luasnip"}}
 local function formatting(entry, vim_item)
   local completion_item = entry:get_completion_item()
   local colorful_menu = require("colorful-menu")
@@ -59,4 +59,4 @@ local function _5_()
   cmp.setup.cmdline("/", {mapping = cmp.mapping.preset.cmdline(), sources = {{name = "buffer"}}})
   return cmp.setup.cmdline(":", {mapping = cmp.mapping.preset.cmdline(), sources = cmp.config.sources({{name = "path"}, {name = "cmdline", option = {ignore_cmds = {"!", "Man"}}}})})
 end
-return {"hrsh7th/nvim-cmp", dependencies = {"hrsh7th/cmp-buffer", "hrsh7th/cmp-nvim-lsp", "hrsh7th/cmp-path", "hrsh7th/cmp-nvim-lsp-signature-help", "hrsh7th/cmp-cmdline", "PaterJason/cmp-conjure", "L3MON4D3/LuaSnip", "saadparwaiz1/cmp_luasnip", "MeanderingProgrammer/render-markdown.nvim", "xzbdmw/colorful-menu.nvim", "onsails/lspkind.nvim"}, config = _5_}
+return {"hrsh7th/nvim-cmp", dependencies = {"hrsh7th/cmp-buffer", "hrsh7th/cmp-nvim-lsp", "hrsh7th/cmp-path", "hrsh7th/cmp-nvim-lsp-signature-help", "hrsh7th/cmp-cmdline", "PaterJason/cmp-conjure", "L3MON4D3/LuaSnip", "saadparwaiz1/cmp_luasnip", "xzbdmw/colorful-menu.nvim", "onsails/lspkind.nvim"}, config = _5_}
