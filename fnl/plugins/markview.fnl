@@ -43,8 +43,7 @@
                    :code_blocks {:enable false}
                    :list_items {:enable true
                                 :indent_size 2
-                                :shift_width (fn [buffer item]
-                                               (if (<= item.indent 0) 0 2))
+                                :shift_width 2
                                 :checkboxes {:enable true
                                              :checked {:text "󰗠"
                                                        :hl "MarkviewCheckboxChecked"}
