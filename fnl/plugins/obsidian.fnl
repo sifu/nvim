@@ -44,6 +44,7 @@
         :new_notes_location "Notes"
         :legacy_commands false
         :ui {:enable false}
+        :footer {:enabled false}
         :open {:func (fn [uri]
                        (vim.ui.open uri
                                     {:cmd ["open"

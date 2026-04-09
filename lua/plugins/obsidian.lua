@@ -39,4 +39,4 @@ local function _7_(spec)
   local path = (spec.dir / "Notes" / tostring(spec.id))
   return path:with_suffix(".md")
 end
-return {"obsidian-nvim/obsidian.nvim", dependencies = {"nvim-lua/plenary.nvim"}, opts = {workspaces = {{name = "Main", path = "~/Obsidian/Main"}}, new_notes_location = "Notes", ui = {enable = false}, open = {func = _3_}, completion = {min_chars = 0}, daily_notes = {folder = "Daily"}, note_id_func = _4_, note_path_func = _7_, note = {template = nil}, frontmatter = {enabled = false}, legacy_commands = false}}
+return {"obsidian-nvim/obsidian.nvim", dependencies = {"nvim-lua/plenary.nvim"}, opts = {workspaces = {{name = "Main", path = "~/Obsidian/Main"}}, new_notes_location = "Notes", ui = {enable = false}, footer = {enabled = false}, open = {func = _3_}, completion = {min_chars = 0}, daily_notes = {folder = "Daily"}, note_id_func = _4_, note_path_func = _7_, note = {template = nil}, frontmatter = {enabled = false}, legacy_commands = false}}
