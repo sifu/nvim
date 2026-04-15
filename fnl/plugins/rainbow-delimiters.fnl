@@ -11,8 +11,8 @@
   :ft file-types
   :config (fn []
             (set vim.g.rainbow_delimiters
-                 {: strategy
-                  : query
+                 {:strategy (vim.tbl_extend "force" {"" (fn [])} strategy)
+                  :query (vim.tbl_extend "force" {"" (fn [])} query)
                   :highlight ["RainbowDelimiterRed"
                               "RainbowDelimiterYellow"
                               "RainbowDelimiterBlue"

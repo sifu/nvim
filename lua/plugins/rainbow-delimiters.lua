@@ -2,30 +2,34 @@
 local file_types = {"clojure", "scheme", "lisp", "fennel", "janet"}
 local strategy
 do
-  local tbl_16_ = {}
+  local tbl_21_ = {}
   for _, ft in ipairs(file_types) do
-    local k_17_, v_18_ = ft, "rainbow-delimiters.strategy.global"
-    if ((k_17_ ~= nil) and (v_18_ ~= nil)) then
-      tbl_16_[k_17_] = v_18_
+    local k_22_, v_23_ = ft, "rainbow-delimiters.strategy.global"
+    if ((k_22_ ~= nil) and (v_23_ ~= nil)) then
+      tbl_21_[k_22_] = v_23_
     else
     end
   end
-  strategy = tbl_16_
+  strategy = tbl_21_
 end
 local query
 do
-  local tbl_16_ = {}
+  local tbl_21_ = {}
   for _, ft in ipairs(file_types) do
-    local k_17_, v_18_ = ft, "rainbow-delimiters"
-    if ((k_17_ ~= nil) and (v_18_ ~= nil)) then
-      tbl_16_[k_17_] = v_18_
+    local k_22_, v_23_ = ft, "rainbow-delimiters"
+    if ((k_22_ ~= nil) and (v_23_ ~= nil)) then
+      tbl_21_[k_22_] = v_23_
     else
     end
   end
-  query = tbl_16_
+  query = tbl_21_
 end
 local function _3_()
-  vim.g.rainbow_delimiters = {strategy = strategy, query = query, highlight = {"RainbowDelimiterRed", "RainbowDelimiterYellow", "RainbowDelimiterBlue", "RainbowDelimiterOrange", "RainbowDelimiterGreen", "RainbowDelimiterViolet", "RainbowDelimiterCyan"}}
+  local function _4_()
+  end
+  local function _5_()
+  end
+  vim.g.rainbow_delimiters = {strategy = vim.tbl_extend("force", {[""] = _4_}, strategy), query = vim.tbl_extend("force", {[""] = _5_}, query), highlight = {"RainbowDelimiterRed", "RainbowDelimiterYellow", "RainbowDelimiterBlue", "RainbowDelimiterOrange", "RainbowDelimiterGreen", "RainbowDelimiterViolet", "RainbowDelimiterCyan"}}
   return nil
 end
 return {{"HiPhish/rainbow-delimiters.nvim", ft = file_types, config = _3_}}
