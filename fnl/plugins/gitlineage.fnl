@@ -1,3 +1,3 @@
 {1 "lionyxml/gitlineage.nvim"
- :dependencies ["sindrets/diffview.nvim"]
+ :dependencies ["dlyongemallo/diffview.nvim"]
  :config true}

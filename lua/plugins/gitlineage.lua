@@ -1,2 +1,2 @@
 -- [nfnl] fnl/plugins/gitlineage.fnl
-return {"lionyxml/gitlineage.nvim", dependencies = {"sindrets/diffview.nvim"}, config = true}
+return {"lionyxml/gitlineage.nvim", dependencies = {"dlyongemallo/diffview.nvim"}, config = true}

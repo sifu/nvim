@@ -30,7 +30,7 @@
 {1 "NeogitOrg/neogit"
  :cmd "Neogit"
  :dependencies ["nvim-lua/plenary.nvim"
-                "sindrets/diffview.nvim"
+                "dlyongemallo/diffview.nvim"
                 "nvim-telescope/telescope.nvim"]
  :config (fn []
            (let [neogit (require "neogit")]
