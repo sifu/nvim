@@ -24,6 +24,7 @@
 (vim.keymap.set "n" "<leader>e" ":E<space>" {:noremap true})
 
 (local groups [["<leader>g" "Git"]
+               ["<leader>h" "Hunk"]
                ["<leader>l" "LSP"]
                ["<leader>a" "Claude"]
                ["<leader>s" "SQL"]

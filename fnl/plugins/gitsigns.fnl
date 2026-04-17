@@ -1,5 +1,14 @@
 {1 "https://github.com/lewis6991/gitsigns.nvim"
  :ft ["typescriptreact" "javascriptreact" "typescript" "javascript"]
+ :keys [{1 "<leader>hq"
+         2 "<cmd>lua require('user.hunk-nav').populate_all_hunks()<cr>"
+         :desc "List all hunks (QF)"}
+        {1 "<leader>hj"
+         2 "<cmd>lua require('user.hunk-nav').next_hunk_global()<cr>"
+         :desc "Next hunk (repo-wide)"}
+        {1 "<leader>hk"
+         2 "<cmd>lua require('user.hunk-nav').prev_hunk_global()<cr>"
+         :desc "Prev hunk (repo-wide)"}]
  :opts {:signs {:add {:text "┃"
                       :change {:text "┃"}
                       :delete {:text "_"}
