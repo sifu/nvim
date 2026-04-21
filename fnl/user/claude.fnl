@@ -9,28 +9,6 @@
 
 (var current-cancel nil)
 
-(fn show-thinking []
-  "Show a floating window indicator while Claude is working"
-  (let [buf (vim.api.nvim_create_buf false true)
-        text " Claude is thinking... "
-        width (length text)
-        cols vim.o.columns
-        opts {:relative "editor"
-              : width
-              :height 1
-              :col (- (math.floor (/ cols 2)) (math.floor (/ width 2)))
-              :row 1
-              :style "minimal"
-              :border "rounded"
-              :zindex 50}]
-    (vim.api.nvim_buf_set_lines buf 0 -1 false [text])
-    (vim.api.nvim_open_win buf false opts)))
-
-(fn hide-thinking [win]
-  "Close the thinking indicator"
-  (when (and win (vim.api.nvim_win_is_valid win))
-    (vim.api.nvim_win_close win true)))
-
 (fn open-display-split []
   "Open a scratch split buffer seeded with a placeholder. Returns buf handle."
   (vim.cmd "botright new")
@@ -57,13 +35,15 @@
     (vim.api.nvim_buf_set_lines buf start-line end-line false lines)))
 
 (fn set-busy [buf delta]
-  "Bump vim.bo[buf].busy by delta (Neovim 0.11+). Silently no-op on older versions."
+  "Bump vim.bo[buf].busy by delta (Neovim 0.11+). Silently no-op on older versions.
+  Fires User ClaudeBusyChanged so statuslines can refresh."
   (when (vim.api.nvim_buf_is_valid buf)
     (pcall (fn []
              (let [opts (. vim.bo buf)
                    cur (or (. opts "busy") 0)
                    next-val (math.max 0 (+ cur delta))]
-               (tset opts "busy" next-val))))))
+               (tset opts "busy" next-val))))
+    (pcall vim.api.nvim_exec_autocmds "User" {:pattern "ClaudeBusyChanged"})))
 
 (fn parse-stream-line [line]
   "Parse one line of stream-json. Returns (text, err) — only one is non-nil."
@@ -84,19 +64,21 @@
                 (values nil nil))))))
 
 (fn run-claude-stream [system-prompt user-prompt callbacks]
-  "Spawn `claude -p --output-format stream-json …` with user content piped via
-  stdin (to avoid argv parsing eating values that start with `-`). Line-buffers
-  stdout and invokes callbacks.on-text per text delta, callbacks.on-done on
-  success, callbacks.on-error on failure. Returns a cancel thunk that kills
-  the subprocess and settles with on-error(\"cancelled\")."
+  "Spawn `claude -p --output-format stream-json …` with the instruction+content
+  piped via stdin (avoids argv parsing eating values that start with `-`, and
+  avoids --append-system-prompt which gets echoed back by sessions with
+  skill-injecting SessionStart hooks). Line-buffers stdout and invokes
+  callbacks.on-text per text delta, callbacks.on-done on success,
+  callbacks.on-error on failure. Returns a cancel thunk."
   (let [cmd [claude-bin
              "-p"
              "--output-format"
              "stream-json"
              "--verbose"
-             "--include-partial-messages"
-             "--append-system-prompt"
-             (or system-prompt "")]]
+             "--include-partial-messages"]
+        stdin-text (if (and system-prompt (not= system-prompt ""))
+                       (.. system-prompt "\n\n" (or user-prompt ""))
+                       (or user-prompt ""))]
     (var sbuf "")
     (var errbuf "")
     (var settled false)
@@ -141,7 +123,7 @@
         (set errbuf (.. errbuf chunk))))
 
     (set proc (vim.system cmd {:text true
-                               :stdin (or user-prompt "")
+                               :stdin stdin-text
                                :stdout on-chunk
                                :stderr on-stderr
                                :env {:TMUX ""}}
@@ -182,9 +164,9 @@
       true))
 
 (fn run-replace [system-prompt user-prompt buf start-line end-line]
-  "Stream into an accumulator; replace the line range as one undo unit on completion."
-  (let [state {:acc ""}
-        win (show-thinking)]
+  "Stream into an accumulator; replace the line range as one undo unit on completion.
+  Progress is surfaced via vim.bo[buf].busy (see set-busy) for lualine pickup."
+  (let [state {:acc ""}]
     (set-busy buf 1)
     (set current-cancel
          (run-claude-stream system-prompt user-prompt
@@ -192,7 +174,6 @@
                                         (set state.acc (.. state.acc chunk)))
                              :on-done (fn []
                                         (set current-cancel nil)
-                                        (hide-thinking win)
                                         (set-busy buf -1)
                                         (when (vim.api.nvim_buf_is_valid buf)
                                           (replace-lines buf start-line
@@ -201,7 +182,6 @@
                                                     vim.log.levels.INFO))
                              :on-error (fn [msg]
                                          (set current-cancel nil)
-                                         (hide-thinking win)
                                          (set-busy buf -1)
                                          (vim.notify (.. "Claude failed: " msg)
                                                      vim.log.levels.ERROR))}))))

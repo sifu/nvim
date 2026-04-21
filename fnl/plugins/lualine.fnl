@@ -23,6 +23,16 @@
   (if (core.empty? (vim.fn.reg_recording)) ""
       (.. "🔴@" (vim.fn.reg_recording))))
 
+(fn claude-busy []
+  (let [(ok val) (pcall (fn [] (. (vim.bo 0) "busy")))]
+    (if (and ok val (> val 0)) "Claude…" "")))
+
+(vim.api.nvim_create_autocmd "User"
+                             {:pattern "ClaudeBusyChanged"
+                              :callback (fn []
+                                          (let [lualine (require "lualine")]
+                                            (lualine.refresh {:place ["statusline"]})))})
+
 (vim.api.nvim_create_autocmd "RecordingEnter"
                              {:callback (fn []
                                           (let [lualine (require "lualine")]
@@ -55,6 +65,9 @@
                                                      :path 1
                                                      :shorting_target 40}
                                                     [macro-recording]
+                                                    {1 claude-busy
+                                                     :color {:fg "#d4a373"
+                                                             :gui "bold"}}
                                                     {1 merge-conflict
                                                      :color {:fg "#ff0000"
                                                              :gui "bold"}}]

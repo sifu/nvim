@@ -38,23 +38,40 @@ local function macro_recording()
     return ("\240\159\148\180@" .. vim.fn.reg_recording())
   end
 end
-local function _6_()
+local function claude_busy()
+  local ok, val
+  local function _6_()
+    return vim.bo(0).busy
+  end
+  ok, val = pcall(_6_)
+  if (ok and val and (val > 0)) then
+    return "Claude\226\128\166"
+  else
+    return ""
+  end
+end
+local function _8_()
   local lualine = require("lualine")
   return lualine.refresh({place = {"statusline"}})
 end
-vim.api.nvim_create_autocmd("RecordingEnter", {callback = _6_})
-local function _7_()
-  local lualine = require("lualine")
-  local timer = vim.loop.new_timer()
-  local function _8_()
-    return lualine.refresh({place = {"statusline"}})
-  end
-  return timer:start(50, 0, vim.schedule_wrap(_8_))
-end
-vim.api.nvim_create_autocmd("RecordingLeave", {callback = _7_})
+vim.api.nvim_create_autocmd("User", {pattern = "ClaudeBusyChanged", callback = _8_})
 local function _9_()
   local lualine = require("lualine")
-  local lualine_theme = require("lualine.themes.material")
-  return lualine.setup({options = {theme = lualine_theme, icons_enabled = true, component_separators = {left = "\238\130\177", right = "\238\130\179"}, section_separators = {left = "\238\130\176", right = "\238\130\178"}}, sections = {lualine_a = {"mode", {upper = true}}, lualine_b = {"branch", {"diff", diff_color = {modified = {fg = "#87afff"}}}}, lualine_c = {{"filename", file_status = true, path = 1, shorting_target = 40}, {macro_recording}, {merge_conflict, color = {fg = "#ff0000", gui = "bold"}}}, lualine_x = {{lsp_connection}, "location", "progress", "filetype"}, lualine_y = {"encoding"}, lualine_z = {}}, inactive_sections = {lualine_a = {}, lualine_b = {}, lualine_c = {{"filename", file_status = true, path = 1}}, lualine_x = {}, lualine_y = {}, lualine_z = {}}})
+  return lualine.refresh({place = {"statusline"}})
 end
-return {"nvim-lualine/lualine.nvim", config = _9_}
+vim.api.nvim_create_autocmd("RecordingEnter", {callback = _9_})
+local function _10_()
+  local lualine = require("lualine")
+  local timer = vim.loop.new_timer()
+  local function _11_()
+    return lualine.refresh({place = {"statusline"}})
+  end
+  return timer:start(50, 0, vim.schedule_wrap(_11_))
+end
+vim.api.nvim_create_autocmd("RecordingLeave", {callback = _10_})
+local function _12_()
+  local lualine = require("lualine")
+  local lualine_theme = require("lualine.themes.material")
+  return lualine.setup({options = {theme = lualine_theme, icons_enabled = true, component_separators = {left = "\238\130\177", right = "\238\130\179"}, section_separators = {left = "\238\130\176", right = "\238\130\178"}}, sections = {lualine_a = {"mode", {upper = true}}, lualine_b = {"branch", {"diff", diff_color = {modified = {fg = "#87afff"}}}}, lualine_c = {{"filename", file_status = true, path = 1, shorting_target = 40}, {macro_recording}, {claude_busy, color = {fg = "#d4a373", gui = "bold"}}, {merge_conflict, color = {fg = "#ff0000", gui = "bold"}}}, lualine_x = {{lsp_connection}, "location", "progress", "filetype"}, lualine_y = {"encoding"}, lualine_z = {}}, inactive_sections = {lualine_a = {}, lualine_b = {}, lualine_c = {{"filename", file_status = true, path = 1}}, lualine_x = {}, lualine_y = {}, lualine_z = {}}})
+end
+return {"nvim-lualine/lualine.nvim", config = _12_}

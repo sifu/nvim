@@ -16,22 +16,6 @@ do
 end
 local timeout_ms = 120000
 local current_cancel = nil
-local function show_thinking()
-  local buf = vim.api.nvim_create_buf(false, true)
-  local text = " Claude is thinking... "
-  local width = #text
-  local cols = vim.o.columns
-  local opts = {relative = "editor", width = width, height = 1, col = (math.floor((cols / 2)) - math.floor((width / 2))), row = 1, style = "minimal", border = "rounded", zindex = 50}
-  vim.api.nvim_buf_set_lines(buf, 0, -1, false, {text})
-  return vim.api.nvim_open_win(buf, false, opts)
-end
-local function hide_thinking(win)
-  if (win and vim.api.nvim_win_is_valid(win)) then
-    return vim.api.nvim_win_close(win, true)
-  else
-    return nil
-  end
-end
 local function open_display_split()
   vim.cmd("botright new")
   local buf = vim.api.nvim_get_current_buf()
@@ -61,14 +45,15 @@ local function replace_lines(buf, start_line, end_line, text)
 end
 local function set_busy(buf, delta)
   if vim.api.nvim_buf_is_valid(buf) then
-    local function _6_()
+    local function _5_()
       local opts = vim.bo[buf]
       local cur = (opts.busy or 0)
       local next_val = math.max(0, (cur + delta))
       opts["busy"] = next_val
       return nil
     end
-    return pcall(_6_)
+    pcall(_5_)
+    return pcall(vim.api.nvim_exec_autocmds, "User", {pattern = "ClaudeBusyChanged"})
   else
     return nil
   end
@@ -92,7 +77,13 @@ local function parse_stream_line(line)
   end
 end
 local function run_claude_stream(system_prompt, user_prompt, callbacks)
-  local cmd = {claude_bin, "-p", "--output-format", "stream-json", "--verbose", "--include-partial-messages", "--append-system-prompt", (system_prompt or "")}
+  local cmd = {claude_bin, "-p", "--output-format", "stream-json", "--verbose", "--include-partial-messages"}
+  local stdin_text
+  if (system_prompt and (system_prompt ~= "")) then
+    stdin_text = (system_prompt .. "\n\n" .. (user_prompt or ""))
+  else
+    stdin_text = (user_prompt or "")
+  end
   local sbuf = ""
   local errbuf = ""
   local settled = false
@@ -187,7 +178,7 @@ local function run_claude_stream(system_prompt, user_prompt, callbacks)
       return settle("done")
     end
   end
-  proc = vim.system(cmd, {text = true, stdin = (user_prompt or ""), stdout = on_chunk, stderr = on_stderr, env = {TMUX = ""}}, _25_)
+  proc = vim.system(cmd, {text = true, stdin = stdin_text, stdout = on_chunk, stderr = on_stderr, env = {TMUX = ""}}, _25_)
   if not settled then
     timer = vim.uv.new_timer()
     local function _28_()
@@ -235,7 +226,6 @@ local function can_start()
 end
 local function run_replace(system_prompt, user_prompt, buf, start_line, end_line)
   local state = {acc = ""}
-  local win = show_thinking()
   set_busy(buf, 1)
   local function _38_(chunk)
     state.acc = (state.acc .. chunk)
@@ -243,7 +233,6 @@ local function run_replace(system_prompt, user_prompt, buf, start_line, end_line
   end
   local function _39_()
     current_cancel = nil
-    hide_thinking(win)
     set_busy(buf, -1)
     if vim.api.nvim_buf_is_valid(buf) then
       replace_lines(buf, start_line, end_line, state.acc)
@@ -253,7 +242,6 @@ local function run_replace(system_prompt, user_prompt, buf, start_line, end_line
   end
   local function _41_(msg)
     current_cancel = nil
-    hide_thinking(win)
     set_busy(buf, -1)
     return vim.notify(("Claude failed: " .. msg), vim.log.levels.ERROR)
   end
