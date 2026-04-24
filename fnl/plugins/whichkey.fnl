@@ -151,10 +151,6 @@
                   "<cmd>lua vim.lsp.buf.type_definition()<cr>"
                   "TypeScript Type"]
                  ["n"
-                  "<leader>lw"
-                  "<cmd>TailwindConcealToggle<cr>"
-                  "Tailwind Conceal Toggle"]
-                 ["n"
                   "<leader>la"
                   "<cmd>lua require('user.code-action')['sorted-code-action']()<cr>"
                   "Code Action"]

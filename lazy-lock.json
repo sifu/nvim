@@ -56,7 +56,6 @@
   "substitute.nvim": { "branch": "main", "commit": "0d2077398552f069abccbd964a26dd7cd26882cd" },
   "supermaven-nvim": { "branch": "main", "commit": "07d20fce48a5629686aefb0a7cd4b25e33947d50" },
   "tailwind-hover.nvim": { "branch": "main", "commit": "431e45bb19adcb9846ef93e22c39306c5ee2fc6e" },
-  "tailwind-tools": { "branch": "master", "commit": "fbe982901d4508b0dcd80e07addf0fcb6dab6c49" },
   "tardis.nvim": { "branch": "main", "commit": "f050686a6c299dba95d07990550174c20aba56dd" },
   "telescope-fzf-native.nvim": { "branch": "main", "commit": "6fea601bd2b694c6f2ae08a6c6fab14930c60e2c" },
   "telescope-oil.nvim": { "branch": "main", "commit": "5a86746e2803f67a98f9801ed4cf9c782d649a93" },
@@ -72,5 +71,6 @@
   "vim-repeat": { "branch": "master", "commit": "65846025c15494983dafe5e3b46c8f88ab2e9635" },
   "vim-startify": { "branch": "master", "commit": "4e089dffdad46f3f5593f34362d530e8fe823dcf" },
   "vim-system-copy": { "branch": "master", "commit": "f007ef29e559a6017d96bea42fcc5f43af792284" },
+  "wayfinder.nvim": { "branch": "main", "commit": "bf90b405ef49f297a8e1db6a60fb0c3717e2ca8d" },
   "which-key.nvim": { "branch": "main", "commit": "3aab2147e74890957785941f0c1ad87d0a44c15a" }
 }
