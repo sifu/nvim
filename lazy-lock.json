@@ -25,7 +25,7 @@
   "jq-playground.nvim": { "branch": "main", "commit": "8bf7d17677d837e62575ddaa48906f4cc21e89bc" },
   "lazy.nvim": { "branch": "main", "commit": "85c7ff3711b730b4030d03144f6db6375044ae82" },
   "lspkind.nvim": { "branch": "master", "commit": "c7274c48137396526b59d86232eabcdc7fed8a32" },
-  "lualine.nvim": { "branch": "master", "commit": "a905eeebc4e63fdc48b5135d3bf8aea5618fb21c" },
+  "lualine.nvim": { "branch": "master", "commit": "131a558e13f9f28b15cd235557150ccb23f89286" },
   "markview.nvim": { "branch": "main", "commit": "86cf4bcede58e88497f7e5214efb281d4a6f633d" },
   "mason-lspconfig.nvim": { "branch": "main", "commit": "0c2823e0418f3d9230ff8b201c976e84de1cb401" },
   "mason.nvim": { "branch": "main", "commit": "cb8445f8ce85d957416c106b780efd51c6298f89" },
@@ -37,7 +37,7 @@
   "nui.nvim": { "branch": "main", "commit": "de740991c12411b663994b2860f1a4fd0937c130" },
   "nvim-cmp": { "branch": "main", "commit": "a1d504892f2bc56c2e79b65c6faded2fd21f3eca" },
   "nvim-highlight-colors": { "branch": "main", "commit": "e2cb22089cc2358b2b995c09578224f142de6039" },
-  "nvim-lspconfig": { "branch": "master", "commit": "bf5abe69c1874531f359a822d0cff4d73e26113f" },
+  "nvim-lspconfig": { "branch": "master", "commit": "6419b36f50c42420cbbf1d3ffba573094cf414c8" },
   "nvim-neoclip.lua": { "branch": "main", "commit": "831a97c7697736411a05ff8b91e8798ea4c2d6fb" },
   "nvim-paredit": { "branch": "master", "commit": "b6ba636874a3115d944e35746444724240568aca" },
   "nvim-parinfer": { "branch": "master", "commit": "3968e669d9f02589aa311d33cb475b16b27c5fbb" },
@@ -71,6 +71,6 @@
   "vim-repeat": { "branch": "master", "commit": "65846025c15494983dafe5e3b46c8f88ab2e9635" },
   "vim-startify": { "branch": "master", "commit": "4e089dffdad46f3f5593f34362d530e8fe823dcf" },
   "vim-system-copy": { "branch": "master", "commit": "f007ef29e559a6017d96bea42fcc5f43af792284" },
-  "wayfinder.nvim": { "branch": "main", "commit": "165fd6c2c0e65a6925dff1fc6c4b2033efb4da8d" },
+  "wayfinder.nvim": { "branch": "main", "commit": "5a57a1927b44b616bef0ce9eeaa10ef2cb548e5d" },
   "which-key.nvim": { "branch": "main", "commit": "3aab2147e74890957785941f0c1ad87d0a44c15a" }
 }
