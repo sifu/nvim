@@ -242,6 +242,10 @@
                   "<leader>gl"
                   "<cmd>lua require 'gitsigns'.blame_line()<cr>"
                   "Blame"]
+                 ["n"
+                  "<leader>gp"
+                  "<cmd>lua require('user.prs').show()<cr>"
+                  "Show PR overview"]
                  ;; Markdown
                  ["n"
                   "<leader>MM"

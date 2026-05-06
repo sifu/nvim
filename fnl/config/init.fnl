@@ -20,6 +20,7 @@
 (require "user.open-file-with-line-number")
 (require "user.qf-improvements")
 (require "user.claude")
+(require "user.prs")
 
 ;; ## Misc auto commands
 
