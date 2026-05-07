@@ -25,11 +25,7 @@ do
   query = tbl_21_
 end
 local function _3_()
-  local function _4_()
-  end
-  local function _5_()
-  end
-  vim.g.rainbow_delimiters = {strategy = vim.tbl_extend("force", {[""] = _4_}, strategy), query = vim.tbl_extend("force", {[""] = _5_}, query), highlight = {"RainbowDelimiterRed", "RainbowDelimiterYellow", "RainbowDelimiterBlue", "RainbowDelimiterOrange", "RainbowDelimiterGreen", "RainbowDelimiterViolet", "RainbowDelimiterCyan"}}
+  vim.g.rainbow_delimiters = {strategy = strategy, query = query, highlight = {"RainbowDelimiterRed", "RainbowDelimiterYellow", "RainbowDelimiterBlue", "RainbowDelimiterOrange", "RainbowDelimiterGreen", "RainbowDelimiterViolet", "RainbowDelimiterCyan"}}
   return nil
 end
 return {{"HiPhish/rainbow-delimiters.nvim", ft = file_types, config = _3_}}
