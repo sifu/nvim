@@ -6,6 +6,14 @@
   (core.assoc vim.o "shiftwidth" 2)
   (core.assoc vim.o "softtabstop" 2))
 
+(fn clear-heading-backgrounds []
+  (each [_ n (ipairs [1 2 3 4 5 6])]
+    (let [name (.. "MarkviewHeading" n)
+          hl (vim.api.nvim_get_hl 0 {: name :link false})]
+      (tset hl "bg" nil)
+      (tset hl "ctermbg" nil)
+      (vim.api.nvim_set_hl 0 name hl))))
+
 (vim.api.nvim_create_autocmd "FileType"
                              {:pattern "markdown"
                               :callback (fn []
@@ -24,22 +32,28 @@
                               :shift_width 0
                               :heading_1 {:style "icon"
                                           :icon " "
-                                          :hl "MarkviewHeading1"}
+                                          :hl false
+                                          :icon_hl "MarkviewHeading1"}
                               :heading_2 {:style "icon"
                                           :icon " "
-                                          :hl "MarkviewHeading2"}
+                                          :hl false
+                                          :icon_hl "MarkviewHeading2"}
                               :heading_3 {:style "icon"
                                           :icon " "
-                                          :hl "MarkviewHeading3"}
+                                          :hl false
+                                          :icon_hl "MarkviewHeading3"}
                               :heading_4 {:style "icon"
                                           :icon " "
-                                          :hl "MarkviewHeading4"}
+                                          :hl false
+                                          :icon_hl "MarkviewHeading4"}
                               :heading_5 {:style "icon"
                                           :icon " "
-                                          :hl "MarkviewHeading5"}
+                                          :hl false
+                                          :icon_hl "MarkviewHeading5"}
                               :heading_6 {:style "icon"
                                           :icon " "
-                                          :hl "MarkviewHeading6"}}
+                                          :hl false
+                                          :icon_hl "MarkviewHeading6"}}
                    :code_blocks {:enable false}
                    :list_items {:enable true
                                 :indent_size 2
@@ -54,6 +68,10 @@
              (tset opts.markdown.list_items.checkboxes "-"
                    {:text "󱋭 " :hl "MarkviewCheckboxCancelled"})
              (markview.setup opts)
+             (vim.schedule clear-heading-backgrounds)
+             (vim.api.nvim_create_autocmd ["ColorScheme" "VimEnter"]
+                                          {:callback (fn []
+                                                       (vim.schedule clear-heading-backgrounds))})
              (vim.api.nvim_create_autocmd "FileType"
                                           {:pattern "markdown"
                                            :callback set-filetype-options})))}
