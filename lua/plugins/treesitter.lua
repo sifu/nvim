@@ -1,6 +1,6 @@
 -- [nfnl] fnl/plugins/treesitter.fnl
 local function _1_()
-  local ts = require("nvim-treesitter")
-  return ts.install({"bash", "clojure", "commonlisp", "dockerfile", "fennel", "html", "java", "javascript", "typescript", "tsx", "json", "lua", "markdown", "yaml"})
+  local arborist = require("arborist")
+  return arborist.setup({ensure_installed = {"clojure", "commonlisp", "fennel"}})
 end
-return {"nvim-treesitter/nvim-treesitter", branch = "main", dependencies = {{"nvim-treesitter/nvim-treesitter-textobjects", branch = "main"}}, build = ":TSUpdate", config = _1_}
+return {"arborist-ts/arborist.nvim", config = _1_}

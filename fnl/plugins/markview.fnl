@@ -25,8 +25,7 @@
 {1 "OXY2DEV/markview.nvim"
  :ft ["markdown"]
  :cmd ["Markview"]
- :dependencies ["nvim-treesitter/nvim-treesitter"
-                "nvim-tree/nvim-web-devicons"]
+ :dependencies ["nvim-tree/nvim-web-devicons"]
  :opts {:preview {:modes ["n" "c" "t"] :enable_hybrid_mode false}
         :markdown {:headings {:enable true
                               :shift_width 0
