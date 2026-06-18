@@ -21,6 +21,7 @@
 (require "user.qf-improvements")
 (require "user.claude")
 (require "user.prs")
+(require "user.trello-card-info")
 
 ;; ## Misc auto commands
 
