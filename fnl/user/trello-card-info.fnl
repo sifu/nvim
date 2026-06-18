@@ -30,7 +30,7 @@
     (vim.api.nvim_win_close win-id true))
   (set win-id nil))
 
-(fn open-popup [lines]
+(fn open-popup [lines line-urls]
   (close)
   (let [buf (vim.api.nvim_create_buf false true)
         ui (. (vim.api.nvim_list_uis) 1)
@@ -57,33 +57,59 @@
     (vim.api.nvim_set_option_value "linebreak" true {:win win-id})
     (vim.keymap.set "n" "q" close {:buffer buf :nowait true :silent true})
     (vim.keymap.set "n" "<esc>" close {:buffer buf :nowait true :silent true})
+    (vim.keymap.set "n" "<cr>"
+                    (fn []
+                      (let [row (. (vim.api.nvim_win_get_cursor win-id) 1)
+                            target (. line-urls row)]
+                        (if target
+                            (do
+                              (close)
+                              (vim.ui.open target))
+                            (vim.notify "No PR link on this line"
+                                        vim.log.levels.INFO))))
+                    {:buffer buf :nowait true :silent true})
     (vim.api.nvim_create_autocmd "BufLeave"
                                  {:buffer buf :once true :callback close})))
 
 ;; card rendering ------------------------------------------------------------
 
+(fn github-prs [card]
+  "Attachments whose URL points at a GitHub pull request."
+  (icollect [_ a (ipairs (or card.attachments []))]
+    (when (and a.url (string.match a.url "github%.com/.+/pull/%d+"))
+      {:name (if (and a.name (not= a.name "")) a.name a.url) :url a.url})))
+
 (fn card->lines [card]
+  "Returns (values lines line-urls); line-urls maps a 1-based row to a PR URL."
   (let [list-name (or (?. card "list" "name") "(no list)")
         members (icollect [_ m (ipairs (or card.members []))]
                   m.fullName)
+        prs (github-prs card)
         lines [list-name
                (string.rep "─" (math.max 12 (length list-name)))
                (or card.name "(untitled)")
-               ""]]
+               ""]
+        line-urls {}]
     (table.insert lines (.. "Members: "
                             (if (> (length members) 0)
                                 (table.concat members ", ")
                                 "—")))
+    (when (> (length prs) 0)
+      (table.insert lines "")
+      (each [_ pr (ipairs prs)]
+        (table.insert lines (.. " " pr.name " (<CR> to open)"))
+        (tset line-urls (length lines) pr.url)))
     (when (and card.desc (not= card.desc ""))
       (table.insert lines "")
       (each [line (string.gmatch (.. card.desc "\n") "(.-)\n")]
         (table.insert lines line)))
-    lines))
+    (values lines line-urls)))
 
 (fn fetch-and-show [shortlink creds]
   (let [url (.. "https://api.trello.com/1/cards/" shortlink
                 "?fields=name,desc&list=true"
-                "&members=true&member_fields=fullName" "&key=" creds.key
+                "&members=true&member_fields=fullName"
+                "&attachments=true&attachment_fields=name,url" "&key=" creds.key
                 "&token=" creds.token)
         chunks []]
     (vim.notify "Trello: fetching card…" vim.log.levels.INFO)
