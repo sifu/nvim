@@ -39,6 +39,8 @@
                                                           {:buffer ev.buf}))})
 
 {1 "obsidian-nvim/obsidian.nvim"
+ :ft "markdown"
+ :cmd "Obsidian"
  :dependencies ["nvim-lua/plenary.nvim"]
  :opts {:workspaces [{:name "Main" :path "~/Obsidian/Main"}]
         :new_notes_location "Notes"

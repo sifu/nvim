@@ -12,7 +12,23 @@
                ((. (require "telescope.actions") "select_default") prompt-bufnr)))))
 
 {1 "nvim-telescope/telescope.nvim"
- :dependencies ["nvim-telescope/telescope-ui-select.nvim"
+ :cmd "Telescope"
+ :keys [{1 "<space>g"
+         2 ":lua require('user.telescope-multigrep').multigrep()<CR>"
+         :desc "Multigrep (with `  `)"}
+        {1 "<space>e"
+         2 ":lua require('telescope.builtin').live_grep({additional_args = function() return {'--fixed-strings'} end})<CR>"
+         :desc "Search Exact String"}
+        {1 "<leader>lu"
+         2 ":lua require('user.telescope-routes').routes()<CR>"
+         :desc "Routes"}
+        {1 "<leader>lf"
+         2 ":lua require('user.lsp-unique-references').references()<CR>"
+         :desc "References (unique files)"}
+        {1 "<leader>lT" 2 "<cmd>TodoTelescope<cr>" :desc "Todos"}]
+ :dependencies [{1 "nvim-telescope/telescope-fzf-native.nvim"
+                 :build "cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release"}
+                "nvim-telescope/telescope-ui-select.nvim"
                 "nvim-lua/popup.nvim"
                 "nvim-lua/plenary.nvim"
                 "albenisolmos/telescope-oil.nvim"

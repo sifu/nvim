@@ -1,1 +1,5 @@
-{1 "folke/todo-comments.nvim" :dependencies ["nvim-lua/plenary.nvim"] :opts {}}
+{1 "folke/todo-comments.nvim"
+ :event ["BufReadPost" "BufNewFile"]
+ :cmd ["TodoTelescope" "TodoQuickFix" "TodoLocList"]
+ :dependencies ["nvim-lua/plenary.nvim"]
+ :opts {}}

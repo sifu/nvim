@@ -23,4 +23,4 @@ local function _3_()
   vim.lsp.config("clojure_lsp", {capabilities = capabilities})
   return vim.lsp.enable({"fennel_language_server", "vtsls", "cssmodules_ls", "cssls", "tailwindcss", "html", "eslint", "clojure_lsp"})
 end
-return {{"williamboman/mason.nvim", config = _1_}, {"williamboman/mason-lspconfig.nvim", dependencies = {"williamboman/mason.nvim"}, config = _2_}, {"neovim/nvim-lspconfig", dependencies = {"williamboman/mason.nvim", "williamboman/mason-lspconfig.nvim", "hrsh7th/cmp-nvim-lsp"}, config = _3_}}
+return {{"williamboman/mason.nvim", cmd = {"Mason", "MasonUpdate", "MasonInstall", "MasonUninstall", "MasonLog"}, config = _1_}, {"williamboman/mason-lspconfig.nvim", lazy = true, dependencies = {"williamboman/mason.nvim"}, config = _2_}, {"neovim/nvim-lspconfig", event = {"BufReadPre", "BufNewFile"}, dependencies = {"williamboman/mason.nvim", "williamboman/mason-lspconfig.nvim", "hrsh7th/cmp-nvim-lsp"}, config = _3_}}

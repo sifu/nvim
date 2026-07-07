@@ -1,5 +1,6 @@
 {1 "nvim-mini/mini.ai"
  :version "*"
+ :event "VeryLazy"
  :opts {:custom_textobjects {}
         :mappings {:around "a"
                    :inside "i"

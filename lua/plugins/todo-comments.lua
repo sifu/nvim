@@ -1,2 +1,2 @@
--- [nfnl] Compiled from fnl/plugins/todo-comments.fnl by https://github.com/Olical/nfnl, do not edit.
-return {"folke/todo-comments.nvim", dependencies = {"nvim-lua/plenary.nvim"}, opts = {}}
+-- [nfnl] fnl/plugins/todo-comments.fnl
+return {"folke/todo-comments.nvim", event = {"BufReadPost", "BufNewFile"}, cmd = {"TodoTelescope", "TodoQuickFix", "TodoLocList"}, dependencies = {"nvim-lua/plenary.nvim"}, opts = {}}

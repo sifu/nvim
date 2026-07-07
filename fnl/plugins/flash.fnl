@@ -1,5 +1,4 @@
 {1 "folke/flash.nvim"
- :event "VeryLazy"
  :keys [{1 "s"
          2 (fn []
              (let [flash (require "flash")] (flash.jump)))

@@ -143,8 +143,6 @@
                  ["n" ",," ":e#<cr>" "Switch between alternate buffers"]
                  ["n" "<leader>P" "<cmd>ParinferToggle<cr>" "Toggle Parinfer"]
                  ;; LSP
-                 ; not really a lsp thingy, but I think it fits
-                 ["n" "<leader>lT" "<cmd>TodoTelescope<cr>" "Todos"]
                  ["n" "<leader>li" find-i18n-key "Find i18n Translation"]
                  ["n"
                   "<leader>lt"
@@ -168,10 +166,6 @@
                   "<cmd>Telescope lsp_references<cr>"
                   "References"]
                  ["n"
-                  "<leader>lf"
-                  ":lua require('user.lsp-unique-references').references()<CR>"
-                  "References (unique files)"]
-                 ["n"
                   "<leader>ls"
                   "<cmd>Telescope lsp_document_symbols<cr>"
                   "Document Symbols"]
@@ -187,10 +181,6 @@
                   "<leader>ln"
                   "<cmd>lua vim.diagnostic.goto_next({ border = 'rounded' })<cr>"
                   "Diagnostic"]
-                 ["n"
-                  "<leader>lu"
-                  ":lua require('user.telescope-routes').routes()<CR>"
-                  "Routes"]
                  ;; Git
                  ["n" "<leader>gg" "<cmd>wa<cr><cmd>Neogit<cr>" "Neogit"]
                  ["n"
@@ -275,17 +265,13 @@
                  ["n" "<space>y" "<cmd>Telescope neoclip<cr>" "Yank History"]
                  ["n"
                   "<space><space>"
-                  ":lua require('telescope.builtin').find_files()<CR>"
+                  "<cmd>Telescope find_files<cr>"
                   "Find Files"]
                  ["n"
                   "<space>F"
                   "<cmd>:lua MiniFiles.open(vim.uv.cwd(), true)<CR>"
                   "Explore"]
                  ["n" "<space>d" "<cmd>Telescope oil<CR>" "Explore Directory"]
-                 ["n"
-                  "<space>g"
-                  ":lua require('user.telescope-multigrep').multigrep()<CR>"
-                  "Multigrep (with `  `)"]
                  ["n"
                   "<space>w"
                   "<cmd>Telescope grep_string<cr>"
@@ -300,17 +286,13 @@
                   "Sessions"]
                  ["n"
                   "<space>h"
-                  ":lua require('telescope.builtin').help_tags(require('telescope.themes').get_ivy())<CR>"
+                  "<cmd>Telescope help_tags theme=ivy<cr>"
                   "Help Tags"]
                  ["n" "<space>b" "<cmd>Telescope builtin<cr>" "Builtin"]
                  ["n"
                   "<space>r"
-                  ":lua require('telescope.builtin').resume()<CR>"
+                  "<cmd>Telescope resume<cr>"
                   "Resume last search"]
-                 ["n"
-                  "<space>e"
-                  ":lua require('telescope.builtin').live_grep({additional_args = function() return {'--fixed-strings'} end})<CR>"
-                  "Search Exact String"]
                  ;; Claude
                  ["n" "<leader>ac" chat "Chat"]
                  ["v"

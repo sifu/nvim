@@ -1,1 +1,1 @@
-{1 "yochem/jq-playground.nvim"}
+{1 "yochem/jq-playground.nvim" :cmd "JqPlayground"}

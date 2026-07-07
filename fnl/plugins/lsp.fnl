@@ -20,10 +20,12 @@
 (local cssls-settings {:css {:validate true :lint {:unknownAtRules "ignore"}}})
 
 [{1 "williamboman/mason.nvim"
+  :cmd ["Mason" "MasonUpdate" "MasonInstall" "MasonUninstall" "MasonLog"]
   :config (fn []
             (let [mason (require "mason")]
               (mason.setup)))}
  {1 "williamboman/mason-lspconfig.nvim"
+  :lazy true
   :dependencies ["williamboman/mason.nvim"]
   :config (fn []
             (let [mason-lspconfig (require "mason-lspconfig")]
@@ -36,6 +38,7 @@
                                                          "tailwindcss"
                                                          "clojure_lsp"]})))}
  {1 "neovim/nvim-lspconfig"
+  :event ["BufReadPre" "BufNewFile"]
   :dependencies ["williamboman/mason.nvim"
                  "williamboman/mason-lspconfig.nvim"
                  "hrsh7th/cmp-nvim-lsp"]
