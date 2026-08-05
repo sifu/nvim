@@ -8,7 +8,7 @@ local function _1_()
 end
 local function _2_()
   local mason_lspconfig = require("mason-lspconfig")
-  return mason_lspconfig.setup({ensure_installed = {"fennel_language_server", "vtsls", "cssmodules_ls", "cssls", "html", "eslint", "tailwindcss", "clojure_lsp"}})
+  return mason_lspconfig.setup({ensure_installed = {"fennel_language_server", "vtsls", "cssmodules_ls", "cssls", "html", "eslint", "oxlint", "tailwindcss", "clojure_lsp"}})
 end
 local function _3_()
   local cmp_nvim_lsp = require("cmp_nvim_lsp")
@@ -20,7 +20,8 @@ local function _3_()
   vim.lsp.config("tailwindcss", {capabilities = capabilities})
   vim.lsp.config("html", {capabilities = capabilities})
   vim.lsp.config("eslint", {capabilities = capabilities})
+  vim.lsp.config("oxlint", {capabilities = capabilities, settings = {typeAware = true}})
   vim.lsp.config("clojure_lsp", {capabilities = capabilities})
-  return vim.lsp.enable({"fennel_language_server", "vtsls", "cssmodules_ls", "cssls", "tailwindcss", "html", "eslint", "clojure_lsp"})
+  return vim.lsp.enable({"fennel_language_server", "vtsls", "cssmodules_ls", "cssls", "tailwindcss", "html", "eslint", "oxlint", "clojure_lsp"})
 end
 return {{"williamboman/mason.nvim", cmd = {"Mason", "MasonUpdate", "MasonInstall", "MasonUninstall", "MasonLog"}, config = _1_}, {"williamboman/mason-lspconfig.nvim", lazy = true, dependencies = {"williamboman/mason.nvim"}, config = _2_}, {"neovim/nvim-lspconfig", event = {"BufReadPre", "BufNewFile"}, dependencies = {"williamboman/mason.nvim", "williamboman/mason-lspconfig.nvim", "hrsh7th/cmp-nvim-lsp"}, config = _3_}}

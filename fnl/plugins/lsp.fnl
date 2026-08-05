@@ -35,6 +35,7 @@
                                                          "cssls"
                                                          "html"
                                                          "eslint"
+                                                         "oxlint"
                                                          "tailwindcss"
                                                          "clojure_lsp"]})))}
  {1 "neovim/nvim-lspconfig"
@@ -54,6 +55,8 @@
               (vim.lsp.config "tailwindcss" {: capabilities})
               (vim.lsp.config "html" {: capabilities})
               (vim.lsp.config "eslint" {: capabilities})
+              (vim.lsp.config "oxlint"
+                              {: capabilities :settings {:typeAware true}})
               (vim.lsp.config "clojure_lsp" {: capabilities})
               (vim.lsp.enable ["fennel_language_server"
                                "vtsls"
@@ -62,4 +65,5 @@
                                "tailwindcss"
                                "html"
                                "eslint"
+                               "oxlint"
                                "clojure_lsp"])))}]
