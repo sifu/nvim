@@ -70,6 +70,6 @@
   "vim-repeat": { "branch": "master", "commit": "65846025c15494983dafe5e3b46c8f88ab2e9635" },
   "vim-startify": { "branch": "master", "commit": "4e089dffdad46f3f5593f34362d530e8fe823dcf" },
   "vim-system-copy": { "branch": "master", "commit": "f007ef29e559a6017d96bea42fcc5f43af792284" },
-  "wayfinder.nvim": { "branch": "main", "commit": "8d7e68151428554c0530032b90659f3c0008f3a9" },
+  "wayfinder.nvim": { "branch": "main", "commit": "2ce480d35626ddb533ba594fa7ca865d61184ec6" },
   "which-key.nvim": { "branch": "main", "commit": "3aab2147e74890957785941f0c1ad87d0a44c15a" }
 }
