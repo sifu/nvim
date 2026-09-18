@@ -43,7 +43,8 @@
  :cmd "Obsidian"
  :dependencies ["nvim-lua/plenary.nvim"]
  :opts {:workspaces [{:name "Main" :path "~/Obsidian/Main"}]
-        :new_notes_location "Notes"
+        :notes_subdir "Notes"
+        :new_notes_location "notes_subdir"
         :legacy_commands false
         :ui {:enable false}
         :footer {:enabled false}
@@ -64,8 +65,5 @@
                                 (error "Invalid filename characters"))
                               title)
                             (tostring (vim.fn.strftime "%Y%m%d-%H%M%S"))))
-        :note_path_func (fn [spec]
-                          (let [path (/ spec.dir "Notes" (tostring spec.id))]
-                            (path:with_suffix ".md")))
         :note {:template nil}
         :frontmatter {:enabled false}}}
