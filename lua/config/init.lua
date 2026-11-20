@@ -35,4 +35,11 @@ vim.opt.iskeyword:append("-")
 vim.opt.listchars:append("precedes:<,extends:>,eol:\194\172,trail:.,nbsp:.")
 vim.opt.complete:remove("i")
 vim.opt.nrformats:remove("octal")
-return {}
+do local _ = {} end
+local function _3_(ev)
+  for _, mode in ipairs({"n", "i"}) do
+    vim.keymap.set(mode, "<leader><leader>", "<cmd>wq<cr>", {buffer = ev.buf, desc = "Submit to Claude"})
+  end
+  return nil
+end
+return vim.api.nvim_create_autocmd("BufEnter", {pattern = "*/claude-prompt-*.md", callback = _3_})

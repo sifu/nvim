@@ -85,3 +85,14 @@
 (vim.opt.nrformats:remove "octal")
 
 {}
+
+;; Claude Code <C-g> prompt editor: €€ saves and quits
+(vim.api.nvim_create_autocmd "BufEnter"
+                             {:pattern "*/claude-prompt-*.md"
+                              :callback (fn [ev]
+                                          (each [_ mode (ipairs ["n" "i"])]
+                                            (vim.keymap.set mode
+                                                            "<leader><leader>"
+                                                            "<cmd>wq<cr>"
+                                                            {:buffer ev.buf
+                                                             :desc "Submit to Claude"})))})
